@@ -140,6 +140,21 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -288,13 +303,10 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -311,7 +323,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepayInstallmentAmount()
     {
-        return $this->container['ratepayInstallmentAmount'];
+        return $this->container['ratepayInstallmentAmount'] ?? null;
     }
 
     /**
@@ -335,7 +347,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepayInterestRate()
     {
-        return $this->container['ratepayInterestRate'];
+        return $this->container['ratepayInterestRate'] ?? null;
     }
 
     /**
@@ -359,7 +371,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepayLastInstallmentAmount()
     {
-        return $this->container['ratepayLastInstallmentAmount'];
+        return $this->container['ratepayLastInstallmentAmount'] ?? null;
     }
 
     /**
@@ -383,7 +395,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepayPaymentFirstday()
     {
-        return $this->container['ratepayPaymentFirstday'];
+        return $this->container['ratepayPaymentFirstday'] ?? null;
     }
 
     /**
@@ -407,7 +419,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepaydataDeliveryDate()
     {
-        return $this->container['ratepaydataDeliveryDate'];
+        return $this->container['ratepaydataDeliveryDate'] ?? null;
     }
 
     /**
@@ -431,7 +443,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepaydataDueDate()
     {
-        return $this->container['ratepaydataDueDate'];
+        return $this->container['ratepaydataDueDate'] ?? null;
     }
 
     /**
@@ -455,7 +467,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepaydataInvoiceDate()
     {
-        return $this->container['ratepaydataInvoiceDate'];
+        return $this->container['ratepaydataInvoiceDate'] ?? null;
     }
 
     /**
@@ -479,7 +491,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRatepaydataInvoiceId()
     {
-        return $this->container['ratepaydataInvoiceId'];
+        return $this->container['ratepaydataInvoiceId'] ?? null;
     }
 
     /**
@@ -534,6 +546,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -547,6 +560,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -565,14 +579,19 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

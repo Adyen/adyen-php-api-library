@@ -146,6 +146,21 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -302,13 +317,10 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -325,7 +337,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardAltID()
     {
-        return $this->container['cardAltID'];
+        return $this->container['cardAltID'] ?? null;
     }
 
     /**
@@ -349,7 +361,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardBin()
     {
-        return $this->container['cardBin'];
+        return $this->container['cardBin'] ?? null;
     }
 
     /**
@@ -373,7 +385,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardHolderName()
     {
-        return $this->container['cardHolderName'];
+        return $this->container['cardHolderName'] ?? null;
     }
 
     /**
@@ -397,7 +409,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardIssuingBank()
     {
-        return $this->container['cardIssuingBank'];
+        return $this->container['cardIssuingBank'] ?? null;
     }
 
     /**
@@ -421,7 +433,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardIssuingCountry()
     {
-        return $this->container['cardIssuingCountry'];
+        return $this->container['cardIssuingCountry'] ?? null;
     }
 
     /**
@@ -445,7 +457,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardIssuingCurrency()
     {
-        return $this->container['cardIssuingCurrency'];
+        return $this->container['cardIssuingCurrency'] ?? null;
     }
 
     /**
@@ -469,7 +481,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardPaymentMethod()
     {
-        return $this->container['cardPaymentMethod'];
+        return $this->container['cardPaymentMethod'] ?? null;
     }
 
     /**
@@ -493,7 +505,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardProductId()
     {
-        return $this->container['cardProductId'];
+        return $this->container['cardProductId'] ?? null;
     }
 
     /**
@@ -517,7 +529,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getCardSummary()
     {
-        return $this->container['cardSummary'];
+        return $this->container['cardSummary'] ?? null;
     }
 
     /**
@@ -541,7 +553,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getIssuerBin()
     {
-        return $this->container['issuerBin'];
+        return $this->container['issuerBin'] ?? null;
     }
 
     /**
@@ -596,6 +608,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -609,6 +622,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -627,14 +641,19 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

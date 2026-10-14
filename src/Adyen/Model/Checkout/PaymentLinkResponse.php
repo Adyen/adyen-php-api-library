@@ -254,6 +254,21 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -630,13 +645,10 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -653,7 +665,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAllowedPaymentMethods()
     {
-        return $this->container['allowedPaymentMethods'];
+        return $this->container['allowedPaymentMethods'] ?? null;
     }
 
     /**
@@ -677,7 +689,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -701,7 +713,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getApplicationInfo()
     {
-        return $this->container['applicationInfo'];
+        return $this->container['applicationInfo'] ?? null;
     }
 
     /**
@@ -725,7 +737,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -749,7 +761,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getBlockedPaymentMethods()
     {
-        return $this->container['blockedPaymentMethods'];
+        return $this->container['blockedPaymentMethods'] ?? null;
     }
 
     /**
@@ -773,7 +785,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getCaptureDelayHours()
     {
-        return $this->container['captureDelayHours'];
+        return $this->container['captureDelayHours'] ?? null;
     }
 
     /**
@@ -797,7 +809,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getCountryCode()
     {
-        return $this->container['countryCode'];
+        return $this->container['countryCode'] ?? null;
     }
 
     /**
@@ -821,7 +833,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDateOfBirth()
     {
-        return $this->container['dateOfBirth'];
+        return $this->container['dateOfBirth'] ?? null;
     }
 
     /**
@@ -845,7 +857,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeliverAt()
     {
-        return $this->container['deliverAt'];
+        return $this->container['deliverAt'] ?? null;
     }
 
     /**
@@ -869,7 +881,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeliveryAddress()
     {
-        return $this->container['deliveryAddress'];
+        return $this->container['deliveryAddress'] ?? null;
     }
 
     /**
@@ -893,7 +905,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -917,7 +929,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getExpiresAt()
     {
-        return $this->container['expiresAt'];
+        return $this->container['expiresAt'] ?? null;
     }
 
     /**
@@ -941,7 +953,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getFundOrigin()
     {
-        return $this->container['fundOrigin'];
+        return $this->container['fundOrigin'] ?? null;
     }
 
     /**
@@ -965,7 +977,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getFundRecipient()
     {
-        return $this->container['fundRecipient'];
+        return $this->container['fundRecipient'] ?? null;
     }
 
     /**
@@ -989,7 +1001,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -1013,7 +1025,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getInstallmentOptions()
     {
-        return $this->container['installmentOptions'];
+        return $this->container['installmentOptions'] ?? null;
     }
 
     /**
@@ -1037,7 +1049,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getLineItems()
     {
-        return $this->container['lineItems'];
+        return $this->container['lineItems'] ?? null;
     }
 
     /**
@@ -1061,7 +1073,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getManualCapture()
     {
-        return $this->container['manualCapture'];
+        return $this->container['manualCapture'] ?? null;
     }
 
     /**
@@ -1085,7 +1097,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMcc()
     {
-        return $this->container['mcc'];
+        return $this->container['mcc'] ?? null;
     }
 
     /**
@@ -1109,7 +1121,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -1133,7 +1145,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantOrderReference()
     {
-        return $this->container['merchantOrderReference'];
+        return $this->container['merchantOrderReference'] ?? null;
     }
 
     /**
@@ -1157,7 +1169,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMetadata()
     {
-        return $this->container['metadata'];
+        return $this->container['metadata'] ?? null;
     }
 
     /**
@@ -1181,7 +1193,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getPlatformChargebackLogic()
     {
-        return $this->container['platformChargebackLogic'];
+        return $this->container['platformChargebackLogic'] ?? null;
     }
 
     /**
@@ -1205,7 +1217,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurringProcessingModel()
     {
-        return $this->container['recurringProcessingModel'];
+        return $this->container['recurringProcessingModel'] ?? null;
     }
 
     /**
@@ -1217,6 +1229,19 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringProcessingModel($recurringProcessingModel): self
     {
+        if ($recurringProcessingModel !== null) {
+            $allowedValues = $this->getRecurringProcessingModelAllowableValues();
+            foreach ([$recurringProcessingModel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recurringProcessingModel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recurringProcessingModel'] = $recurringProcessingModel;
 
         return $this;
@@ -1229,7 +1254,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -1253,7 +1278,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRequiredShopperFields()
     {
-        return $this->container['requiredShopperFields'];
+        return $this->container['requiredShopperFields'] ?? null;
     }
 
     /**
@@ -1265,6 +1290,19 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRequiredShopperFields($requiredShopperFields): self
     {
+        if ($requiredShopperFields !== null) {
+            $allowedValues = $this->getRequiredShopperFieldsAllowableValues();
+            foreach ((array) $requiredShopperFields as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "requiredShopperFields: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['requiredShopperFields'] = $requiredShopperFields;
 
         return $this;
@@ -1277,7 +1315,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getReturnUrl()
     {
-        return $this->container['returnUrl'];
+        return $this->container['returnUrl'] ?? null;
     }
 
     /**
@@ -1301,7 +1339,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getReusable()
     {
-        return $this->container['reusable'];
+        return $this->container['reusable'] ?? null;
     }
 
     /**
@@ -1325,7 +1363,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRiskData()
     {
-        return $this->container['riskData'];
+        return $this->container['riskData'] ?? null;
     }
 
     /**
@@ -1349,7 +1387,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -1373,7 +1411,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperLocale()
     {
-        return $this->container['shopperLocale'];
+        return $this->container['shopperLocale'] ?? null;
     }
 
     /**
@@ -1397,7 +1435,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -1421,7 +1459,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -1445,7 +1483,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperStatement()
     {
-        return $this->container['shopperStatement'];
+        return $this->container['shopperStatement'] ?? null;
     }
 
     /**
@@ -1469,7 +1507,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShowRemovePaymentMethodButton()
     {
-        return $this->container['showRemovePaymentMethodButton'];
+        return $this->container['showRemovePaymentMethodButton'] ?? null;
     }
 
     /**
@@ -1493,7 +1531,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSocialSecurityNumber()
     {
-        return $this->container['socialSecurityNumber'];
+        return $this->container['socialSecurityNumber'] ?? null;
     }
 
     /**
@@ -1517,7 +1555,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSplitCardFundingSources()
     {
-        return $this->container['splitCardFundingSources'];
+        return $this->container['splitCardFundingSources'] ?? null;
     }
 
     /**
@@ -1541,7 +1579,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSplits()
     {
-        return $this->container['splits'];
+        return $this->container['splits'] ?? null;
     }
 
     /**
@@ -1565,7 +1603,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -1577,6 +1615,19 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -1589,7 +1640,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getStore()
     {
-        return $this->container['store'];
+        return $this->container['store'] ?? null;
     }
 
     /**
@@ -1613,7 +1664,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getStorePaymentMethodMode()
     {
-        return $this->container['storePaymentMethodMode'];
+        return $this->container['storePaymentMethodMode'] ?? null;
     }
 
     /**
@@ -1625,6 +1676,19 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStorePaymentMethodMode($storePaymentMethodMode): self
     {
+        if ($storePaymentMethodMode !== null) {
+            $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
+            foreach ([$storePaymentMethodMode] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "storePaymentMethodMode: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['storePaymentMethodMode'] = $storePaymentMethodMode;
 
         return $this;
@@ -1637,7 +1701,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTelephoneNumber()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['telephoneNumber'] ?? null;
     }
 
     /**
@@ -1661,7 +1725,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThemeId()
     {
-        return $this->container['themeId'];
+        return $this->container['themeId'] ?? null;
     }
 
     /**
@@ -1685,7 +1749,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDS2RequestData()
     {
-        return $this->container['threeDS2RequestData'];
+        return $this->container['threeDS2RequestData'] ?? null;
     }
 
     /**
@@ -1709,7 +1773,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getUpdatedAt()
     {
-        return $this->container['updatedAt'];
+        return $this->container['updatedAt'] ?? null;
     }
 
     /**
@@ -1733,7 +1797,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getUrl()
     {
-        return $this->container['url'];
+        return $this->container['url'] ?? null;
     }
 
     /**
@@ -1788,6 +1852,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1801,6 +1866,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1819,14 +1885,19 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

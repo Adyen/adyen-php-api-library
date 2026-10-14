@@ -158,6 +158,21 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -374,13 +389,10 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -397,7 +409,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAddressMatch()
     {
-        return $this->container['addressMatch'];
+        return $this->container['addressMatch'] ?? null;
     }
 
     /**
@@ -421,7 +433,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeliveryAddressIndicator()
     {
-        return $this->container['deliveryAddressIndicator'];
+        return $this->container['deliveryAddressIndicator'] ?? null;
     }
 
     /**
@@ -433,6 +445,19 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryAddressIndicator($deliveryAddressIndicator): self
     {
+        if ($deliveryAddressIndicator !== null) {
+            $allowedValues = $this->getDeliveryAddressIndicatorAllowableValues();
+            foreach ([$deliveryAddressIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "deliveryAddressIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['deliveryAddressIndicator'] = $deliveryAddressIndicator;
 
         return $this;
@@ -446,7 +471,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeliveryEmail()
     {
-        return $this->container['deliveryEmail'];
+        return $this->container['deliveryEmail'] ?? null;
     }
 
     /**
@@ -471,7 +496,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeliveryEmailAddress()
     {
-        return $this->container['deliveryEmailAddress'];
+        return $this->container['deliveryEmailAddress'] ?? null;
     }
 
     /**
@@ -495,7 +520,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeliveryTimeframe()
     {
-        return $this->container['deliveryTimeframe'];
+        return $this->container['deliveryTimeframe'] ?? null;
     }
 
     /**
@@ -507,6 +532,19 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryTimeframe($deliveryTimeframe): self
     {
+        if ($deliveryTimeframe !== null) {
+            $allowedValues = $this->getDeliveryTimeframeAllowableValues();
+            foreach ([$deliveryTimeframe] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "deliveryTimeframe: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['deliveryTimeframe'] = $deliveryTimeframe;
 
         return $this;
@@ -519,7 +557,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGiftCardAmount()
     {
-        return $this->container['giftCardAmount'];
+        return $this->container['giftCardAmount'] ?? null;
     }
 
     /**
@@ -543,7 +581,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGiftCardCount()
     {
-        return $this->container['giftCardCount'];
+        return $this->container['giftCardCount'] ?? null;
     }
 
     /**
@@ -567,7 +605,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGiftCardCurr()
     {
-        return $this->container['giftCardCurr'];
+        return $this->container['giftCardCurr'] ?? null;
     }
 
     /**
@@ -591,7 +629,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPreOrderDate()
     {
-        return $this->container['preOrderDate'];
+        return $this->container['preOrderDate'] ?? null;
     }
 
     /**
@@ -615,7 +653,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPreOrderPurchase()
     {
-        return $this->container['preOrderPurchase'];
+        return $this->container['preOrderPurchase'] ?? null;
     }
 
     /**
@@ -639,7 +677,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPreOrderPurchaseInd()
     {
-        return $this->container['preOrderPurchaseInd'];
+        return $this->container['preOrderPurchaseInd'] ?? null;
     }
 
     /**
@@ -663,7 +701,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getReorderItems()
     {
-        return $this->container['reorderItems'];
+        return $this->container['reorderItems'] ?? null;
     }
 
     /**
@@ -687,7 +725,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getReorderItemsInd()
     {
-        return $this->container['reorderItemsInd'];
+        return $this->container['reorderItemsInd'] ?? null;
     }
 
     /**
@@ -711,7 +749,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShipIndicator()
     {
-        return $this->container['shipIndicator'];
+        return $this->container['shipIndicator'] ?? null;
     }
 
     /**
@@ -766,6 +804,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -779,6 +818,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -797,14 +837,19 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

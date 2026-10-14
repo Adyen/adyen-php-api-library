@@ -167,6 +167,21 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -351,13 +366,10 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -374,7 +386,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingSpecialProgramCode()
     {
-        return $this->container['lodgingSpecialProgramCode'];
+        return $this->container['lodgingSpecialProgramCode'] ?? null;
     }
 
     /**
@@ -398,7 +410,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingCheckInDate()
     {
-        return $this->container['lodgingCheckInDate'];
+        return $this->container['lodgingCheckInDate'] ?? null;
     }
 
     /**
@@ -422,7 +434,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingCheckOutDate()
     {
-        return $this->container['lodgingCheckOutDate'];
+        return $this->container['lodgingCheckOutDate'] ?? null;
     }
 
     /**
@@ -446,7 +458,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingCustomerServiceTollFreeNumber()
     {
-        return $this->container['lodgingCustomerServiceTollFreeNumber'];
+        return $this->container['lodgingCustomerServiceTollFreeNumber'] ?? null;
     }
 
     /**
@@ -470,7 +482,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingFireSafetyActIndicator()
     {
-        return $this->container['lodgingFireSafetyActIndicator'];
+        return $this->container['lodgingFireSafetyActIndicator'] ?? null;
     }
 
     /**
@@ -494,7 +506,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingFolioCashAdvances()
     {
-        return $this->container['lodgingFolioCashAdvances'];
+        return $this->container['lodgingFolioCashAdvances'] ?? null;
     }
 
     /**
@@ -518,7 +530,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingFolioNumber()
     {
-        return $this->container['lodgingFolioNumber'];
+        return $this->container['lodgingFolioNumber'] ?? null;
     }
 
     /**
@@ -542,7 +554,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingFoodBeverageCharges()
     {
-        return $this->container['lodgingFoodBeverageCharges'];
+        return $this->container['lodgingFoodBeverageCharges'] ?? null;
     }
 
     /**
@@ -566,7 +578,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingNoShowIndicator()
     {
-        return $this->container['lodgingNoShowIndicator'];
+        return $this->container['lodgingNoShowIndicator'] ?? null;
     }
 
     /**
@@ -590,7 +602,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingPrepaidExpenses()
     {
-        return $this->container['lodgingPrepaidExpenses'];
+        return $this->container['lodgingPrepaidExpenses'] ?? null;
     }
 
     /**
@@ -614,7 +626,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingPropertyPhoneNumber()
     {
-        return $this->container['lodgingPropertyPhoneNumber'];
+        return $this->container['lodgingPropertyPhoneNumber'] ?? null;
     }
 
     /**
@@ -638,7 +650,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingRoom1NumberOfNights()
     {
-        return $this->container['lodgingRoom1NumberOfNights'];
+        return $this->container['lodgingRoom1NumberOfNights'] ?? null;
     }
 
     /**
@@ -662,7 +674,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingRoom1Rate()
     {
-        return $this->container['lodgingRoom1Rate'];
+        return $this->container['lodgingRoom1Rate'] ?? null;
     }
 
     /**
@@ -686,7 +698,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingTotalRoomTax()
     {
-        return $this->container['lodgingTotalRoomTax'];
+        return $this->container['lodgingTotalRoomTax'] ?? null;
     }
 
     /**
@@ -710,7 +722,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLodgingTotalTax()
     {
-        return $this->container['lodgingTotalTax'];
+        return $this->container['lodgingTotalTax'] ?? null;
     }
 
     /**
@@ -734,7 +746,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTravelEntertainmentAuthDataDuration()
     {
-        return $this->container['travelEntertainmentAuthDataDuration'];
+        return $this->container['travelEntertainmentAuthDataDuration'] ?? null;
     }
 
     /**
@@ -758,7 +770,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTravelEntertainmentAuthDataMarket()
     {
-        return $this->container['travelEntertainmentAuthDataMarket'];
+        return $this->container['travelEntertainmentAuthDataMarket'] ?? null;
     }
 
     /**
@@ -813,6 +825,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -826,6 +839,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -844,14 +858,19 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

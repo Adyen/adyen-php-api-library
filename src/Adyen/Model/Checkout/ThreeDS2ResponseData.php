@@ -173,6 +173,21 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -365,13 +380,10 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -388,7 +400,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsChallengeMandated()
     {
-        return $this->container['acsChallengeMandated'];
+        return $this->container['acsChallengeMandated'] ?? null;
     }
 
     /**
@@ -412,7 +424,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsOperatorID()
     {
-        return $this->container['acsOperatorID'];
+        return $this->container['acsOperatorID'] ?? null;
     }
 
     /**
@@ -436,7 +448,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsReferenceNumber()
     {
-        return $this->container['acsReferenceNumber'];
+        return $this->container['acsReferenceNumber'] ?? null;
     }
 
     /**
@@ -460,7 +472,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsSignedContent()
     {
-        return $this->container['acsSignedContent'];
+        return $this->container['acsSignedContent'] ?? null;
     }
 
     /**
@@ -484,7 +496,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsTransID()
     {
-        return $this->container['acsTransID'];
+        return $this->container['acsTransID'] ?? null;
     }
 
     /**
@@ -508,7 +520,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAcsURL()
     {
-        return $this->container['acsURL'];
+        return $this->container['acsURL'] ?? null;
     }
 
     /**
@@ -532,7 +544,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAuthenticationType()
     {
-        return $this->container['authenticationType'];
+        return $this->container['authenticationType'] ?? null;
     }
 
     /**
@@ -556,7 +568,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCardHolderInfo()
     {
-        return $this->container['cardHolderInfo'];
+        return $this->container['cardHolderInfo'] ?? null;
     }
 
     /**
@@ -580,7 +592,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCavvAlgorithm()
     {
-        return $this->container['cavvAlgorithm'];
+        return $this->container['cavvAlgorithm'] ?? null;
     }
 
     /**
@@ -604,7 +616,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getChallengeIndicator()
     {
-        return $this->container['challengeIndicator'];
+        return $this->container['challengeIndicator'] ?? null;
     }
 
     /**
@@ -628,7 +640,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getDsReferenceNumber()
     {
-        return $this->container['dsReferenceNumber'];
+        return $this->container['dsReferenceNumber'] ?? null;
     }
 
     /**
@@ -652,7 +664,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getDsTransID()
     {
-        return $this->container['dsTransID'];
+        return $this->container['dsTransID'] ?? null;
     }
 
     /**
@@ -676,7 +688,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getExemptionIndicator()
     {
-        return $this->container['exemptionIndicator'];
+        return $this->container['exemptionIndicator'] ?? null;
     }
 
     /**
@@ -700,7 +712,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getMessageVersion()
     {
-        return $this->container['messageVersion'];
+        return $this->container['messageVersion'] ?? null;
     }
 
     /**
@@ -724,7 +736,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getRiskScore()
     {
-        return $this->container['riskScore'];
+        return $this->container['riskScore'] ?? null;
     }
 
     /**
@@ -748,7 +760,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSdkEphemPubKey()
     {
-        return $this->container['sdkEphemPubKey'];
+        return $this->container['sdkEphemPubKey'] ?? null;
     }
 
     /**
@@ -772,7 +784,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getThreeDSServerTransID()
     {
-        return $this->container['threeDSServerTransID'];
+        return $this->container['threeDSServerTransID'] ?? null;
     }
 
     /**
@@ -796,7 +808,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getTransStatus()
     {
-        return $this->container['transStatus'];
+        return $this->container['transStatus'] ?? null;
     }
 
     /**
@@ -820,7 +832,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getTransStatusReason()
     {
-        return $this->container['transStatusReason'];
+        return $this->container['transStatusReason'] ?? null;
     }
 
     /**
@@ -875,6 +887,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -888,6 +901,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -906,14 +920,19 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

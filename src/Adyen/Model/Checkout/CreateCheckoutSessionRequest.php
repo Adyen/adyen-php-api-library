@@ -308,6 +308,21 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -782,13 +797,10 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -805,7 +817,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAccountInfo()
     {
-        return $this->container['accountInfo'];
+        return $this->container['accountInfo'] ?? null;
     }
 
     /**
@@ -829,7 +841,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAdditionalAmount()
     {
-        return $this->container['additionalAmount'];
+        return $this->container['additionalAmount'] ?? null;
     }
 
     /**
@@ -853,7 +865,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAdditionalData()
     {
-        return $this->container['additionalData'];
+        return $this->container['additionalData'] ?? null;
     }
 
     /**
@@ -877,7 +889,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAllowedPaymentMethods()
     {
-        return $this->container['allowedPaymentMethods'];
+        return $this->container['allowedPaymentMethods'] ?? null;
     }
 
     /**
@@ -901,7 +913,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -925,7 +937,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getApplicationInfo()
     {
-        return $this->container['applicationInfo'];
+        return $this->container['applicationInfo'] ?? null;
     }
 
     /**
@@ -949,7 +961,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthenticationData()
     {
-        return $this->container['authenticationData'];
+        return $this->container['authenticationData'] ?? null;
     }
 
     /**
@@ -973,7 +985,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -997,7 +1009,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getBlockedPaymentMethods()
     {
-        return $this->container['blockedPaymentMethods'];
+        return $this->container['blockedPaymentMethods'] ?? null;
     }
 
     /**
@@ -1021,7 +1033,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getCaptureDelayHours()
     {
-        return $this->container['captureDelayHours'];
+        return $this->container['captureDelayHours'] ?? null;
     }
 
     /**
@@ -1045,7 +1057,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getChannel()
     {
-        return $this->container['channel'];
+        return $this->container['channel'] ?? null;
     }
 
     /**
@@ -1057,6 +1069,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setChannel($channel): self
     {
+        if ($channel !== null) {
+            $allowedValues = $this->getChannelAllowableValues();
+            foreach ([$channel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "channel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['channel'] = $channel;
 
         return $this;
@@ -1069,7 +1094,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getCompany()
     {
-        return $this->container['company'];
+        return $this->container['company'] ?? null;
     }
 
     /**
@@ -1093,7 +1118,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getCountryCode()
     {
-        return $this->container['countryCode'];
+        return $this->container['countryCode'] ?? null;
     }
 
     /**
@@ -1117,7 +1142,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getDateOfBirth()
     {
-        return $this->container['dateOfBirth'];
+        return $this->container['dateOfBirth'] ?? null;
     }
 
     /**
@@ -1141,7 +1166,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getDeliverAt()
     {
-        return $this->container['deliverAt'];
+        return $this->container['deliverAt'] ?? null;
     }
 
     /**
@@ -1165,7 +1190,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getDeliveryAddress()
     {
-        return $this->container['deliveryAddress'];
+        return $this->container['deliveryAddress'] ?? null;
     }
 
     /**
@@ -1189,7 +1214,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getEnableOneClick()
     {
-        return $this->container['enableOneClick'];
+        return $this->container['enableOneClick'] ?? null;
     }
 
     /**
@@ -1213,7 +1238,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getEnablePayOut()
     {
-        return $this->container['enablePayOut'];
+        return $this->container['enablePayOut'] ?? null;
     }
 
     /**
@@ -1237,7 +1262,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getEnableRecurring()
     {
-        return $this->container['enableRecurring'];
+        return $this->container['enableRecurring'] ?? null;
     }
 
     /**
@@ -1261,7 +1286,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getExpiresAt()
     {
-        return $this->container['expiresAt'];
+        return $this->container['expiresAt'] ?? null;
     }
 
     /**
@@ -1285,7 +1310,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getFundOrigin()
     {
-        return $this->container['fundOrigin'];
+        return $this->container['fundOrigin'] ?? null;
     }
 
     /**
@@ -1309,7 +1334,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getFundRecipient()
     {
-        return $this->container['fundRecipient'];
+        return $this->container['fundRecipient'] ?? null;
     }
 
     /**
@@ -1333,7 +1358,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getInstallmentOptions()
     {
-        return $this->container['installmentOptions'];
+        return $this->container['installmentOptions'] ?? null;
     }
 
     /**
@@ -1357,7 +1382,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getLineItems()
     {
-        return $this->container['lineItems'];
+        return $this->container['lineItems'] ?? null;
     }
 
     /**
@@ -1381,7 +1406,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMandate()
     {
-        return $this->container['mandate'];
+        return $this->container['mandate'] ?? null;
     }
 
     /**
@@ -1405,7 +1430,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMcc()
     {
-        return $this->container['mcc'];
+        return $this->container['mcc'] ?? null;
     }
 
     /**
@@ -1429,7 +1454,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -1453,7 +1478,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMerchantOrderReference()
     {
-        return $this->container['merchantOrderReference'];
+        return $this->container['merchantOrderReference'] ?? null;
     }
 
     /**
@@ -1477,7 +1502,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMetadata()
     {
-        return $this->container['metadata'];
+        return $this->container['metadata'] ?? null;
     }
 
     /**
@@ -1501,7 +1526,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMode()
     {
-        return $this->container['mode'];
+        return $this->container['mode'] ?? null;
     }
 
     /**
@@ -1513,6 +1538,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMode($mode): self
     {
+        if ($mode !== null) {
+            $allowedValues = $this->getModeAllowableValues();
+            foreach ([$mode] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "mode: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['mode'] = $mode;
 
         return $this;
@@ -1525,7 +1563,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getMpiData()
     {
-        return $this->container['mpiData'];
+        return $this->container['mpiData'] ?? null;
     }
 
     /**
@@ -1549,7 +1587,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayable()
     {
-        return $this->container['payable'];
+        return $this->container['payable'] ?? null;
     }
 
     /**
@@ -1573,7 +1611,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getPlatformChargebackLogic()
     {
-        return $this->container['platformChargebackLogic'];
+        return $this->container['platformChargebackLogic'] ?? null;
     }
 
     /**
@@ -1597,7 +1635,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringExpiry()
     {
-        return $this->container['recurringExpiry'];
+        return $this->container['recurringExpiry'] ?? null;
     }
 
     /**
@@ -1621,7 +1659,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringFrequency()
     {
-        return $this->container['recurringFrequency'];
+        return $this->container['recurringFrequency'] ?? null;
     }
 
     /**
@@ -1645,7 +1683,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringProcessingModel()
     {
-        return $this->container['recurringProcessingModel'];
+        return $this->container['recurringProcessingModel'] ?? null;
     }
 
     /**
@@ -1657,6 +1695,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringProcessingModel($recurringProcessingModel): self
     {
+        if ($recurringProcessingModel !== null) {
+            $allowedValues = $this->getRecurringProcessingModelAllowableValues();
+            foreach ([$recurringProcessingModel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recurringProcessingModel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recurringProcessingModel'] = $recurringProcessingModel;
 
         return $this;
@@ -1669,7 +1720,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRedirectFromIssuerMethod()
     {
-        return $this->container['redirectFromIssuerMethod'];
+        return $this->container['redirectFromIssuerMethod'] ?? null;
     }
 
     /**
@@ -1693,7 +1744,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRedirectToIssuerMethod()
     {
-        return $this->container['redirectToIssuerMethod'];
+        return $this->container['redirectToIssuerMethod'] ?? null;
     }
 
     /**
@@ -1717,7 +1768,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -1741,7 +1792,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getReturnUrl()
     {
-        return $this->container['returnUrl'];
+        return $this->container['returnUrl'] ?? null;
     }
 
     /**
@@ -1765,7 +1816,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getRiskData()
     {
-        return $this->container['riskData'];
+        return $this->container['riskData'] ?? null;
     }
 
     /**
@@ -1789,7 +1840,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperConversionId()
     {
-        return $this->container['shopperConversionId'];
+        return $this->container['shopperConversionId'] ?? null;
     }
 
     /**
@@ -1813,7 +1864,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -1837,7 +1888,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperIP()
     {
-        return $this->container['shopperIP'];
+        return $this->container['shopperIP'] ?? null;
     }
 
     /**
@@ -1861,7 +1912,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperInteraction()
     {
-        return $this->container['shopperInteraction'];
+        return $this->container['shopperInteraction'] ?? null;
     }
 
     /**
@@ -1873,6 +1924,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperInteraction($shopperInteraction): self
     {
+        if ($shopperInteraction !== null) {
+            $allowedValues = $this->getShopperInteractionAllowableValues();
+            foreach ([$shopperInteraction] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "shopperInteraction: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -1885,7 +1949,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperLocale()
     {
-        return $this->container['shopperLocale'];
+        return $this->container['shopperLocale'] ?? null;
     }
 
     /**
@@ -1909,7 +1973,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -1933,7 +1997,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -1957,7 +2021,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperStatement()
     {
-        return $this->container['shopperStatement'];
+        return $this->container['shopperStatement'] ?? null;
     }
 
     /**
@@ -1981,7 +2045,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShowInstallmentAmount()
     {
-        return $this->container['showInstallmentAmount'];
+        return $this->container['showInstallmentAmount'] ?? null;
     }
 
     /**
@@ -2005,7 +2069,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getShowRemovePaymentMethodButton()
     {
-        return $this->container['showRemovePaymentMethodButton'];
+        return $this->container['showRemovePaymentMethodButton'] ?? null;
     }
 
     /**
@@ -2029,7 +2093,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getSocialSecurityNumber()
     {
-        return $this->container['socialSecurityNumber'];
+        return $this->container['socialSecurityNumber'] ?? null;
     }
 
     /**
@@ -2053,7 +2117,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getSplitCardFundingSources()
     {
-        return $this->container['splitCardFundingSources'];
+        return $this->container['splitCardFundingSources'] ?? null;
     }
 
     /**
@@ -2077,7 +2141,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getSplits()
     {
-        return $this->container['splits'];
+        return $this->container['splits'] ?? null;
     }
 
     /**
@@ -2101,7 +2165,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getStore()
     {
-        return $this->container['store'];
+        return $this->container['store'] ?? null;
     }
 
     /**
@@ -2125,7 +2189,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getStoreFiltrationMode()
     {
-        return $this->container['storeFiltrationMode'];
+        return $this->container['storeFiltrationMode'] ?? null;
     }
 
     /**
@@ -2137,6 +2201,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setStoreFiltrationMode($storeFiltrationMode): self
     {
+        if ($storeFiltrationMode !== null) {
+            $allowedValues = $this->getStoreFiltrationModeAllowableValues();
+            foreach ([$storeFiltrationMode] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "storeFiltrationMode: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['storeFiltrationMode'] = $storeFiltrationMode;
 
         return $this;
@@ -2149,7 +2226,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getStorePaymentMethod()
     {
-        return $this->container['storePaymentMethod'];
+        return $this->container['storePaymentMethod'] ?? null;
     }
 
     /**
@@ -2173,7 +2250,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getStorePaymentMethodMode()
     {
-        return $this->container['storePaymentMethodMode'];
+        return $this->container['storePaymentMethodMode'] ?? null;
     }
 
     /**
@@ -2185,6 +2262,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setStorePaymentMethodMode($storePaymentMethodMode): self
     {
+        if ($storePaymentMethodMode !== null) {
+            $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
+            foreach ([$storePaymentMethodMode] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "storePaymentMethodMode: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['storePaymentMethodMode'] = $storePaymentMethodMode;
 
         return $this;
@@ -2197,7 +2287,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getTelephoneNumber()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['telephoneNumber'] ?? null;
     }
 
     /**
@@ -2221,7 +2311,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getThemeId()
     {
-        return $this->container['themeId'];
+        return $this->container['themeId'] ?? null;
     }
 
     /**
@@ -2245,7 +2335,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getThirdPartyTokenRedundancyInfo()
     {
-        return $this->container['thirdPartyTokenRedundancyInfo'];
+        return $this->container['thirdPartyTokenRedundancyInfo'] ?? null;
     }
 
     /**
@@ -2269,7 +2359,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDS2RequestData()
     {
-        return $this->container['threeDS2RequestData'];
+        return $this->container['threeDS2RequestData'] ?? null;
     }
 
     /**
@@ -2294,7 +2384,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDSAuthenticationOnly()
     {
-        return $this->container['threeDSAuthenticationOnly'];
+        return $this->container['threeDSAuthenticationOnly'] ?? null;
     }
 
     /**
@@ -2319,7 +2409,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function getTrustedShopper()
     {
-        return $this->container['trustedShopper'];
+        return $this->container['trustedShopper'] ?? null;
     }
 
     /**
@@ -2374,6 +2464,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -2387,6 +2478,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -2405,14 +2497,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

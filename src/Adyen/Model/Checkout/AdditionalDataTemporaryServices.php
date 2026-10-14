@@ -143,6 +143,21 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -295,13 +310,10 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -318,7 +330,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataCustomerReference()
     {
-        return $this->container['enhancedSchemeDataCustomerReference'];
+        return $this->container['enhancedSchemeDataCustomerReference'] ?? null;
     }
 
     /**
@@ -342,7 +354,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataEmployeeName()
     {
-        return $this->container['enhancedSchemeDataEmployeeName'];
+        return $this->container['enhancedSchemeDataEmployeeName'] ?? null;
     }
 
     /**
@@ -366,7 +378,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataJobDescription()
     {
-        return $this->container['enhancedSchemeDataJobDescription'];
+        return $this->container['enhancedSchemeDataJobDescription'] ?? null;
     }
 
     /**
@@ -390,7 +402,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataRegularHoursRate()
     {
-        return $this->container['enhancedSchemeDataRegularHoursRate'];
+        return $this->container['enhancedSchemeDataRegularHoursRate'] ?? null;
     }
 
     /**
@@ -414,7 +426,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataRegularHoursWorked()
     {
-        return $this->container['enhancedSchemeDataRegularHoursWorked'];
+        return $this->container['enhancedSchemeDataRegularHoursWorked'] ?? null;
     }
 
     /**
@@ -438,7 +450,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataRequestName()
     {
-        return $this->container['enhancedSchemeDataRequestName'];
+        return $this->container['enhancedSchemeDataRequestName'] ?? null;
     }
 
     /**
@@ -462,7 +474,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataTempStartDate()
     {
-        return $this->container['enhancedSchemeDataTempStartDate'];
+        return $this->container['enhancedSchemeDataTempStartDate'] ?? null;
     }
 
     /**
@@ -486,7 +498,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataTempWeekEnding()
     {
-        return $this->container['enhancedSchemeDataTempWeekEnding'];
+        return $this->container['enhancedSchemeDataTempWeekEnding'] ?? null;
     }
 
     /**
@@ -510,7 +522,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function getEnhancedSchemeDataTotalTaxAmount()
     {
-        return $this->container['enhancedSchemeDataTotalTaxAmount'];
+        return $this->container['enhancedSchemeDataTotalTaxAmount'] ?? null;
     }
 
     /**
@@ -565,6 +577,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -578,6 +591,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -596,14 +610,19 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

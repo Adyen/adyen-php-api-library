@@ -182,6 +182,21 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -401,13 +416,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -424,7 +436,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getRequestedTestAcquirerResponseCode()
     {
-        return $this->container['requestedTestAcquirerResponseCode'];
+        return $this->container['requestedTestAcquirerResponseCode'] ?? null;
     }
 
     /**
@@ -448,7 +460,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getRequestedTestErrorResponseCode()
     {
-        return $this->container['requestedTestErrorResponseCode'];
+        return $this->container['requestedTestErrorResponseCode'] ?? null;
     }
 
     /**
@@ -472,7 +484,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAllowPartialAuth()
     {
-        return $this->container['allowPartialAuth'];
+        return $this->container['allowPartialAuth'] ?? null;
     }
 
     /**
@@ -496,7 +508,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAuthorisationType()
     {
-        return $this->container['authorisationType'];
+        return $this->container['authorisationType'] ?? null;
     }
 
     /**
@@ -520,7 +532,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getAutoRescue()
     {
-        return $this->container['autoRescue'];
+        return $this->container['autoRescue'] ?? null;
     }
 
     /**
@@ -544,7 +556,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCustomRoutingFlag()
     {
-        return $this->container['customRoutingFlag'];
+        return $this->container['customRoutingFlag'] ?? null;
     }
 
     /**
@@ -568,7 +580,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getIndustryUsage()
     {
-        return $this->container['industryUsage'];
+        return $this->container['industryUsage'] ?? null;
     }
 
     /**
@@ -580,6 +592,19 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setIndustryUsage($industryUsage): self
     {
+        if ($industryUsage !== null) {
+            $allowedValues = $this->getIndustryUsageAllowableValues();
+            foreach ([$industryUsage] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "industryUsage: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['industryUsage'] = $industryUsage;
 
         return $this;
@@ -592,7 +617,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getManualCapture()
     {
-        return $this->container['manualCapture'];
+        return $this->container['manualCapture'] ?? null;
     }
 
     /**
@@ -616,7 +641,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getMaxDaysToRescue()
     {
-        return $this->container['maxDaysToRescue'];
+        return $this->container['maxDaysToRescue'] ?? null;
     }
 
     /**
@@ -640,7 +665,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getNetworkTxReference()
     {
-        return $this->container['networkTxReference'];
+        return $this->container['networkTxReference'] ?? null;
     }
 
     /**
@@ -664,7 +689,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getOverwriteBrand()
     {
-        return $this->container['overwriteBrand'];
+        return $this->container['overwriteBrand'] ?? null;
     }
 
     /**
@@ -688,7 +713,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantCity()
     {
-        return $this->container['subMerchantCity'];
+        return $this->container['subMerchantCity'] ?? null;
     }
 
     /**
@@ -712,7 +737,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantCountry()
     {
-        return $this->container['subMerchantCountry'];
+        return $this->container['subMerchantCountry'] ?? null;
     }
 
     /**
@@ -736,7 +761,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantEmail()
     {
-        return $this->container['subMerchantEmail'];
+        return $this->container['subMerchantEmail'] ?? null;
     }
 
     /**
@@ -760,7 +785,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantID()
     {
-        return $this->container['subMerchantID'];
+        return $this->container['subMerchantID'] ?? null;
     }
 
     /**
@@ -784,7 +809,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantName()
     {
-        return $this->container['subMerchantName'];
+        return $this->container['subMerchantName'] ?? null;
     }
 
     /**
@@ -808,7 +833,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantPhoneNumber()
     {
-        return $this->container['subMerchantPhoneNumber'];
+        return $this->container['subMerchantPhoneNumber'] ?? null;
     }
 
     /**
@@ -832,7 +857,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantPostalCode()
     {
-        return $this->container['subMerchantPostalCode'];
+        return $this->container['subMerchantPostalCode'] ?? null;
     }
 
     /**
@@ -856,7 +881,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantState()
     {
-        return $this->container['subMerchantState'];
+        return $this->container['subMerchantState'] ?? null;
     }
 
     /**
@@ -880,7 +905,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantStreet()
     {
-        return $this->container['subMerchantStreet'];
+        return $this->container['subMerchantStreet'] ?? null;
     }
 
     /**
@@ -904,7 +929,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSubMerchantTaxId()
     {
-        return $this->container['subMerchantTaxId'];
+        return $this->container['subMerchantTaxId'] ?? null;
     }
 
     /**
@@ -928,7 +953,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getTransactionLinkId()
     {
-        return $this->container['transactionLinkId'];
+        return $this->container['transactionLinkId'] ?? null;
     }
 
     /**
@@ -983,6 +1008,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -996,6 +1022,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1014,14 +1041,19 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

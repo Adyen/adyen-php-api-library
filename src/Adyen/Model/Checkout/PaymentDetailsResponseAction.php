@@ -22,7 +22,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\PaymentDetailsResponseActionInterface
 {
     public const DISCRIMINATOR = 'type';
 
@@ -144,6 +144,21 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -304,13 +319,10 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -327,7 +339,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthorisationToken()
     {
-        return $this->container['authorisationToken'];
+        return $this->container['authorisationToken'] ?? null;
     }
 
     /**
@@ -351,7 +363,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getPaymentData()
     {
-        return $this->container['paymentData'];
+        return $this->container['paymentData'] ?? null;
     }
 
     /**
@@ -375,7 +387,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getPaymentMethodType()
     {
-        return $this->container['paymentMethodType'];
+        return $this->container['paymentMethodType'] ?? null;
     }
 
     /**
@@ -399,7 +411,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getSubtype()
     {
-        return $this->container['subtype'];
+        return $this->container['subtype'] ?? null;
     }
 
     /**
@@ -423,7 +435,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getToken()
     {
-        return $this->container['token'];
+        return $this->container['token'] ?? null;
     }
 
     /**
@@ -447,7 +459,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -459,6 +471,19 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -471,7 +496,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
      */
     public function getUrl()
     {
-        return $this->container['url'];
+        return $this->container['url'] ?? null;
     }
 
     /**
@@ -526,6 +551,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -539,6 +565,7 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -557,14 +584,19 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

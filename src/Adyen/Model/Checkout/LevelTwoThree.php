@@ -140,6 +140,21 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -288,13 +303,10 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -311,7 +323,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCustomerReferenceNumber()
     {
-        return $this->container['customerReferenceNumber'];
+        return $this->container['customerReferenceNumber'] ?? null;
     }
 
     /**
@@ -335,7 +347,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDestination()
     {
-        return $this->container['destination'];
+        return $this->container['destination'] ?? null;
     }
 
     /**
@@ -359,7 +371,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDutyAmount()
     {
-        return $this->container['dutyAmount'];
+        return $this->container['dutyAmount'] ?? null;
     }
 
     /**
@@ -383,7 +395,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getFreightAmount()
     {
-        return $this->container['freightAmount'];
+        return $this->container['freightAmount'] ?? null;
     }
 
     /**
@@ -407,7 +419,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getItemDetailLines()
     {
-        return $this->container['itemDetailLines'];
+        return $this->container['itemDetailLines'] ?? null;
     }
 
     /**
@@ -431,7 +443,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getOrderDate()
     {
-        return $this->container['orderDate'];
+        return $this->container['orderDate'] ?? null;
     }
 
     /**
@@ -455,7 +467,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getShipFromPostalCode()
     {
-        return $this->container['shipFromPostalCode'];
+        return $this->container['shipFromPostalCode'] ?? null;
     }
 
     /**
@@ -479,7 +491,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTotalTaxAmount()
     {
-        return $this->container['totalTaxAmount'];
+        return $this->container['totalTaxAmount'] ?? null;
     }
 
     /**
@@ -534,6 +546,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -547,6 +560,7 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -565,14 +579,19 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

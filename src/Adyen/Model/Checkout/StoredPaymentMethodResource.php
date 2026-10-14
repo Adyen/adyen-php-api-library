@@ -191,6 +191,21 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -407,13 +422,10 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -430,7 +442,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getAlias()
     {
-        return $this->container['alias'];
+        return $this->container['alias'] ?? null;
     }
 
     /**
@@ -454,7 +466,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getAliasType()
     {
-        return $this->container['aliasType'];
+        return $this->container['aliasType'] ?? null;
     }
 
     /**
@@ -478,7 +490,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -502,7 +514,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getBrand()
     {
-        return $this->container['brand'];
+        return $this->container['brand'] ?? null;
     }
 
     /**
@@ -526,7 +538,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getCardBin()
     {
-        return $this->container['cardBin'];
+        return $this->container['cardBin'] ?? null;
     }
 
     /**
@@ -550,7 +562,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getCreatedAt()
     {
-        return $this->container['createdAt'];
+        return $this->container['createdAt'] ?? null;
     }
 
     /**
@@ -574,7 +586,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getExpiryMonth()
     {
-        return $this->container['expiryMonth'];
+        return $this->container['expiryMonth'] ?? null;
     }
 
     /**
@@ -598,7 +610,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getExpiryYear()
     {
-        return $this->container['expiryYear'];
+        return $this->container['expiryYear'] ?? null;
     }
 
     /**
@@ -622,7 +634,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getExternalResponseCode()
     {
-        return $this->container['externalResponseCode'];
+        return $this->container['externalResponseCode'] ?? null;
     }
 
     /**
@@ -646,7 +658,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getExternalTokenReference()
     {
-        return $this->container['externalTokenReference'];
+        return $this->container['externalTokenReference'] ?? null;
     }
 
     /**
@@ -670,7 +682,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getFirstPspReference()
     {
-        return $this->container['firstPspReference'];
+        return $this->container['firstPspReference'] ?? null;
     }
 
     /**
@@ -694,7 +706,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getHolderName()
     {
-        return $this->container['holderName'];
+        return $this->container['holderName'] ?? null;
     }
 
     /**
@@ -718,7 +730,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getIban()
     {
-        return $this->container['iban'];
+        return $this->container['iban'] ?? null;
     }
 
     /**
@@ -742,7 +754,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -766,7 +778,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getIssuerName()
     {
-        return $this->container['issuerName'];
+        return $this->container['issuerName'] ?? null;
     }
 
     /**
@@ -790,7 +802,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getLastFour()
     {
-        return $this->container['lastFour'];
+        return $this->container['lastFour'] ?? null;
     }
 
     /**
@@ -814,7 +826,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getMandate()
     {
-        return $this->container['mandate'];
+        return $this->container['mandate'] ?? null;
     }
 
     /**
@@ -838,7 +850,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getName()
     {
-        return $this->container['name'];
+        return $this->container['name'] ?? null;
     }
 
     /**
@@ -862,7 +874,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getNetworkTxReference()
     {
-        return $this->container['networkTxReference'];
+        return $this->container['networkTxReference'] ?? null;
     }
 
     /**
@@ -886,7 +898,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getOpi()
     {
-        return $this->container['opi'];
+        return $this->container['opi'] ?? null;
     }
 
     /**
@@ -910,7 +922,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getOwnerName()
     {
-        return $this->container['ownerName'];
+        return $this->container['ownerName'] ?? null;
     }
 
     /**
@@ -934,7 +946,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -958,7 +970,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -982,7 +994,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getSupportedRecurringProcessingModels()
     {
-        return $this->container['supportedRecurringProcessingModels'];
+        return $this->container['supportedRecurringProcessingModels'] ?? null;
     }
 
     /**
@@ -1006,7 +1018,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -1061,6 +1073,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1074,6 +1087,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1092,14 +1106,19 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
