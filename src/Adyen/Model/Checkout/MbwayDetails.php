@@ -369,7 +369,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable, \A
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail 
+     * @param string $shopperEmail
      *
      * @return self
      */
@@ -393,7 +393,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable, \A
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber 
+     * @param string $telephoneNumber
      *
      * @return self
      */
