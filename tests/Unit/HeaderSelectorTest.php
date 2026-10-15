@@ -80,6 +80,58 @@ class HeaderSelectorTest extends BaseTest
         $this->assertSame('application/json', $headers['Content-Type']);
     }
 
+    /**
+     * Additional Content-Type values replace the default regardless of header casing.
+     */
+    public function testAdditionalContentTypeOverridesRegardlessOfCasing(): void
+    {
+        $headerSelector = new HeaderSelector();
+
+        foreach (['Content-Type', 'content-type', 'cOnTeNt-TyPe'] as $headerName) {
+            $options = new RequestOptions(['additionalHeaders' => [$headerName => 'text/plain']]);
+            $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false, $options);
+
+            self::assertSame('text/plain', $headers['Content-Type'], $headerName);
+            self::assertCount(2, $headers);
+        }
+    }
+
+    /**
+     * Additional Idempotency-Key values replace the dedicated option regardless of header casing.
+     */
+    public function testAdditionalIdempotencyKeyOverridesRegardlessOfCasing(): void
+    {
+        $headerSelector = new HeaderSelector();
+
+        foreach (['Idempotency-Key', 'idempotency-key', 'iDeMpOtEnCy-KeY'] as $headerName) {
+            $options = new RequestOptions([
+                'idempotencyKey' => 'default-key',
+                'additionalHeaders' => [$headerName => 'custom-key'],
+            ]);
+            $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false, $options);
+
+            self::assertSame('custom-key', $headers['Idempotency-Key'], $headerName);
+            self::assertCount(3, $headers);
+        }
+    }
+
+    /**
+     * Later values win across header sets, without changing the first spelling or flattening array values.
+     */
+    public function testMergeHeadersReplacesDuplicateNamesRegardlessOfCasing(): void
+    {
+        $headers = (new HeaderSelector())->mergeHeaders(
+            ['Content-Type' => 'application/json', 'X-Custom-Header' => ['first', 'second']],
+            ['content-type' => 'text/plain', 'x-custom-header' => ['third']],
+            ['CONTENT-TYPE' => 'application/json; charset=utf-8', 'X-CUSTOM-HEADER' => ['last']]
+        );
+
+        self::assertSame([
+            'Content-Type' => 'application/json; charset=utf-8',
+            'X-Custom-Header' => ['last'],
+        ], $headers);
+    }
+
     public function testSelectHeadersSkipsEmptyIdempotencyKey()
     {
         $headerSelector = new HeaderSelector();

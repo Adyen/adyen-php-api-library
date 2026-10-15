@@ -16,7 +16,7 @@ class HeaderSelector
      * @param string   $contentType
      * @param bool     $isMultipart
      * @param RequestOptions|null $requestOptions
-     * @return string[]
+     * @return array<string, string|string[]>
      */
     public function selectHeaders(
         array $accept,
@@ -49,8 +49,31 @@ class HeaderSelector
                 $headers['x-requested-verification-code'] = $requestOptions->getRequestedVerificationCodeHeader();
             }
 
-            foreach ($requestOptions->getAdditionalHeaders() as $key => $value) {
-                $headers[$key] = $value;
+            $headers = $this->mergeHeaders($headers, $requestOptions->getAdditionalHeaders());
+        }
+
+        return $headers;
+    }
+
+    /**
+     * Merge headers case-insensitively. Later values override earlier values,
+     * while the first spelling is retained for existing header lookups.
+     *
+     * @param array<string, string|string[]> ...$headerSets
+     * @return array<string, string|string[]>
+     */
+    public function mergeHeaders(array ...$headerSets): array
+    {
+        $headers = [];
+        $headerNames = [];
+
+        foreach ($headerSets as $headerSet) {
+            foreach ($headerSet as $name => $value) {
+                $lowercaseName = strtolower($name);
+                if (!isset($headerNames[$lowercaseName])) {
+                    $headerNames[$lowercaseName] = $name;
+                }
+                $headers[$headerNames[$lowercaseName]] = $value;
             }
         }
 
