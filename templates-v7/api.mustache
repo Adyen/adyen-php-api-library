@@ -176,12 +176,12 @@ use {{modelPackage}}\ObjectSerializer;
      *
      * @throws \{{invokerPackage}}\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
+     * @return {{#returnType}}{{.}}{{#returnProperty.isModel}}|null{{/returnProperty.isModel}}{{/returnType}}{{^returnType}}void{{/returnType}}
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}({{^exts.x-group-parameters}}{{#pathParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/pathParams}}{{#bodyParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/bodyParams}}{{#formParams}}{{#required}}{{#notRequiredOrIsNullable}}?{{/notRequiredOrIsNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{#required}}{{#notRequiredOrIsNullable}}?{{/notRequiredOrIsNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}?{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}, {{/required}}{{/formParams}}{{#queryParams}}{{^required}}?{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}, {{/required}}{{/queryParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
+    public function {{operationId}}({{^exts.x-group-parameters}}{{#pathParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/pathParams}}{{#bodyParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/bodyParams}}{{#formParams}}{{#required}}{{#notRequiredOrIsNullable}}?{{/notRequiredOrIsNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{#required}}{{#notRequiredOrIsNullable}}?{{/notRequiredOrIsNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}?{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}, {{/required}}{{/formParams}}{{#queryParams}}{{^required}}?{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#isEnumOrRef}}string{{/isEnumOrRef}}{{^isEnumOrRef}}{{#isDateTime}}\DateTimeInterface{{/isDateTime}}{{^isDateTime}}{{dataType}}{{/isDateTime}}{{/isEnumOrRef}}{{/isContainer}} ${{paramName}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}, {{/required}}{{/queryParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): {{#returnType}}{{#returnProperty.isModel}}?{{/returnProperty.isModel}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
     {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#pathParams}}${{paramName}}, {{/pathParams}}{{#bodyParams}}${{paramName}}, {{/bodyParams}}{{#formParams}}{{#required}}${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{#required}}${{paramName}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{^required}}${{paramName}}, {{/required}}{{/queryParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
@@ -237,7 +237,7 @@ use {{modelPackage}}\ObjectSerializer;
      *
      * @throws \{{invokerPackage}}\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
+     * @return array of {{#returnType}}{{.}}{{#returnProperty.isModel}}|null{{/returnProperty.isModel}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
@@ -289,39 +289,19 @@ use {{modelPackage}}\ObjectSerializer;
         }
 
         {{#returnType}}
-        {{#responses}}
-        {{#-first}}
-
-        switch ($statusCode) {
-        {{/-first}}
-        {{#is2xx}}
-        {{#dataType}}
-            {{^isRange}}{{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                return $this->handleResponseWithDataType(
-                    '{{{dataType}}}',
-                    $request,
-                    $response,
-                );{{/isRange}}
-        {{/dataType}}
-        {{/is2xx}}
-        {{#-last}}
-        }
-        {{/-last}}
-{{/responses}}
-
-{{#responses}}{{#is2xx}}{{#dataType}}{{#isRange}}{{^isWildcard}}
-        if ($this->responseWithinRangeCode('{{code}}', $statusCode)) {
-            return $this->handleResponseWithDataType(
-                '{{{dataType}}}',
-                $request,
-                $response,
-            );
-        }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/is2xx}}{{/responses}}
-
-        return $this->handleResponseWithDataType(
-            '{{{returnType}}}',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                {{#responses}}
+                {{#is2xx}}
+                {{^isWildcard}}
+                '{{code}}' => {{#dataType}}'{{{dataType}}}'{{/dataType}}{{^dataType}}null{{/dataType}},
+                {{/isWildcard}}
+                {{/is2xx}}
+                {{/responses}}
+            ],
+            '{{{returnType}}}'
         );
         {{/returnType}}
         {{^returnType}}
@@ -468,10 +448,19 @@ use {{modelPackage}}\ObjectSerializer;
                     }
 
                     {{#returnType}}
-                    return $this->handleResponseWithDataType(
-                        '{{{returnType}}}',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            {{#responses}}
+                            {{#is2xx}}
+                            {{^isWildcard}}
+                            '{{code}}' => {{#dataType}}'{{{dataType}}}'{{/dataType}}{{^dataType}}null{{/dataType}},
+                            {{/isWildcard}}
+                            {{/is2xx}}
+                            {{/responses}}
+                        ],
+                        '{{{returnType}}}'
                     );
                     {{/returnType}}
                     {{^returnType}}
@@ -665,6 +654,7 @@ use {{modelPackage}}\ObjectSerializer;
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -673,7 +663,7 @@ use {{modelPackage}}\ObjectSerializer;
         {{#bodyParams}}
         if (isset(${{paramName}})) {
             ${{paramName}} = $this->injectApplicationInfo(${{paramName}});
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization(${{paramName}}));
             } else {
@@ -697,7 +687,7 @@ use {{modelPackage}}\ObjectSerializer;
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -777,7 +767,7 @@ use {{modelPackage}}\ObjectSerializer;
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -876,6 +866,36 @@ use {{modelPackage}}\ObjectSerializer;
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
     }
 
     private function handleResponseWithDataType(

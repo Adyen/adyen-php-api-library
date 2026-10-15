@@ -26,10 +26,71 @@ namespace Adyen\Tests\Unit\Checkout;
 use Adyen\Exception\AdyenException;
 use Adyen\Service\Checkout\RecurringApi;
 use Adyen\Tests\Unit\BaseTest;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 
 class RecurringApiTest extends BaseTest
 {
     const HOLDER_NAME = "John Smith";
+
+    /**
+     * @dataProvider responseMethodsProvider
+     */
+    public function testDeleteTokenNoContentReturnsNull(bool $async): void
+    {
+        $client = $this->createMockSerializerClient(null, 204);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $response = $async
+            ? $service->deleteTokenForStoredPaymentDetailsAsync('123', 'shopper', 'merchant')->wait()
+            : $service->deleteTokenForStoredPaymentDetails('123', 'shopper', 'merchant');
+
+        self::assertNull($response);
+    }
+
+    /**
+     * @dataProvider responseMethodsProvider
+     */
+    public function testDeleteTokenNoContentHttpInfoPreservesMetadata(bool $async): void
+    {
+        $headers = ['X-Request-Id' => ['test-request']];
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([new Response(204, $headers)]))]);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $response = $async
+            ? $service->deleteTokenForStoredPaymentDetailsAsyncWithHttpInfo('123', 'shopper', 'merchant')->wait()
+            : $service->deleteTokenForStoredPaymentDetailsWithHttpInfo('123', 'shopper', 'merchant');
+
+        self::assertSame([null, 204, $headers], $response);
+    }
+
+    /**
+     * @dataProvider responseMethodsProvider
+     */
+    public function testDeleteTokenEmptyErrorResponseStillThrows(bool $async): void
+    {
+        $client = $this->createMockSerializerClient(null, 400);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionCode(400);
+
+        if ($async) {
+            $service->deleteTokenForStoredPaymentDetailsAsync('123', 'shopper', 'merchant')->wait();
+        } else {
+            $service->deleteTokenForStoredPaymentDetails('123', 'shopper', 'merchant');
+        }
+    }
+
+    public static function responseMethodsProvider(): array
+    {
+        return [
+            'sync' => [false],
+            'async' => [true],
+        ];
+    }
 
     public function testDeleteTokenForStoredPaymentDetailsSendsExpectedUrlOnTest(): void
     {
