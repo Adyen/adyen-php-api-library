@@ -428,7 +428,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets action
      *
-     * @return \Adyen\Model\Checkout\PaymentDetailsResponseActionInterface|null
+     * @return \Adyen\Model\Checkout\PaymentDetailsResponseAction|null
      */
     public function getAction()
     {
@@ -438,7 +438,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets action
      *
-     * @param \Adyen\Model\Checkout\PaymentDetailsResponseActionInterface|null $action action
+     * @param \Adyen\Model\Checkout\PaymentDetailsResponseAction|null $action action
      *
      * @return self
      */

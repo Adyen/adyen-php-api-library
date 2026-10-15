@@ -1,4 +1,4 @@
-class {{classname}} {{#parentSchema}}extends {{{parent}}}{{#vendorExtensions.x-php-implements}} implements {{{vendorExtensions.x-php-implements}}}{{/vendorExtensions.x-php-implements}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{#vendorExtensions.x-php-implements}}, {{{vendorExtensions.x-php-implements}}}{{/vendorExtensions.x-php-implements}}{{/parentSchema}}
+class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{/parentSchema}}
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 {{#discriminator}}
@@ -312,7 +312,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{#vendorExtensions.x-p
     /**
      * Gets {{name}}
      *
-     * @return {{#vendorExtensions.x-php-doc-type}}{{{vendorExtensions.x-php-doc-type}}}{{/vendorExtensions.x-php-doc-type}}{{^vendorExtensions.x-php-doc-type}}{{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/vendorExtensions.x-php-doc-type}}
+     * @return {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}
     {{#deprecated}}
      * @deprecated
     {{/deprecated}}
@@ -325,7 +325,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{#vendorExtensions.x-p
     /**
      * Sets {{name}}
      *
-     * @param {{#vendorExtensions.x-php-doc-type}}{{{vendorExtensions.x-php-doc-type}}}{{/vendorExtensions.x-php-doc-type}}{{^vendorExtensions.x-php-doc-type}}{{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/vendorExtensions.x-php-doc-type}} ${{name}}{{#description}} {{{.}}}{{/description}}{{^description}} {{{name}}}{{/description}}
+     * @param {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{name}}{{#description}} {{{.}}}{{/description}}{{^description}} {{{name}}}{{/description}}
      *
      * @return self
     {{#deprecated}}

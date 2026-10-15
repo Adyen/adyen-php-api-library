@@ -10,49 +10,49 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\Model\Checkout\CheckoutPaymentMethodInterface;
+use Adyen\Model\Checkout\CardDetails;
+use Adyen\Model\Checkout\CardDonations;
+use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CheckoutRedirectAction;
 use Adyen\Model\Checkout\CheckoutThreeDS2Action;
-use Adyen\Model\Checkout\DonationPaymentMethodInterface;
+use Adyen\Model\Checkout\DonationPaymentMethod;
 use Adyen\Model\Checkout\ModelInterface;
 use Adyen\Model\Checkout\ObjectSerializer as CheckoutObjectSerializer;
-use Adyen\Model\Checkout\PaymentDetailsResponseActionInterface;
+use Adyen\Model\Checkout\PaymentDetailsResponseAction;
 use Adyen\Model\Checkout\PaymentResponse;
 use Adyen\Model\Checkout\PaymentResponseAction;
-use Adyen\Model\Checkout\PaymentResponseActionInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Checks Checkout union membership, direct action access, and JSON serialization.
+ * Checks concrete models, fallback handling, and JSON serialization for Checkout unions.
  */
 class UnionTypeTest extends TestCase
 {
     /**
-     * Each Checkout union interface extends the shared model contract.
+     * Union fallback models retain the shared model contract.
      */
-    public function testUnionInterfacesExtendModelInterface(): void
+    public function testUnionFallbackModelsImplementModelInterface(): void
     {
         foreach ([
-            PaymentResponseActionInterface::class,
-            PaymentDetailsResponseActionInterface::class,
-            CheckoutPaymentMethodInterface::class,
-            DonationPaymentMethodInterface::class,
-        ] as $interface) {
-            self::assertTrue(is_a($interface, ModelInterface::class, true));
+            PaymentResponseAction::class,
+            PaymentDetailsResponseAction::class,
+            CheckoutPaymentMethod::class,
+            DonationPaymentMethod::class,
+        ] as $model) {
+            self::assertTrue(is_a($model, ModelInterface::class, true));
         }
     }
 
     /**
-     * A received redirect implements the payment-action interface, exposes its URL, and preserves the JSON.
+     * A received redirect exposes its URL directly and preserves the JSON.
      */
-    public function testRedirectActionImplementsItsUnionInterface(): void
+    public function testRedirectActionUsesConcreteModelAndPreservesJson(): void
     {
         $data = (object) ['action' => (object) ['type' => 'redirect', 'url' => 'https://example.com']];
         $response = CheckoutObjectSerializer::deserialize($data, PaymentResponse::class);
         $action = $response->getAction();
 
         self::assertInstanceOf(CheckoutRedirectAction::class, $action);
-        self::assertInstanceOf(PaymentResponseActionInterface::class, $action);
         self::assertSame('https://example.com', $action->getUrl());
         self::assertEquals($data, CheckoutObjectSerializer::sanitizeForSerialization($response));
         self::assertSame(
@@ -62,41 +62,57 @@ class UnionTypeTest extends TestCase
     }
 
     /**
-     * Unknown and missing action types use a fallback model that implements the payment-action interface.
+     * Unknown and missing action types use the original union fallback model.
      */
-    public function testFallbackActionsImplementTheirUnionInterface(): void
+    public function testUnknownAndMissingActionsUseFallbackModel(): void
     {
         foreach ([(object) ['type' => 'future-action'], (object) []] as $data) {
             $action = CheckoutObjectSerializer::deserialize($data, PaymentResponseAction::class);
 
             self::assertInstanceOf(PaymentResponseAction::class, $action);
-            self::assertInstanceOf(PaymentResponseActionInterface::class, $action);
             self::assertEquals($data, CheckoutObjectSerializer::sanitizeForSerialization($action));
         }
     }
 
     /**
-     * A 3DS action implements both response-action interfaces.
+     * Both response-action unions deserialize a 3DS action into the same concrete model.
      */
-    public function testAnActionCanImplementMultipleUnionInterfaces(): void
+    public function testThreeDSActionDeserializesFromBothResponseUnionTypes(): void
     {
-        $action = new CheckoutThreeDS2Action(['type' => 'threeDS2']);
+        $data = (object) ['type' => 'threeDS2'];
 
-        self::assertInstanceOf(PaymentResponseActionInterface::class, $action);
-        self::assertInstanceOf(PaymentDetailsResponseActionInterface::class, $action);
+        foreach ([PaymentResponseAction::class, PaymentDetailsResponseAction::class] as $type) {
+            $action = CheckoutObjectSerializer::deserialize($data, $type);
+
+            self::assertInstanceOf(CheckoutThreeDS2Action::class, $action);
+            self::assertSame('threeDS2', $action->getType());
+            self::assertEquals($data, CheckoutObjectSerializer::sanitizeForSerialization($action));
+        }
     }
 
     /**
-     * A received card payment method implements the payment-method interface and exposes its card data.
+     * A received card payment method exposes its card data directly and preserves the JSON.
      */
-    public function testPaymentMethodImplementsItsUnionInterface(): void
+    public function testPaymentMethodUsesConcreteCardDetails(): void
     {
-        $method = CheckoutObjectSerializer::deserialize(
-            (object) ['type' => 'scheme', 'encryptedCardNumber' => 'test-card'],
-            '\Adyen\Model\Checkout\CheckoutPaymentMethod'
-        );
+        $data = (object) ['type' => 'scheme', 'encryptedCardNumber' => 'test-card'];
+        $method = CheckoutObjectSerializer::deserialize($data, CheckoutPaymentMethod::class);
 
-        self::assertInstanceOf(CheckoutPaymentMethodInterface::class, $method);
+        self::assertInstanceOf(CardDetails::class, $method);
         self::assertSame('test-card', $method->getEncryptedCardNumber());
+        self::assertEquals($data, CheckoutObjectSerializer::sanitizeForSerialization($method));
+    }
+
+    /**
+     * A received donation payment method uses its concrete model and preserves inherited card data.
+     */
+    public function testDonationPaymentMethodUsesConcreteCardDonations(): void
+    {
+        $data = (object) ['type' => 'scheme', 'encryptedCardNumber' => 'test-card'];
+        $method = CheckoutObjectSerializer::deserialize($data, DonationPaymentMethod::class);
+
+        self::assertInstanceOf(CardDonations::class, $method);
+        self::assertSame('test-card', $method->getEncryptedCardNumber());
+        self::assertEquals($data, CheckoutObjectSerializer::sanitizeForSerialization($method));
     }
 }

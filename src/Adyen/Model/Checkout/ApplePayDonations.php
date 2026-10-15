@@ -21,7 +21,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class ApplePayDonations implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\DonationPaymentMethodInterface
+class ApplePayDonations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
