@@ -43,6 +43,11 @@ class StoredValueApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -88,7 +93,7 @@ class StoredValueApi extends BaseService
      * StoredValueApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -102,7 +107,11 @@ class StoredValueApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -148,9 +157,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueStatusChangeResponse
+     * @return \Adyen\Model\StoredValue\StoredValueStatusChangeResponse|null
      */
-    public function changeStatus(\Adyen\Model\StoredValue\StoredValueStatusChangeRequest $storedValueStatusChangeRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueStatusChangeResponse
+    public function changeStatus(\Adyen\Model\StoredValue\StoredValueStatusChangeRequest $storedValueStatusChangeRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueStatusChangeResponse
     {
         list($response) = $this->changeStatusWithHttpInfo($storedValueStatusChangeRequest, $requestOptions);
         return $response;
@@ -166,7 +175,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueStatusChangeResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueStatusChangeResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function changeStatusWithHttpInfo(\Adyen\Model\StoredValue\StoredValueStatusChangeRequest $storedValueStatusChangeRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -214,22 +223,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse'
         );
     }
 
@@ -284,10 +284,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueStatusChangeResponse'
                     );
                 },
                 function ($exception) {
@@ -337,6 +340,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -344,7 +348,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueStatusChangeRequest)) {
             $storedValueStatusChangeRequest = $this->injectApplicationInfo($storedValueStatusChangeRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueStatusChangeRequest));
             } else {
@@ -364,7 +368,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -380,7 +384,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -388,7 +401,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -413,9 +426,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
+     * @return \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse|null
      */
-    public function checkBalance(\Adyen\Model\StoredValue\StoredValueBalanceCheckRequest $storedValueBalanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
+    public function checkBalance(\Adyen\Model\StoredValue\StoredValueBalanceCheckRequest $storedValueBalanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
     {
         list($response) = $this->checkBalanceWithHttpInfo($storedValueBalanceCheckRequest, $requestOptions);
         return $response;
@@ -431,7 +444,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkBalanceWithHttpInfo(\Adyen\Model\StoredValue\StoredValueBalanceCheckRequest $storedValueBalanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -479,22 +492,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse'
         );
     }
 
@@ -549,10 +553,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueBalanceCheckResponse'
                     );
                 },
                 function ($exception) {
@@ -602,6 +609,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -609,7 +617,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueBalanceCheckRequest)) {
             $storedValueBalanceCheckRequest = $this->injectApplicationInfo($storedValueBalanceCheckRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueBalanceCheckRequest));
             } else {
@@ -629,7 +637,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -645,7 +653,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -653,7 +670,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -678,9 +695,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueIssueResponse
+     * @return \Adyen\Model\StoredValue\StoredValueIssueResponse|null
      */
-    public function issue(\Adyen\Model\StoredValue\StoredValueIssueRequest $storedValueIssueRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueIssueResponse
+    public function issue(\Adyen\Model\StoredValue\StoredValueIssueRequest $storedValueIssueRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueIssueResponse
     {
         list($response) = $this->issueWithHttpInfo($storedValueIssueRequest, $requestOptions);
         return $response;
@@ -696,7 +713,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueIssueResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueIssueResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function issueWithHttpInfo(\Adyen\Model\StoredValue\StoredValueIssueRequest $storedValueIssueRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -744,22 +761,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueIssueResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueIssueResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueIssueResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueIssueResponse'
         );
     }
 
@@ -814,10 +822,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueIssueResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueIssueResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueIssueResponse'
                     );
                 },
                 function ($exception) {
@@ -867,6 +878,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -874,7 +886,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueIssueRequest)) {
             $storedValueIssueRequest = $this->injectApplicationInfo($storedValueIssueRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueIssueRequest));
             } else {
@@ -894,7 +906,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -910,7 +922,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -918,7 +939,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -943,9 +964,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueLoadResponse
+     * @return \Adyen\Model\StoredValue\StoredValueLoadResponse|null
      */
-    public function load(\Adyen\Model\StoredValue\StoredValueLoadRequest $storedValueLoadRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueLoadResponse
+    public function load(\Adyen\Model\StoredValue\StoredValueLoadRequest $storedValueLoadRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueLoadResponse
     {
         list($response) = $this->loadWithHttpInfo($storedValueLoadRequest, $requestOptions);
         return $response;
@@ -961,7 +982,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueLoadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueLoadResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function loadWithHttpInfo(\Adyen\Model\StoredValue\StoredValueLoadRequest $storedValueLoadRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1009,22 +1030,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueLoadResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueLoadResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueLoadResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueLoadResponse'
         );
     }
 
@@ -1079,10 +1091,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueLoadResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueLoadResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueLoadResponse'
                     );
                 },
                 function ($exception) {
@@ -1132,6 +1147,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1139,7 +1155,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueLoadRequest)) {
             $storedValueLoadRequest = $this->injectApplicationInfo($storedValueLoadRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueLoadRequest));
             } else {
@@ -1159,7 +1175,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1175,7 +1191,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1183,7 +1208,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1208,9 +1233,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
+     * @return \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse|null
      */
-    public function mergeBalance(\Adyen\Model\StoredValue\StoredValueBalanceMergeRequest $storedValueBalanceMergeRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
+    public function mergeBalance(\Adyen\Model\StoredValue\StoredValueBalanceMergeRequest $storedValueBalanceMergeRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
     {
         list($response) = $this->mergeBalanceWithHttpInfo($storedValueBalanceMergeRequest, $requestOptions);
         return $response;
@@ -1226,7 +1251,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function mergeBalanceWithHttpInfo(\Adyen\Model\StoredValue\StoredValueBalanceMergeRequest $storedValueBalanceMergeRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1274,22 +1299,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse'
         );
     }
 
@@ -1344,10 +1360,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueBalanceMergeResponse'
                     );
                 },
                 function ($exception) {
@@ -1397,6 +1416,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1404,7 +1424,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueBalanceMergeRequest)) {
             $storedValueBalanceMergeRequest = $this->injectApplicationInfo($storedValueBalanceMergeRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueBalanceMergeRequest));
             } else {
@@ -1424,7 +1444,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1440,7 +1460,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1448,7 +1477,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1473,9 +1502,9 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\StoredValue\StoredValueVoidResponse
+     * @return \Adyen\Model\StoredValue\StoredValueVoidResponse|null
      */
-    public function voidTransaction(\Adyen\Model\StoredValue\StoredValueVoidRequest $storedValueVoidRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\StoredValue\StoredValueVoidResponse
+    public function voidTransaction(\Adyen\Model\StoredValue\StoredValueVoidRequest $storedValueVoidRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\StoredValue\StoredValueVoidResponse
     {
         list($response) = $this->voidTransactionWithHttpInfo($storedValueVoidRequest, $requestOptions);
         return $response;
@@ -1491,7 +1520,7 @@ class StoredValueApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\StoredValue\StoredValueVoidResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\StoredValue\StoredValueVoidResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function voidTransactionWithHttpInfo(\Adyen\Model\StoredValue\StoredValueVoidRequest $storedValueVoidRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1539,22 +1568,13 @@ class StoredValueApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\StoredValue\StoredValueVoidResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\StoredValue\StoredValueVoidResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\StoredValue\StoredValueVoidResponse',
+            ],
+            '\Adyen\Model\StoredValue\StoredValueVoidResponse'
         );
     }
 
@@ -1609,10 +1629,13 @@ class StoredValueApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\StoredValue\StoredValueVoidResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\StoredValue\StoredValueVoidResponse',
+                        ],
+                        '\Adyen\Model\StoredValue\StoredValueVoidResponse'
                     );
                 },
                 function ($exception) {
@@ -1662,6 +1685,7 @@ class StoredValueApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1669,7 +1693,7 @@ class StoredValueApi extends BaseService
         // for model (json/xml)
         if (isset($storedValueVoidRequest)) {
             $storedValueVoidRequest = $this->injectApplicationInfo($storedValueVoidRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storedValueVoidRequest));
             } else {
@@ -1689,7 +1713,7 @@ class StoredValueApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1705,7 +1729,16 @@ class StoredValueApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1713,7 +1746,7 @@ class StoredValueApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1739,6 +1772,11 @@ class StoredValueApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -1755,6 +1793,36 @@ class StoredValueApi extends BaseService
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
     }
 
     private function handleResponseWithDataType(
