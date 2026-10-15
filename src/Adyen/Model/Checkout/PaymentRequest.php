@@ -1946,7 +1946,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets paymentMethod
      *
-     * @return \Adyen\Model\Checkout\CheckoutPaymentMethodInterface
+     * @return \Adyen\Model\Checkout\CheckoutPaymentMethod
      */
     public function getPaymentMethod()
     {
@@ -1956,7 +1956,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentMethod
      *
-     * @param \Adyen\Model\Checkout\CheckoutPaymentMethodInterface $paymentMethod paymentMethod
+     * @param \Adyen\Model\Checkout\CheckoutPaymentMethod $paymentMethod paymentMethod
      *
      * @return self
      */

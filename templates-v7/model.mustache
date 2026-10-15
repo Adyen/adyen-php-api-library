@@ -5,10 +5,6 @@
 {{>partial_header}}
 namespace {{modelPackage}};
 
-{{#vendorExtensions.x-php-union-interface}}
-{{>union_interface}}
-{{/vendorExtensions.x-php-union-interface}}
-{{^vendorExtensions.x-php-union-interface}}
 {{^isEnum}}
 {{^parentSchema}}
 use \ArrayAccess;
@@ -33,5 +29,4 @@ use \{{modelPackage}}\ObjectSerializer;
 {{^isEnum}}
 {{>model_generic}}
 {{/isEnum}}
-{{/vendorExtensions.x-php-union-interface}}
 {{/model}}{{/models}}

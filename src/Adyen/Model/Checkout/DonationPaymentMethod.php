@@ -22,7 +22,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\DonationPaymentMethodInterface
+class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = 'type';
 

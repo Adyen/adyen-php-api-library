@@ -1130,7 +1130,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets paymentMethod
      *
-     * @return \Adyen\Model\Checkout\DonationPaymentMethodInterface|null
+     * @return \Adyen\Model\Checkout\DonationPaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -1140,7 +1140,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets paymentMethod
      *
-     * @param \Adyen\Model\Checkout\DonationPaymentMethodInterface|null $paymentMethod paymentMethod
+     * @param \Adyen\Model\Checkout\DonationPaymentMethod|null $paymentMethod paymentMethod
      *
      * @return self
      */

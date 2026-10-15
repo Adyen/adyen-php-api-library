@@ -21,7 +21,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\CheckoutPaymentMethodInterface
+class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 

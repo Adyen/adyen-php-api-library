@@ -21,7 +21,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\CheckoutPaymentMethodInterface
+class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
