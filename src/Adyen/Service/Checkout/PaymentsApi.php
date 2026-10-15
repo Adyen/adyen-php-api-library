@@ -43,6 +43,11 @@ class PaymentsApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -91,7 +96,7 @@ class PaymentsApi extends BaseService
      * PaymentsApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -105,7 +110,11 @@ class PaymentsApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -151,9 +160,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\CardDetailsResponse
+     * @return \Adyen\Model\Checkout\CardDetailsResponse|null
      */
-    public function cardDetails(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
+    public function cardDetails(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\CardDetailsResponse
     {
         list($response) = $this->cardDetailsWithHttpInfo($cardDetailsRequest, $requestOptions);
         return $response;
@@ -169,7 +178,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\CardDetailsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\CardDetailsResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function cardDetailsWithHttpInfo(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -217,22 +226,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\CardDetailsResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\CardDetailsResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\CardDetailsResponse',
+            ],
+            '\Adyen\Model\Checkout\CardDetailsResponse'
         );
     }
 
@@ -287,10 +287,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\CardDetailsResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\CardDetailsResponse',
+                        ],
+                        '\Adyen\Model\Checkout\CardDetailsResponse'
                     );
                 },
                 function ($exception) {
@@ -340,6 +343,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -347,7 +351,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($cardDetailsRequest)) {
             $cardDetailsRequest = $this->injectApplicationInfo($cardDetailsRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($cardDetailsRequest));
             } else {
@@ -367,7 +371,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -383,7 +387,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -391,7 +404,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -417,9 +430,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\SessionResultResponse
+     * @return \Adyen\Model\Checkout\SessionResultResponse|null
      */
-    public function getResultOfPaymentSession(string $sessionId, string $sessionResult, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
+    public function getResultOfPaymentSession(string $sessionId, string $sessionResult, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\SessionResultResponse
     {
         list($response) = $this->getResultOfPaymentSessionWithHttpInfo($sessionId, $sessionResult, $requestOptions);
         return $response;
@@ -436,7 +449,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\SessionResultResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\SessionResultResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getResultOfPaymentSessionWithHttpInfo(string $sessionId, string $sessionResult, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -484,22 +497,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\SessionResultResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\SessionResultResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\SessionResultResponse',
+            ],
+            '\Adyen\Model\Checkout\SessionResultResponse'
         );
     }
 
@@ -556,10 +560,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\SessionResultResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\SessionResultResponse',
+                        ],
+                        '\Adyen\Model\Checkout\SessionResultResponse'
                     );
                 },
                 function ($exception) {
@@ -644,6 +651,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -663,7 +671,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -679,7 +687,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -687,7 +704,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -712,9 +729,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentMethodsResponse
+     * @return \Adyen\Model\Checkout\PaymentMethodsResponse|null
      */
-    public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
+    public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentMethodsResponse
     {
         list($response) = $this->paymentMethodsWithHttpInfo($paymentMethodsRequest, $requestOptions);
         return $response;
@@ -730,7 +747,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentMethodsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentMethodsResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function paymentMethodsWithHttpInfo(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -778,22 +795,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentMethodsResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentMethodsResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\PaymentMethodsResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentMethodsResponse'
         );
     }
 
@@ -848,10 +856,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentMethodsResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\PaymentMethodsResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentMethodsResponse'
                     );
                 },
                 function ($exception) {
@@ -901,6 +912,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -908,7 +920,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($paymentMethodsRequest)) {
             $paymentMethodsRequest = $this->injectApplicationInfo($paymentMethodsRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentMethodsRequest));
             } else {
@@ -928,7 +940,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -944,7 +956,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -952,7 +973,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -977,9 +998,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentResponse
+     * @return \Adyen\Model\Checkout\PaymentResponse|null
      */
-    public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
+    public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentResponse
     {
         list($response) = $this->paymentsWithHttpInfo($paymentRequest, $requestOptions);
         return $response;
@@ -995,7 +1016,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function paymentsWithHttpInfo(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1043,22 +1064,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\PaymentResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentResponse'
         );
     }
 
@@ -1113,10 +1125,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\PaymentResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentResponse'
                     );
                 },
                 function ($exception) {
@@ -1166,6 +1181,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1173,7 +1189,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($paymentRequest)) {
             $paymentRequest = $this->injectApplicationInfo($paymentRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentRequest));
             } else {
@@ -1193,7 +1209,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1209,7 +1225,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1217,7 +1242,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1242,9 +1267,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentDetailsResponse
+     * @return \Adyen\Model\Checkout\PaymentDetailsResponse|null
      */
-    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
+    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentDetailsResponse
     {
         list($response) = $this->paymentsDetailsWithHttpInfo($paymentDetailsRequest, $requestOptions);
         return $response;
@@ -1260,7 +1285,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentDetailsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentDetailsResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function paymentsDetailsWithHttpInfo(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1308,22 +1333,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentDetailsResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentDetailsResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\PaymentDetailsResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentDetailsResponse'
         );
     }
 
@@ -1378,10 +1394,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentDetailsResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\PaymentDetailsResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentDetailsResponse'
                     );
                 },
                 function ($exception) {
@@ -1431,6 +1450,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1438,7 +1458,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($paymentDetailsRequest)) {
             $paymentDetailsRequest = $this->injectApplicationInfo($paymentDetailsRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentDetailsRequest));
             } else {
@@ -1458,7 +1478,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1474,7 +1494,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1482,7 +1511,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1507,9 +1536,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\CreateCheckoutSessionResponse
+     * @return \Adyen\Model\Checkout\CreateCheckoutSessionResponse|null
      */
-    public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
+    public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\CreateCheckoutSessionResponse
     {
         list($response) = $this->sessionsWithHttpInfo($createCheckoutSessionRequest, $requestOptions);
         return $response;
@@ -1525,7 +1554,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\CreateCheckoutSessionResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\CreateCheckoutSessionResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function sessionsWithHttpInfo(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1573,22 +1602,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 201:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\CreateCheckoutSessionResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\CreateCheckoutSessionResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '201' => '\Adyen\Model\Checkout\CreateCheckoutSessionResponse',
+            ],
+            '\Adyen\Model\Checkout\CreateCheckoutSessionResponse'
         );
     }
 
@@ -1643,10 +1663,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\CreateCheckoutSessionResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '201' => '\Adyen\Model\Checkout\CreateCheckoutSessionResponse',
+                        ],
+                        '\Adyen\Model\Checkout\CreateCheckoutSessionResponse'
                     );
                 },
                 function ($exception) {
@@ -1696,6 +1719,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1703,7 +1727,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($createCheckoutSessionRequest)) {
             $createCheckoutSessionRequest = $this->injectApplicationInfo($createCheckoutSessionRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($createCheckoutSessionRequest));
             } else {
@@ -1723,7 +1747,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -1739,7 +1763,16 @@ class PaymentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1747,7 +1780,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -1773,9 +1806,9 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse
+     * @return \Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse|null
      */
-    public function updateSession(string $sessionId, \Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest $checkoutSessionPatchSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse
+    public function updateSession(string $sessionId, \Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest $checkoutSessionPatchSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse
     {
         list($response) = $this->updateSessionWithHttpInfo($sessionId, $checkoutSessionPatchSessionRequest, $requestOptions);
         return $response;
@@ -1792,7 +1825,7 @@ class PaymentsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateSessionWithHttpInfo(string $sessionId, \Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest $checkoutSessionPatchSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1840,22 +1873,13 @@ class PaymentsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse',
+            ],
+            '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse'
         );
     }
 
@@ -1912,10 +1936,13 @@ class PaymentsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse',
+                        ],
+                        '\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse'
                     );
                 },
                 function ($exception) {
@@ -1982,6 +2009,7 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1989,7 +2017,7 @@ class PaymentsApi extends BaseService
         // for model (json/xml)
         if (isset($checkoutSessionPatchSessionRequest)) {
             $checkoutSessionPatchSessionRequest = $this->injectApplicationInfo($checkoutSessionPatchSessionRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($checkoutSessionPatchSessionRequest));
             } else {
@@ -2009,7 +2037,7 @@ class PaymentsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -2023,7 +2051,16 @@ class PaymentsApi extends BaseService
         $username = $this->config->getUsername();
         $password = $this->config->getPassword();
         if (!empty($apiKey)) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         } elseif (!empty($username) && !empty($password)) {
             $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
         }
@@ -2033,7 +2070,7 @@ class PaymentsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -2059,6 +2096,11 @@ class PaymentsApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -2075,6 +2117,36 @@ class PaymentsApi extends BaseService
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
     }
 
     private function handleResponseWithDataType(
