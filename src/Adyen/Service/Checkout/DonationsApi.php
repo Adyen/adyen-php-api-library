@@ -43,6 +43,11 @@ class DonationsApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -76,7 +81,7 @@ class DonationsApi extends BaseService
      * DonationsApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -90,7 +95,11 @@ class DonationsApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -136,9 +145,9 @@ class DonationsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\DonationCampaignsResponse
+     * @return \Adyen\Model\Checkout\DonationCampaignsResponse|null
      */
-    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
+    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\DonationCampaignsResponse
     {
         list($response) = $this->donationCampaignsWithHttpInfo($donationCampaignsRequest, $requestOptions);
         return $response;
@@ -154,7 +163,7 @@ class DonationsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\DonationCampaignsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\DonationCampaignsResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function donationCampaignsWithHttpInfo(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -202,22 +211,13 @@ class DonationsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\DonationCampaignsResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\DonationCampaignsResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\DonationCampaignsResponse',
+            ],
+            '\Adyen\Model\Checkout\DonationCampaignsResponse'
         );
     }
 
@@ -272,10 +272,13 @@ class DonationsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\DonationCampaignsResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\DonationCampaignsResponse',
+                        ],
+                        '\Adyen\Model\Checkout\DonationCampaignsResponse'
                     );
                 },
                 function ($exception) {
@@ -325,6 +328,7 @@ class DonationsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -332,7 +336,7 @@ class DonationsApi extends BaseService
         // for model (json/xml)
         if (isset($donationCampaignsRequest)) {
             $donationCampaignsRequest = $this->injectApplicationInfo($donationCampaignsRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($donationCampaignsRequest));
             } else {
@@ -352,7 +356,7 @@ class DonationsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -368,7 +372,16 @@ class DonationsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -376,7 +389,7 @@ class DonationsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -401,9 +414,9 @@ class DonationsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\DonationPaymentResponse
+     * @return \Adyen\Model\Checkout\DonationPaymentResponse|null
      */
-    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
+    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\DonationPaymentResponse
     {
         list($response) = $this->donationsWithHttpInfo($donationPaymentRequest, $requestOptions);
         return $response;
@@ -419,7 +432,7 @@ class DonationsApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\DonationPaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\DonationPaymentResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function donationsWithHttpInfo(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -467,22 +480,13 @@ class DonationsApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\DonationPaymentResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\DonationPaymentResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\DonationPaymentResponse',
+            ],
+            '\Adyen\Model\Checkout\DonationPaymentResponse'
         );
     }
 
@@ -537,10 +541,13 @@ class DonationsApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\DonationPaymentResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\DonationPaymentResponse',
+                        ],
+                        '\Adyen\Model\Checkout\DonationPaymentResponse'
                     );
                 },
                 function ($exception) {
@@ -590,6 +597,7 @@ class DonationsApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -597,7 +605,7 @@ class DonationsApi extends BaseService
         // for model (json/xml)
         if (isset($donationPaymentRequest)) {
             $donationPaymentRequest = $this->injectApplicationInfo($donationPaymentRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($donationPaymentRequest));
             } else {
@@ -617,7 +625,7 @@ class DonationsApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -633,7 +641,16 @@ class DonationsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -641,7 +658,7 @@ class DonationsApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -667,6 +684,11 @@ class DonationsApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -683,6 +705,36 @@ class DonationsApi extends BaseService
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
     }
 
     private function handleResponseWithDataType(

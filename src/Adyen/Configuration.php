@@ -67,6 +67,20 @@ class Configuration
     protected string $password = '';
 
     /**
+     * Total request timeout in seconds for SDK-created HTTP clients.
+     *
+     * @var float
+     */
+    protected float $timeout = 60.0;
+
+    /**
+     * Connection timeout in seconds for SDK-created HTTP clients.
+     *
+     * @var float
+     */
+    protected float $connectionTimeout = 60.0;
+
+    /**
      * Debug switch (default set to false)
      *
      * @var bool
@@ -345,6 +359,64 @@ class Configuration
         return $this->applicationName !== ''
             ? $this->applicationName . ' ' . $suffix
             : $suffix;
+    }
+
+    /**
+     * Sets the total request timeout in seconds for SDK-created HTTP clients.
+     * Changes apply to subsequent requests. Zero disables the timeout.
+     * Injected HTTP clients keep their own timeout settings.
+     *
+     * @param float $timeout Finite, non-negative timeout in seconds.
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setTimeout(float $timeout): self
+    {
+        if (!is_finite($timeout) || $timeout < 0) {
+            throw new \InvalidArgumentException('Timeout must be a finite, non-negative number of seconds.');
+        }
+
+        $this->timeout = $timeout;
+        return $this;
+    }
+
+    /**
+     * Gets the total request timeout in seconds (default: 60).
+     *
+     * @return float
+     */
+    public function getTimeout(): float
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Sets the connection timeout in seconds for SDK-created HTTP clients.
+     * Changes apply to subsequent requests. Zero uses the HTTP handler's default.
+     * Injected HTTP clients keep their own timeout settings.
+     *
+     * @param float $connectionTimeout Finite, non-negative timeout in seconds.
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setConnectionTimeout(float $connectionTimeout): self
+    {
+        if (!is_finite($connectionTimeout) || $connectionTimeout < 0) {
+            throw new \InvalidArgumentException('Connection timeout must be a finite, non-negative number of seconds.');
+        }
+
+        $this->connectionTimeout = $connectionTimeout;
+        return $this;
+    }
+
+    /**
+     * Gets the connection timeout in seconds (default: 60).
+     *
+     * @return float
+     */
+    public function getConnectionTimeout(): float
+    {
+        return $this->connectionTimeout;
     }
 
     /**

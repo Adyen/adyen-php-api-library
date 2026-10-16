@@ -43,6 +43,11 @@ class PaymentLinksApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -79,7 +84,7 @@ class PaymentLinksApi extends BaseService
      * PaymentLinksApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -93,7 +98,11 @@ class PaymentLinksApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -139,9 +148,9 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentLinkResponse
+     * @return \Adyen\Model\Checkout\PaymentLinkResponse|null
      */
-    public function getPaymentLink(string $linkId, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function getPaymentLink(string $linkId, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentLinkResponse
     {
         list($response) = $this->getPaymentLinkWithHttpInfo($linkId, $requestOptions);
         return $response;
@@ -157,7 +166,7 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPaymentLinkWithHttpInfo(string $linkId, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -205,22 +214,13 @@ class PaymentLinksApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentLinkResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentLinkResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentLinkResponse'
         );
     }
 
@@ -275,10 +275,13 @@ class PaymentLinksApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentLinkResponse'
                     );
                 },
                 function ($exception) {
@@ -344,6 +347,7 @@ class PaymentLinksApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -363,7 +367,7 @@ class PaymentLinksApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -379,7 +383,16 @@ class PaymentLinksApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -387,7 +400,7 @@ class PaymentLinksApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -412,9 +425,9 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentLinkResponse
+     * @return \Adyen\Model\Checkout\PaymentLinkResponse|null
      */
-    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentLinkResponse
     {
         list($response) = $this->paymentLinksWithHttpInfo($paymentLinkRequest, $requestOptions);
         return $response;
@@ -430,7 +443,7 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function paymentLinksWithHttpInfo(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -478,22 +491,13 @@ class PaymentLinksApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 201:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentLinkResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentLinkResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '201' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentLinkResponse'
         );
     }
 
@@ -548,10 +552,13 @@ class PaymentLinksApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '201' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentLinkResponse'
                     );
                 },
                 function ($exception) {
@@ -601,6 +608,7 @@ class PaymentLinksApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -608,7 +616,7 @@ class PaymentLinksApi extends BaseService
         // for model (json/xml)
         if (isset($paymentLinkRequest)) {
             $paymentLinkRequest = $this->injectApplicationInfo($paymentLinkRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentLinkRequest));
             } else {
@@ -628,7 +636,7 @@ class PaymentLinksApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -644,7 +652,16 @@ class PaymentLinksApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -652,7 +669,7 @@ class PaymentLinksApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -678,9 +695,9 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\Checkout\PaymentLinkResponse
+     * @return \Adyen\Model\Checkout\PaymentLinkResponse|null
      */
-    public function updatePaymentLink(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function updatePaymentLink(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\PaymentLinkResponse
     {
         list($response) = $this->updatePaymentLinkWithHttpInfo($linkId, $updatePaymentLinkRequest, $requestOptions);
         return $response;
@@ -697,7 +714,7 @@ class PaymentLinksApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\Checkout\PaymentLinkResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function updatePaymentLinkWithHttpInfo(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -745,22 +762,13 @@ class PaymentLinksApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\Checkout\PaymentLinkResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\Checkout\PaymentLinkResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+            ],
+            '\Adyen\Model\Checkout\PaymentLinkResponse'
         );
     }
 
@@ -817,10 +825,13 @@ class PaymentLinksApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        ],
+                        '\Adyen\Model\Checkout\PaymentLinkResponse'
                     );
                 },
                 function ($exception) {
@@ -887,6 +898,7 @@ class PaymentLinksApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -894,7 +906,7 @@ class PaymentLinksApi extends BaseService
         // for model (json/xml)
         if (isset($updatePaymentLinkRequest)) {
             $updatePaymentLinkRequest = $this->injectApplicationInfo($updatePaymentLinkRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($updatePaymentLinkRequest));
             } else {
@@ -914,7 +926,7 @@ class PaymentLinksApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
@@ -930,7 +942,16 @@ class PaymentLinksApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -938,7 +959,7 @@ class PaymentLinksApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
@@ -964,6 +985,11 @@ class PaymentLinksApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -980,6 +1006,36 @@ class PaymentLinksApi extends BaseService
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
     }
 
     private function handleResponseWithDataType(

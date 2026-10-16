@@ -43,6 +43,43 @@ class PaymentsApiTest extends BaseTest
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
 
+    /**
+     * Fallback API-key authentication uses the configured key when no custom header is provided.
+     */
+    public function testConfiguredApiKeyIsUsedWhenNoCustomHeaderExists(): void
+    {
+        $config = $this->createConfiguration();
+        $config->setAdyenApiKey('configured-api-key');
+        $service = new PaymentsApi($config);
+
+        $request = $service->paymentMethodsRequest(new PaymentMethodsRequest());
+
+        self::assertSame(['configured-api-key'], $request->getHeader('x-api-key'));
+    }
+
+    /**
+     * Fallback API-key authentication preserves a custom key regardless of header casing.
+     */
+    public function testCustomApiKeyOverridesConfiguredKeyRegardlessOfCasing(): void
+    {
+        $config = $this->createConfiguration();
+        $config->setAdyenApiKey('configured-api-key');
+        $service = new PaymentsApi($config);
+
+        foreach (['x-api-key', 'X-API-Key', 'X-Api-Key'] as $headerName) {
+            $requestOptions = new RequestOptions([
+                'additionalHeaders' => [
+                    $headerName => 'custom-api-key',
+                    'X-Custom-Header' => 'custom-value',
+                ],
+            ]);
+            $request = $service->paymentMethodsRequest(new PaymentMethodsRequest(), requestOptions: $requestOptions);
+
+            self::assertSame(['custom-api-key'], $request->getHeader('x-api-key'), $headerName);
+            self::assertSame('custom-value', $request->getHeaderLine('X-Custom-Header'));
+        }
+    }
+
     public function testGetResultOfPaymentSessionSendsExpectedUrlOnTest(): void
     {
         $container = [];
