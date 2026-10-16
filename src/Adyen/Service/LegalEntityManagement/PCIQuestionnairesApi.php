@@ -387,7 +387,7 @@ class PCIQuestionnairesApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -412,7 +412,7 @@ class PCIQuestionnairesApi extends BaseService
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -673,7 +673,7 @@ class PCIQuestionnairesApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -698,7 +698,7 @@ class PCIQuestionnairesApi extends BaseService
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -967,7 +967,7 @@ class PCIQuestionnairesApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -992,7 +992,7 @@ class PCIQuestionnairesApi extends BaseService
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1240,7 +1240,7 @@ class PCIQuestionnairesApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1265,7 +1265,7 @@ class PCIQuestionnairesApi extends BaseService
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1526,7 +1526,7 @@ class PCIQuestionnairesApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1551,7 +1551,7 @@ class PCIQuestionnairesApi extends BaseService
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1600,7 +1600,7 @@ class PCIQuestionnairesApi extends BaseService
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
                 try {
-                    $content = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
                     // unexpected parsing error
                     throw new AdyenException(
@@ -1613,12 +1613,11 @@ class PCIQuestionnairesApi extends BaseService
                         $content
                     );
                 }
-                $content = json_decode(json_encode($content), false);
             }
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            ObjectSerializer::deserialize($content, $dataType, [], $this->config),
             $response->getStatusCode(),
             $response->getHeaders()
         ];
