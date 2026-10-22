@@ -161,6 +161,21 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -542,13 +557,10 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -565,7 +577,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getAcsTransId()
     {
-        return $this->container['acsTransId'];
+        return $this->container['acsTransId'] ?? null;
     }
 
     /**
@@ -589,7 +601,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getChallenge()
     {
-        return $this->container['challenge'];
+        return $this->container['challenge'] ?? null;
     }
 
     /**
@@ -613,7 +625,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getChallengeIndicator()
     {
-        return $this->container['challengeIndicator'];
+        return $this->container['challengeIndicator'] ?? null;
     }
 
     /**
@@ -625,6 +637,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setChallengeIndicator($challengeIndicator): self
     {
+        if ($challengeIndicator !== null) {
+            $allowedValues = $this->getChallengeIndicatorAllowableValues();
+            foreach ([$challengeIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "challengeIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['challengeIndicator'] = $challengeIndicator;
 
         return $this;
@@ -637,7 +662,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getCreatedAt()
     {
-        return $this->container['createdAt'];
+        return $this->container['createdAt'] ?? null;
     }
 
     /**
@@ -661,7 +686,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getDeviceChannel()
     {
-        return $this->container['deviceChannel'];
+        return $this->container['deviceChannel'] ?? null;
     }
 
     /**
@@ -673,6 +698,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDeviceChannel($deviceChannel): self
     {
+        if ($deviceChannel !== null) {
+            $allowedValues = $this->getDeviceChannelAllowableValues();
+            foreach ([$deviceChannel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "deviceChannel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['deviceChannel'] = $deviceChannel;
 
         return $this;
@@ -685,7 +723,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getDsTransID()
     {
-        return $this->container['dsTransID'];
+        return $this->container['dsTransID'] ?? null;
     }
 
     /**
@@ -709,7 +747,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getExemptionIndicator()
     {
-        return $this->container['exemptionIndicator'];
+        return $this->container['exemptionIndicator'] ?? null;
     }
 
     /**
@@ -721,6 +759,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setExemptionIndicator($exemptionIndicator): self
     {
+        if ($exemptionIndicator !== null) {
+            $allowedValues = $this->getExemptionIndicatorAllowableValues();
+            foreach ([$exemptionIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "exemptionIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['exemptionIndicator'] = $exemptionIndicator;
 
         return $this;
@@ -733,7 +784,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getInPSD2Scope()
     {
-        return $this->container['inPSD2Scope'];
+        return $this->container['inPSD2Scope'] ?? null;
     }
 
     /**
@@ -757,7 +808,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getMessageCategory()
     {
-        return $this->container['messageCategory'];
+        return $this->container['messageCategory'] ?? null;
     }
 
     /**
@@ -769,6 +820,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMessageCategory($messageCategory): self
     {
+        if ($messageCategory !== null) {
+            $allowedValues = $this->getMessageCategoryAllowableValues();
+            foreach ([$messageCategory] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "messageCategory: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['messageCategory'] = $messageCategory;
 
         return $this;
@@ -781,7 +845,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getMessageVersion()
     {
-        return $this->container['messageVersion'];
+        return $this->container['messageVersion'] ?? null;
     }
 
     /**
@@ -805,7 +869,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskScore()
     {
-        return $this->container['riskScore'];
+        return $this->container['riskScore'] ?? null;
     }
 
     /**
@@ -829,7 +893,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getThreeDSServerTransID()
     {
-        return $this->container['threeDSServerTransID'];
+        return $this->container['threeDSServerTransID'] ?? null;
     }
 
     /**
@@ -853,7 +917,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getTransStatus()
     {
-        return $this->container['transStatus'];
+        return $this->container['transStatus'] ?? null;
     }
 
     /**
@@ -865,6 +929,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTransStatus($transStatus): self
     {
+        if ($transStatus !== null) {
+            $allowedValues = $this->getTransStatusAllowableValues();
+            foreach ([$transStatus] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "transStatus: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['transStatus'] = $transStatus;
 
         return $this;
@@ -877,7 +954,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getTransStatusReason()
     {
-        return $this->container['transStatusReason'];
+        return $this->container['transStatusReason'] ?? null;
     }
 
     /**
@@ -889,6 +966,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTransStatusReason($transStatusReason): self
     {
+        if ($transStatusReason !== null) {
+            $allowedValues = $this->getTransStatusReasonAllowableValues();
+            foreach ([$transStatusReason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "transStatusReason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['transStatusReason'] = $transStatusReason;
 
         return $this;
@@ -901,7 +991,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -913,6 +1003,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -956,6 +1059,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -969,6 +1073,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -987,14 +1092,19 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
