@@ -1,8 +1,8 @@
 {
   "service": "disputewebhooks",
   "project": "php",
-  "generatedAt": "2026-06-15T16:45:44Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "8335f2051382a7a8da2ce16da8f848ef40b62de2"
+  "generatedAt": "2026-10-22T14:22:15Z",
+  "openapiCommitSha": "2c1f3ab1e0385815899db9364a95e5aa5cf5568a",
+  "automationCommitSha": "b78db5c1f857f1d7d8d45116ce61f6266043fa60",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
