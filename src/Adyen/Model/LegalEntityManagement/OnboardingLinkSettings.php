@@ -167,6 +167,21 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -351,13 +366,10 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -374,7 +386,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAcceptedCountries()
     {
-        return $this->container['acceptedCountries'];
+        return $this->container['acceptedCountries'] ?? null;
     }
 
     /**
@@ -398,7 +410,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAllowBankAccountFormatSelection()
     {
-        return $this->container['allowBankAccountFormatSelection'];
+        return $this->container['allowBankAccountFormatSelection'] ?? null;
     }
 
     /**
@@ -422,7 +434,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAllowDebugUi()
     {
-        return $this->container['allowDebugUi'];
+        return $this->container['allowDebugUi'] ?? null;
     }
 
     /**
@@ -446,7 +458,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAllowIntraRegionCrossBorderPayout()
     {
-        return $this->container['allowIntraRegionCrossBorderPayout'];
+        return $this->container['allowIntraRegionCrossBorderPayout'] ?? null;
     }
 
     /**
@@ -470,7 +482,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getChangeLegalEntityType()
     {
-        return $this->container['changeLegalEntityType'];
+        return $this->container['changeLegalEntityType'] ?? null;
     }
 
     /**
@@ -494,7 +506,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getEditPrefilledCountry()
     {
-        return $this->container['editPrefilledCountry'];
+        return $this->container['editPrefilledCountry'] ?? null;
     }
 
     /**
@@ -518,7 +530,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getEnforceLegalAge()
     {
-        return $this->container['enforceLegalAge'];
+        return $this->container['enforceLegalAge'] ?? null;
     }
 
     /**
@@ -542,7 +554,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getHideOnboardingIntroductionIndividual()
     {
-        return $this->container['hideOnboardingIntroductionIndividual'];
+        return $this->container['hideOnboardingIntroductionIndividual'] ?? null;
     }
 
     /**
@@ -566,7 +578,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getHideOnboardingIntroductionOrganization()
     {
-        return $this->container['hideOnboardingIntroductionOrganization'];
+        return $this->container['hideOnboardingIntroductionOrganization'] ?? null;
     }
 
     /**
@@ -590,7 +602,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getHideOnboardingIntroductionSoleProprietor()
     {
-        return $this->container['hideOnboardingIntroductionSoleProprietor'];
+        return $this->container['hideOnboardingIntroductionSoleProprietor'] ?? null;
     }
 
     /**
@@ -614,7 +626,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getHideOnboardingIntroductionTrust()
     {
-        return $this->container['hideOnboardingIntroductionTrust'];
+        return $this->container['hideOnboardingIntroductionTrust'] ?? null;
     }
 
     /**
@@ -638,7 +650,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getInstantBankVerification()
     {
-        return $this->container['instantBankVerification'];
+        return $this->container['instantBankVerification'] ?? null;
     }
 
     /**
@@ -662,7 +674,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRequirePciSignEcomMoto()
     {
-        return $this->container['requirePciSignEcomMoto'];
+        return $this->container['requirePciSignEcomMoto'] ?? null;
     }
 
     /**
@@ -686,7 +698,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRequirePciSignEcommerce()
     {
-        return $this->container['requirePciSignEcommerce'];
+        return $this->container['requirePciSignEcommerce'] ?? null;
     }
 
     /**
@@ -710,7 +722,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRequirePciSignPos()
     {
-        return $this->container['requirePciSignPos'];
+        return $this->container['requirePciSignPos'] ?? null;
     }
 
     /**
@@ -734,7 +746,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRequirePciSignPosMoto()
     {
-        return $this->container['requirePciSignPosMoto'];
+        return $this->container['requirePciSignPosMoto'] ?? null;
     }
 
     /**
@@ -758,7 +770,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getTransferInstrumentLimit()
     {
-        return $this->container['transferInstrumentLimit'];
+        return $this->container['transferInstrumentLimit'] ?? null;
     }
 
     /**
@@ -813,6 +825,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -826,6 +839,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -844,14 +858,19 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
