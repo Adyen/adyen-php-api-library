@@ -43,6 +43,11 @@ class HostedOnboardingApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -79,7 +84,7 @@ class HostedOnboardingApi extends BaseService
      * HostedOnboardingApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -93,7 +98,11 @@ class HostedOnboardingApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -140,9 +149,9 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\OnboardingLink
+     * @return \Adyen\Model\LegalEntityManagement\OnboardingLink|null
      */
-    public function getLinkToAdyenhostedOnboardingPage(string $id, \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingLink
+    public function getLinkToAdyenhostedOnboardingPage(string $id, \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\OnboardingLink
     {
         list($response) = $this->getLinkToAdyenhostedOnboardingPageWithHttpInfo($id, $onboardingLinkInfo, $requestOptions);
         return $response;
@@ -159,7 +168,7 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingLink, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingLink|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLinkToAdyenhostedOnboardingPageWithHttpInfo(string $id, \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -207,22 +216,13 @@ class HostedOnboardingApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\OnboardingLink',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\OnboardingLink',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\OnboardingLink',
+            ],
+            '\Adyen\Model\LegalEntityManagement\OnboardingLink'
         );
     }
 
@@ -279,10 +279,13 @@ class HostedOnboardingApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\OnboardingLink',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\OnboardingLink',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\OnboardingLink'
                     );
                 },
                 function ($exception) {
@@ -349,6 +352,7 @@ class HostedOnboardingApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -356,7 +360,7 @@ class HostedOnboardingApi extends BaseService
         // for model (json/xml)
         if (isset($onboardingLinkInfo)) {
             $onboardingLinkInfo = $this->injectApplicationInfo($onboardingLinkInfo);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($onboardingLinkInfo));
             } else {
@@ -376,12 +380,12 @@ class HostedOnboardingApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -392,7 +396,16 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -400,13 +413,13 @@ class HostedOnboardingApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -425,9 +438,9 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\OnboardingTheme
+     * @return \Adyen\Model\LegalEntityManagement\OnboardingTheme|null
      */
-    public function getOnboardingLinkTheme(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingTheme
+    public function getOnboardingLinkTheme(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\OnboardingTheme
     {
         list($response) = $this->getOnboardingLinkThemeWithHttpInfo($id, $requestOptions);
         return $response;
@@ -443,7 +456,7 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingTheme, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingTheme|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getOnboardingLinkThemeWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -491,22 +504,13 @@ class HostedOnboardingApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\OnboardingTheme',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\OnboardingTheme',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\OnboardingTheme',
+            ],
+            '\Adyen\Model\LegalEntityManagement\OnboardingTheme'
         );
     }
 
@@ -561,10 +565,13 @@ class HostedOnboardingApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\OnboardingTheme',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\OnboardingTheme',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\OnboardingTheme'
                     );
                 },
                 function ($exception) {
@@ -630,6 +637,7 @@ class HostedOnboardingApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -649,12 +657,12 @@ class HostedOnboardingApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -665,7 +673,16 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -673,13 +690,13 @@ class HostedOnboardingApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -697,9 +714,9 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\OnboardingThemes
+     * @return \Adyen\Model\LegalEntityManagement\OnboardingThemes|null
      */
-    public function listHostedOnboardingPageThemes(?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingThemes
+    public function listHostedOnboardingPageThemes(?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\OnboardingThemes
     {
         list($response) = $this->listHostedOnboardingPageThemesWithHttpInfo($requestOptions);
         return $response;
@@ -714,7 +731,7 @@ class HostedOnboardingApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingThemes, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\OnboardingThemes|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function listHostedOnboardingPageThemesWithHttpInfo(?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -762,22 +779,13 @@ class HostedOnboardingApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\OnboardingThemes',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\OnboardingThemes',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\OnboardingThemes',
+            ],
+            '\Adyen\Model\LegalEntityManagement\OnboardingThemes'
         );
     }
 
@@ -830,10 +838,13 @@ class HostedOnboardingApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\OnboardingThemes',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\OnboardingThemes',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\OnboardingThemes'
                     );
                 },
                 function ($exception) {
@@ -882,6 +893,7 @@ class HostedOnboardingApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -901,12 +913,12 @@ class HostedOnboardingApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -917,7 +929,16 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -925,13 +946,13 @@ class HostedOnboardingApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -951,6 +972,11 @@ class HostedOnboardingApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -969,6 +995,36 @@ class HostedOnboardingApi extends BaseService
         return $options;
     }
 
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
+    }
+
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
@@ -980,7 +1036,7 @@ class HostedOnboardingApi extends BaseService
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
                 try {
-                    $content = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
                     // unexpected parsing error
                     throw new AdyenException(
@@ -993,12 +1049,11 @@ class HostedOnboardingApi extends BaseService
                         $content
                     );
                 }
-                $content = json_decode(json_encode($content), false);
             }
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            ObjectSerializer::deserialize($content, $dataType, [], $this->config),
             $response->getStatusCode(),
             $response->getHeaders()
         ];
