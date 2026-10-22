@@ -57,6 +57,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => 'bool',
         'enablePayOut' => 'bool',
         'enableRecurring' => 'bool',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'expiresAt' => '\DateTime',
         'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
         'fundRecipient' => '\Adyen\Model\Checkout\FundRecipient',
@@ -133,6 +134,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => null,
         'enablePayOut' => null,
         'enableRecurring' => null,
+        'enhancedSchemeData' => null,
         'expiresAt' => 'date-time',
         'fundOrigin' => null,
         'fundRecipient' => null,
@@ -207,6 +209,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => false,
         'enablePayOut' => false,
         'enableRecurring' => false,
+        'enhancedSchemeData' => false,
         'expiresAt' => false,
         'fundOrigin' => false,
         'fundRecipient' => false,
@@ -376,6 +379,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => 'enableOneClick',
         'enablePayOut' => 'enablePayOut',
         'enableRecurring' => 'enableRecurring',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'expiresAt' => 'expiresAt',
         'fundOrigin' => 'fundOrigin',
         'fundRecipient' => 'fundRecipient',
@@ -450,6 +454,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => 'setEnableOneClick',
         'enablePayOut' => 'setEnablePayOut',
         'enableRecurring' => 'setEnableRecurring',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'expiresAt' => 'setExpiresAt',
         'fundOrigin' => 'setFundOrigin',
         'fundRecipient' => 'setFundRecipient',
@@ -524,6 +529,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'enableOneClick' => 'getEnableOneClick',
         'enablePayOut' => 'getEnablePayOut',
         'enableRecurring' => 'getEnableRecurring',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'expiresAt' => 'getExpiresAt',
         'fundOrigin' => 'getFundOrigin',
         'fundRecipient' => 'getFundRecipient',
@@ -751,6 +757,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('enableOneClick', $data ?? [], null);
         $this->setIfExists('enablePayOut', $data ?? [], null);
         $this->setIfExists('enableRecurring', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('expiresAt', $data ?? [], null);
         $this->setIfExists('fundOrigin', $data ?? [], null);
         $this->setIfExists('fundRecipient', $data ?? [], null);
@@ -1289,6 +1296,30 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     public function setEnableRecurring($enableRecurring): self
     {
         $this->container['enableRecurring'] = $enableRecurring;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'] ?? null;
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData): self
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }
