@@ -137,6 +137,21 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -281,13 +296,10 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -304,7 +316,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getBalanceAccountId()
     {
-        return $this->container['balanceAccountId'];
+        return $this->container['balanceAccountId'] ?? null;
     }
 
     /**
@@ -328,7 +340,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -352,7 +364,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getBalances()
     {
-        return $this->container['balances'];
+        return $this->container['balances'] ?? null;
     }
 
     /**
@@ -376,7 +388,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCreationDate()
     {
-        return $this->container['creationDate'];
+        return $this->container['creationDate'] ?? null;
     }
 
     /**
@@ -400,7 +412,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCurrency()
     {
-        return $this->container['currency'];
+        return $this->container['currency'] ?? null;
     }
 
     /**
@@ -424,7 +436,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -448,7 +460,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getSettingIds()
     {
-        return $this->container['settingIds'];
+        return $this->container['settingIds'] ?? null;
     }
 
     /**
@@ -503,6 +515,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -516,6 +529,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -534,14 +548,19 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
