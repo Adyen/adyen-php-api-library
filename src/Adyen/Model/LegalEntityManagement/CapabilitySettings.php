@@ -131,6 +131,21 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -301,13 +316,10 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -324,7 +336,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getAmountPerIndustry()
     {
-        return $this->container['amountPerIndustry'];
+        return $this->container['amountPerIndustry'] ?? null;
     }
 
     /**
@@ -348,7 +360,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getAuthorizedCardUsers()
     {
-        return $this->container['authorizedCardUsers'];
+        return $this->container['authorizedCardUsers'] ?? null;
     }
 
     /**
@@ -372,7 +384,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getFundingSource()
     {
-        return $this->container['fundingSource'];
+        return $this->container['fundingSource'] ?? null;
     }
 
     /**
@@ -384,6 +396,19 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setFundingSource($fundingSource): self
     {
+        if ($fundingSource !== null) {
+            $allowedValues = $this->getFundingSourceAllowableValues();
+            foreach ((array) $fundingSource as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "fundingSource: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -396,7 +421,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getInterval()
     {
-        return $this->container['interval'];
+        return $this->container['interval'] ?? null;
     }
 
     /**
@@ -408,6 +433,19 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setInterval($interval): self
     {
+        if ($interval !== null) {
+            $allowedValues = $this->getIntervalAllowableValues();
+            foreach ([$interval] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "interval: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['interval'] = $interval;
 
         return $this;
@@ -420,7 +458,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getMaxAmount()
     {
-        return $this->container['maxAmount'];
+        return $this->container['maxAmount'] ?? null;
     }
 
     /**
@@ -475,6 +513,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -488,6 +527,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -506,14 +546,19 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
