@@ -212,6 +212,21 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -397,6 +412,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const CATEGORY_BANK = 'bank';
     public const CATEGORY_CARD = 'card';
+    public const CATEGORY_INTEREST = 'interest';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
@@ -597,6 +613,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
     public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
     public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
+    public const TYPE_INTEREST_PAYOUT = 'interestPayout';
     public const TYPE_FX_SELL = 'fxSell';
     public const TYPE_FX_BUY = 'fxBuy';
 
@@ -610,6 +627,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::CATEGORY_BANK,
             self::CATEGORY_CARD,
+            self::CATEGORY_INTEREST,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_PLATFORM_PAYMENT,
@@ -854,6 +872,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BALANCE_ADJUSTMENT,
             self::TYPE_BALANCE_ROLLOVER,
             self::TYPE_BALANCE_MIGRATION,
+            self::TYPE_INTEREST_PAYOUT,
             self::TYPE_FX_SELL,
             self::TYPE_FX_BUY,
         ];
@@ -919,13 +938,10 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -942,7 +958,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountHolder()
     {
-        return $this->container['accountHolder'];
+        return $this->container['accountHolder'] ?? null;
     }
 
     /**
@@ -966,7 +982,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -990,7 +1006,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBalanceAccount()
     {
-        return $this->container['balanceAccount'];
+        return $this->container['balanceAccount'] ?? null;
     }
 
     /**
@@ -1014,7 +1030,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -1038,7 +1054,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBalances()
     {
-        return $this->container['balances'];
+        return $this->container['balances'] ?? null;
     }
 
     /**
@@ -1062,18 +1078,31 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCategory()
     {
-        return $this->container['category'];
+        return $this->container['category'] ?? null;
     }
 
     /**
      * Sets category
      *
-     * @param string $category The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
+     * @param string $category The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **interest**: A transfer that settles accrued [interest](https://docs.adyen.com/business-accounts/earn-returns) on a business account.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
      *
      * @return self
      */
     public function setCategory($category): self
     {
+        if ($category !== null) {
+            $allowedValues = $this->getCategoryAllowableValues();
+            foreach ([$category] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "category: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['category'] = $category;
 
         return $this;
@@ -1086,7 +1115,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCategoryData()
     {
-        return $this->container['categoryData'];
+        return $this->container['categoryData'] ?? null;
     }
 
     /**
@@ -1110,7 +1139,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCounterparty()
     {
-        return $this->container['counterparty'];
+        return $this->container['counterparty'] ?? null;
     }
 
     /**
@@ -1134,7 +1163,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCreatedAt()
     {
-        return $this->container['createdAt'];
+        return $this->container['createdAt'] ?? null;
     }
 
     /**
@@ -1159,7 +1188,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCreationDate()
     {
-        return $this->container['creationDate'];
+        return $this->container['creationDate'] ?? null;
     }
 
     /**
@@ -1184,7 +1213,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -1208,7 +1237,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDirectDebitInformation()
     {
-        return $this->container['directDebitInformation'];
+        return $this->container['directDebitInformation'] ?? null;
     }
 
     /**
@@ -1232,7 +1261,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDirection()
     {
-        return $this->container['direction'];
+        return $this->container['direction'] ?? null;
     }
 
     /**
@@ -1244,6 +1273,19 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDirection($direction): self
     {
+        if ($direction !== null) {
+            $allowedValues = $this->getDirectionAllowableValues();
+            foreach ([$direction] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "direction: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['direction'] = $direction;
 
         return $this;
@@ -1256,7 +1298,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEventId()
     {
-        return $this->container['eventId'];
+        return $this->container['eventId'] ?? null;
     }
 
     /**
@@ -1280,7 +1322,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEvents()
     {
-        return $this->container['events'];
+        return $this->container['events'] ?? null;
     }
 
     /**
@@ -1304,7 +1346,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getExecutionDate()
     {
-        return $this->container['executionDate'];
+        return $this->container['executionDate'] ?? null;
     }
 
     /**
@@ -1328,7 +1370,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getExternalReason()
     {
-        return $this->container['externalReason'];
+        return $this->container['externalReason'] ?? null;
     }
 
     /**
@@ -1352,7 +1394,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -1376,7 +1418,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getNetworkReason()
     {
-        return $this->container['networkReason'];
+        return $this->container['networkReason'] ?? null;
     }
 
     /**
@@ -1400,7 +1442,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPaymentInstrument()
     {
-        return $this->container['paymentInstrument'];
+        return $this->container['paymentInstrument'] ?? null;
     }
 
     /**
@@ -1424,7 +1466,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReason()
     {
-        return $this->container['reason'];
+        return $this->container['reason'] ?? null;
     }
 
     /**
@@ -1436,6 +1478,19 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReason($reason): self
     {
+        if ($reason !== null) {
+            $allowedValues = $this->getReasonAllowableValues();
+            foreach ([$reason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "reason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['reason'] = $reason;
 
         return $this;
@@ -1448,7 +1503,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -1472,7 +1527,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReferenceForBeneficiary()
     {
-        return $this->container['referenceForBeneficiary'];
+        return $this->container['referenceForBeneficiary'] ?? null;
     }
 
     /**
@@ -1496,7 +1551,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReview()
     {
-        return $this->container['review'];
+        return $this->container['review'] ?? null;
     }
 
     /**
@@ -1520,7 +1575,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getSequenceNumber()
     {
-        return $this->container['sequenceNumber'];
+        return $this->container['sequenceNumber'] ?? null;
     }
 
     /**
@@ -1544,7 +1599,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -1556,6 +1611,19 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -1568,7 +1636,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTracing()
     {
-        return $this->container['tracing'];
+        return $this->container['tracing'] ?? null;
     }
 
     /**
@@ -1592,7 +1660,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTracking()
     {
-        return $this->container['tracking'];
+        return $this->container['tracking'] ?? null;
     }
 
     /**
@@ -1616,7 +1684,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTransactionRulesResult()
     {
-        return $this->container['transactionRulesResult'];
+        return $this->container['transactionRulesResult'] ?? null;
     }
 
     /**
@@ -1640,7 +1708,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -1652,6 +1720,19 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -1664,7 +1745,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getUltimateParty()
     {
-        return $this->container['ultimateParty'];
+        return $this->container['ultimateParty'] ?? null;
     }
 
     /**
@@ -1688,7 +1769,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getUpdatedAt()
     {
-        return $this->container['updatedAt'];
+        return $this->container['updatedAt'] ?? null;
     }
 
     /**
@@ -1743,6 +1824,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1756,6 +1838,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1774,14 +1857,19 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
