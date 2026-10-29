@@ -69,6 +69,9 @@ class UtilityApi extends BaseService
 
     /** @var array<string, string[]> */
     public const CONTENT_TYPES = [
+        'calculateTax' => [
+            'application/json',
+        ],
         'getApplePaySession' => [
             'application/json',
         ],
@@ -79,6 +82,9 @@ class UtilityApi extends BaseService
             'application/json',
         ],
         'validateShopperId' => [
+            'application/json',
+        ],
+        'verifyShopperTaxIdentification' => [
             'application/json',
         ],
     ];
@@ -139,6 +145,282 @@ class UtilityApi extends BaseService
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation calculateTax
+     *
+     * Calculate the tax for a transaction.
+     *
+     * @param  \Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest calculateTaxRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Adyen\Model\Checkout\CalculateTaxResponse|null
+     */
+    public function calculateTax(\Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\CalculateTaxResponse
+    {
+        list($response) = $this->calculateTaxWithHttpInfo($calculateTaxRequest, $requestOptions);
+        return $response;
+    }
+
+    /**
+     * Operation calculateTaxWithHttpInfo
+     *
+     * Calculate the tax for a transaction.
+     *
+     * @param  \Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Adyen\Model\Checkout\CalculateTaxResponse|null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function calculateTaxWithHttpInfo(\Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    {
+        $contentType = self::CONTENT_TYPES['calculateTax'][0];
+
+        $request = $this->calculateTaxRequest($calculateTaxRequest, $contentType, $requestOptions);
+
+        $options = $this->createHttpClientOption();
+        try {
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    (string) $response->getBody(),
+                    $e
+                );
+            }
+
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+
+        return $this->handleSuccessfulResponse(
+            $request,
+            $response,
+            [
+                '200' => '\Adyen\Model\Checkout\CalculateTaxResponse',
+            ],
+            '\Adyen\Model\Checkout\CalculateTaxResponse'
+        );
+    }
+
+    /**
+     * Operation calculateTaxAsync
+     *
+     * Calculate the tax for a transaction.
+     *
+     * @param  \Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function calculateTaxAsync(\Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    {
+        return $this->calculateTaxAsyncWithHttpInfo($calculateTaxRequest, $requestOptions)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation calculateTaxAsyncWithHttpInfo
+     *
+     * Calculate the tax for a transaction.
+     *
+     * @param  \Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function calculateTaxAsyncWithHttpInfo(\Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    {
+        $contentType = self::CONTENT_TYPES['calculateTax'][0];
+
+        $request = $this->calculateTaxRequest($calculateTaxRequest, $contentType, $requestOptions);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
+                    }
+
+                    return $this->handleSuccessfulResponse(
+                        $request,
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\CalculateTaxResponse',
+                        ],
+                        '\Adyen\Model\Checkout\CalculateTaxResponse'
+                    );
+                },
+                function ($exception) {
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
+                    throw new AdyenException(
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'calculateTax'
+     *
+     * @param  \Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['calculateTax'] to see the possible values for this operation
+     * @param \Adyen\RequestOptions|null $requestOptions
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function calculateTaxRequest(\Adyen\Model\Checkout\CalculateTaxRequest $calculateTaxRequest, string $contentType = self::CONTENT_TYPES['calculateTax'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    {
+
+        // verify the required parameter 'calculateTaxRequest' is set
+        if ($calculateTaxRequest === null || (is_array($calculateTaxRequest) && count($calculateTaxRequest) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $calculateTaxRequest when calling calculateTax'
+            );
+        }
+
+        $resourcePath = '/calculateTax';
+        $formParams = [];
+        $queryParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart,
+            $requestOptions
+        );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
+
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
+        // for model (json/xml)
+        if (isset($calculateTaxRequest)) {
+            $calculateTaxRequest = $this->injectApplicationInfo($calculateTaxRequest);
+            if (stripos($contentType, 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($calculateTaxRequest));
+            } else {
+                $httpBody = $calculateTaxRequest;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif (stripos($contentType, 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
+            }
+        }
+
+        // The specification omitted security, but Adyen operations still require credentials.
+        $apiKey = $this->config->getAdyenApiKey();
+        $username = $this->config->getUsername();
+        $password = $this->config->getPassword();
+        if (!empty($apiKey)) {
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
+        } elseif (!empty($username) && !empty($password)) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = $this->headerSelector->mergeHeaders(
+            $defaultHeaders,
+            $headers
+        );
+
+        $operationHost = $this->baseURL;
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -1166,6 +1448,282 @@ class UtilityApi extends BaseService
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($validateShopperIdRequest));
             } else {
                 $httpBody = $validateShopperIdRequest;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif (stripos($contentType, 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
+            }
+        }
+
+        // The specification omitted security, but Adyen operations still require credentials.
+        $apiKey = $this->config->getAdyenApiKey();
+        $username = $this->config->getUsername();
+        $password = $this->config->getPassword();
+        if (!empty($apiKey)) {
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
+        } elseif (!empty($username) && !empty($password)) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = $this->headerSelector->mergeHeaders(
+            $defaultHeaders,
+            $headers
+        );
+
+        $operationHost = $this->baseURL;
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation verifyShopperTaxIdentification
+     *
+     * Verify the shopper&#39;s tax identification.
+     *
+     * @param  \Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest verifyShopperTaxIdentificationRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse|null
+     */
+    public function verifyShopperTaxIdentification(\Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse
+    {
+        list($response) = $this->verifyShopperTaxIdentificationWithHttpInfo($verifyShopperTaxIdentificationRequest, $requestOptions);
+        return $response;
+    }
+
+    /**
+     * Operation verifyShopperTaxIdentificationWithHttpInfo
+     *
+     * Verify the shopper&#39;s tax identification.
+     *
+     * @param  \Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse|null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function verifyShopperTaxIdentificationWithHttpInfo(\Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    {
+        $contentType = self::CONTENT_TYPES['verifyShopperTaxIdentification'][0];
+
+        $request = $this->verifyShopperTaxIdentificationRequest($verifyShopperTaxIdentificationRequest, $contentType, $requestOptions);
+
+        $options = $this->createHttpClientOption();
+        try {
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    (string) $response->getBody(),
+                    $e
+                );
+            }
+
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+
+        return $this->handleSuccessfulResponse(
+            $request,
+            $response,
+            [
+                '200' => '\Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse',
+            ],
+            '\Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse'
+        );
+    }
+
+    /**
+     * Operation verifyShopperTaxIdentificationAsync
+     *
+     * Verify the shopper&#39;s tax identification.
+     *
+     * @param  \Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function verifyShopperTaxIdentificationAsync(\Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    {
+        return $this->verifyShopperTaxIdentificationAsyncWithHttpInfo($verifyShopperTaxIdentificationRequest, $requestOptions)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation verifyShopperTaxIdentificationAsyncWithHttpInfo
+     *
+     * Verify the shopper&#39;s tax identification.
+     *
+     * @param  \Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest (required)
+     * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function verifyShopperTaxIdentificationAsyncWithHttpInfo(\Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    {
+        $contentType = self::CONTENT_TYPES['verifyShopperTaxIdentification'][0];
+
+        $request = $this->verifyShopperTaxIdentificationRequest($verifyShopperTaxIdentificationRequest, $contentType, $requestOptions);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
+                    }
+
+                    return $this->handleSuccessfulResponse(
+                        $request,
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse',
+                        ],
+                        '\Adyen\Model\Checkout\VerifyShopperTaxIdentificationResponse'
+                    );
+                },
+                function ($exception) {
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
+                    throw new AdyenException(
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'verifyShopperTaxIdentification'
+     *
+     * @param  \Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['verifyShopperTaxIdentification'] to see the possible values for this operation
+     * @param \Adyen\RequestOptions|null $requestOptions
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function verifyShopperTaxIdentificationRequest(\Adyen\Model\Checkout\VerifyShopperTaxIdentificationRequest $verifyShopperTaxIdentificationRequest, string $contentType = self::CONTENT_TYPES['verifyShopperTaxIdentification'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    {
+
+        // verify the required parameter 'verifyShopperTaxIdentificationRequest' is set
+        if ($verifyShopperTaxIdentificationRequest === null || (is_array($verifyShopperTaxIdentificationRequest) && count($verifyShopperTaxIdentificationRequest) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $verifyShopperTaxIdentificationRequest when calling verifyShopperTaxIdentification'
+            );
+        }
+
+        $resourcePath = '/verifyShopperTaxIdentification';
+        $formParams = [];
+        $queryParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart,
+            $requestOptions
+        );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
+
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
+        // for model (json/xml)
+        if (isset($verifyShopperTaxIdentificationRequest)) {
+            $verifyShopperTaxIdentificationRequest = $this->injectApplicationInfo($verifyShopperTaxIdentificationRequest);
+            if (stripos($contentType, 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($verifyShopperTaxIdentificationRequest));
+            } else {
+                $httpBody = $verifyShopperTaxIdentificationRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
