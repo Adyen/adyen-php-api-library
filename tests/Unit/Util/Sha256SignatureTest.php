@@ -32,7 +32,7 @@ class Sha256SignatureTest extends TestCase
     public function testSha256Invalid()
     {
         $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage('Invalid HMAC key: INVALID');
+        $this->expectExceptionMessage('Invalid HMAC key: it must be a hexadecimal string');
         $signature = new Sha256Signature();
         $signature->generate("INVALID", array('key' => 'value'));
     }
