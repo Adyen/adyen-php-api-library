@@ -19,7 +19,7 @@ class HmacSignature
     public function validateHMAC(string $hmacKey, string $hmacSign, string $webhook): bool
     {
         if (!ctype_xdigit($hmacSign)) {
-            throw new AdyenException("Invalid HMAC key: $hmacKey");
+            throw new AdyenException("Invalid HMAC key: it must be a hexadecimal string");
         }
         $expectedSign = base64_encode(hash_hmac(
             'sha256',
@@ -44,7 +44,7 @@ class HmacSignature
     public function validateHMACSignature(string $hmacKey, string $hmacSign, string $webhook): bool
     {
         if (!ctype_xdigit($hmacKey)) {
-            throw new AdyenException("Invalid HMAC key: $hmacKey");
+            throw new AdyenException("Invalid HMAC key: it must be a hexadecimal string");
         }
         $expectedSign = self::calculateHmacSignature($hmacKey, $webhook);
         return hash_equals($expectedSign, $hmacSign);
@@ -65,7 +65,7 @@ class HmacSignature
 
         // validate if hmacKey contains only hexadecimal chars to be packed with H*
         if (!ctype_xdigit($hmacKey)) {
-            throw new AdyenException("Invalid HMAC key: $hmacKey");
+            throw new AdyenException("Invalid HMAC key: it must be a hexadecimal string");
         }
 
         if (empty($params)) {
@@ -200,7 +200,7 @@ class HmacSignature
         }
 
         if (!ctype_xdigit($hmacKey)) {
-            throw new AdyenException("Invalid HMAC key: $hmacKey");
+            throw new AdyenException("Invalid HMAC key: it must be a hexadecimal string");
         }
 
         return base64_encode(hash_hmac('sha256', $payload, pack("H*", $hmacKey), true));

@@ -42,7 +42,7 @@ class Sha256Signature
 
         // validate if hmacKey contains only hexadecimal chars to be packed with H*
         if (!ctype_xdigit($hmacKey)) {
-            throw new AdyenException("Invalid HMAC key: $hmacKey");
+            throw new AdyenException("Invalid HMAC key: it must be a hexadecimal string");
         }
 
         if (empty($params)) {

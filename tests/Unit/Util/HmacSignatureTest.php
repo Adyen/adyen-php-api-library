@@ -236,4 +236,39 @@ JSON
             str_replace("M5N7TQ4TG5PFWR50", "M5N7TQ4TG5PFWR51", $payload)
         ));
     }
+
+    /**
+     * A malformed key (here with quotes left around it) must not end up in the
+     * exception message, where it would be written to logs.
+     */
+    public function testInvalidHmacKeyIsNotInExceptionMessage()
+    {
+        $key = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
+        $badKey = "\"" . $key . "\"";
+        $signature = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+        $hmac = new HmacSignature();
+        $calls = array(
+            function () use ($hmac, $badKey, $signature) {
+                $hmac->validateHMACSignature($badKey, $signature, "{}");
+            },
+            function () use ($hmac, $badKey, $signature) {
+                $hmac->validateHMAC($signature, $badKey, "{}");
+            },
+            function () use ($hmac, $badKey) {
+                $hmac->calculateHmacSignature($badKey, "{}");
+            },
+            function () use ($hmac, $badKey) {
+                $hmac->calculateNotificationHMAC($badKey, array('pspReference' => 'ref'));
+            },
+        );
+        foreach ($calls as $call) {
+            try {
+                $call();
+                $this->fail("Expected an AdyenException for a malformed HMAC key");
+            } catch (AdyenException $e) {
+                $this->assertStringStartsWith("Invalid HMAC key", $e->getMessage());
+                $this->assertStringNotContainsString($key, $e->getMessage());
+            }
+        }
+    }
 }
