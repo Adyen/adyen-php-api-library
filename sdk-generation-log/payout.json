@@ -1,8 +1,8 @@
 {
   "service": "payout",
   "project": "php",
-  "generatedAt": "2026-06-19T10:31:38Z",
-  "openapiCommitSha": "02d10c0110523a6a85ae331d2de5ab402c291095",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "87893df3a51b64de2b2ae9ef229d05548a99d010"
+  "generatedAt": "2026-10-29T13:57:41Z",
+  "openapiCommitSha": "1d165a07700491fe3eff1e368ffe090a33251e19",
+  "automationCommitSha": "b78db5c1f857f1d7d8d45116ce61f6266043fa60",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
