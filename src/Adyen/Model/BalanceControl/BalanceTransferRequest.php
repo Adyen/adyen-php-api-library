@@ -26,6 +26,16 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_FROM_MERCHANT = 'fromMerchant';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_TO_MERCHANT = 'toMerchant';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
