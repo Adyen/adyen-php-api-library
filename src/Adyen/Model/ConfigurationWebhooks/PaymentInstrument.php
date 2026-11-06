@@ -161,6 +161,21 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -400,13 +415,10 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -424,7 +436,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getAdditionalBankAccountIdentifications()
     {
-        return $this->container['additionalBankAccountIdentifications'];
+        return $this->container['additionalBankAccountIdentifications'] ?? null;
     }
 
     /**
@@ -449,7 +461,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getBalanceAccountId()
     {
-        return $this->container['balanceAccountId'];
+        return $this->container['balanceAccountId'] ?? null;
     }
 
     /**
@@ -473,7 +485,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getBankAccount()
     {
-        return $this->container['bankAccount'];
+        return $this->container['bankAccount'] ?? null;
     }
 
     /**
@@ -497,7 +509,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getCard()
     {
-        return $this->container['card'];
+        return $this->container['card'] ?? null;
     }
 
     /**
@@ -521,7 +533,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -545,7 +557,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -569,7 +581,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getIssuingCountryCode()
     {
-        return $this->container['issuingCountryCode'];
+        return $this->container['issuingCountryCode'] ?? null;
     }
 
     /**
@@ -593,7 +605,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getPaymentInstrumentGroupId()
     {
-        return $this->container['paymentInstrumentGroupId'];
+        return $this->container['paymentInstrumentGroupId'] ?? null;
     }
 
     /**
@@ -617,7 +629,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -641,7 +653,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getReplacedById()
     {
-        return $this->container['replacedById'];
+        return $this->container['replacedById'] ?? null;
     }
 
     /**
@@ -665,7 +677,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getReplacementOfId()
     {
-        return $this->container['replacementOfId'];
+        return $this->container['replacementOfId'] ?? null;
     }
 
     /**
@@ -689,7 +701,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -701,6 +713,19 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -713,7 +738,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getStatusComment()
     {
-        return $this->container['statusComment'];
+        return $this->container['statusComment'] ?? null;
     }
 
     /**
@@ -737,7 +762,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getStatusReason()
     {
-        return $this->container['statusReason'];
+        return $this->container['statusReason'] ?? null;
     }
 
     /**
@@ -749,6 +774,19 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setStatusReason($statusReason): self
     {
+        if ($statusReason !== null) {
+            $allowedValues = $this->getStatusReasonAllowableValues();
+            foreach ([$statusReason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "statusReason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['statusReason'] = $statusReason;
 
         return $this;
@@ -761,7 +799,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -773,6 +811,19 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -816,6 +867,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -829,6 +881,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -847,14 +900,19 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

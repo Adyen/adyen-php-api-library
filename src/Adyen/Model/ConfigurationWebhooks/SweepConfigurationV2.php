@@ -164,6 +164,21 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -457,13 +472,10 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -480,7 +492,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCategory()
     {
-        return $this->container['category'];
+        return $this->container['category'] ?? null;
     }
 
     /**
@@ -492,6 +504,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCategory($category): self
     {
+        if ($category !== null) {
+            $allowedValues = $this->getCategoryAllowableValues();
+            foreach ([$category] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "category: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['category'] = $category;
 
         return $this;
@@ -504,7 +529,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCounterparty()
     {
-        return $this->container['counterparty'];
+        return $this->container['counterparty'] ?? null;
     }
 
     /**
@@ -528,7 +553,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getCurrency()
     {
-        return $this->container['currency'];
+        return $this->container['currency'] ?? null;
     }
 
     /**
@@ -552,7 +577,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -576,7 +601,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -600,7 +625,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getPriorities()
     {
-        return $this->container['priorities'];
+        return $this->container['priorities'] ?? null;
     }
 
     /**
@@ -612,6 +637,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPriorities($priorities): self
     {
+        if ($priorities !== null) {
+            $allowedValues = $this->getPrioritiesAllowableValues();
+            foreach ((array) $priorities as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "priorities: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['priorities'] = $priorities;
 
         return $this;
@@ -624,7 +662,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getReason()
     {
-        return $this->container['reason'];
+        return $this->container['reason'] ?? null;
     }
 
     /**
@@ -636,6 +674,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReason($reason): self
     {
+        if ($reason !== null) {
+            $allowedValues = $this->getReasonAllowableValues();
+            foreach ([$reason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "reason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['reason'] = $reason;
 
         return $this;
@@ -648,7 +699,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getReasonDetail()
     {
-        return $this->container['reasonDetail'];
+        return $this->container['reasonDetail'] ?? null;
     }
 
     /**
@@ -672,7 +723,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -696,7 +747,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getReferenceForBeneficiary()
     {
-        return $this->container['referenceForBeneficiary'];
+        return $this->container['referenceForBeneficiary'] ?? null;
     }
 
     /**
@@ -720,7 +771,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSchedule()
     {
-        return $this->container['schedule'];
+        return $this->container['schedule'] ?? null;
     }
 
     /**
@@ -744,7 +795,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -756,6 +807,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -768,7 +832,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getSweepAmount()
     {
-        return $this->container['sweepAmount'];
+        return $this->container['sweepAmount'] ?? null;
     }
 
     /**
@@ -792,7 +856,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getTargetAmount()
     {
-        return $this->container['targetAmount'];
+        return $this->container['targetAmount'] ?? null;
     }
 
     /**
@@ -816,7 +880,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getTriggerAmount()
     {
-        return $this->container['triggerAmount'];
+        return $this->container['triggerAmount'] ?? null;
     }
 
     /**
@@ -840,7 +904,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -852,6 +916,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -895,6 +972,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -908,6 +986,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -926,14 +1005,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
