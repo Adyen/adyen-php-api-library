@@ -40,6 +40,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'afterpay_default' => 'Adyen\Model\Checkout\AfterpayDetails',
         'afterpay_directdebit' => 'Adyen\Model\Checkout\OpenInvoiceDetails',
         'afterpaytouch' => 'Adyen\Model\Checkout\AfterpayDetails',
+        'afterpaytouch_US' => 'Adyen\Model\Checkout\AfterpayDetails',
         'afterpaytouch_pos' => 'Adyen\Model\Checkout\AfterpayDetails',
         'alipay' => 'Adyen\Model\Checkout\PaymentDetails',
         'alipay_hk' => 'Adyen\Model\Checkout\PaymentDetails',
@@ -237,6 +238,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'rakutenpay' => 'Adyen\Model\Checkout\RakutenPayDetails',
         'ratepay' => 'Adyen\Model\Checkout\RatepayDetails',
         'ratepay_directdebit' => 'Adyen\Model\Checkout\RatepayDetails',
+        'revolutpay' => 'Adyen\Model\Checkout\StoredPaymentMethodDetails',
         'riverty' => 'Adyen\Model\Checkout\RivertyDetails',
         'riverty_account' => 'Adyen\Model\Checkout\RivertyDetails',
         'riverty_installments' => 'Adyen\Model\Checkout\RivertyDetails',
@@ -1006,6 +1008,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_AFFIRM = 'affirm';
     public const TYPE_AFTERPAY_DEFAULT = 'afterpay_default';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
+    public const TYPE_AFTERPAYTOUCH_US = 'afterpaytouch_US';
     public const TYPE_AFTERPAY_B2B = 'afterpay_b2b';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_ALMA = 'alma';
@@ -1199,6 +1202,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
     public const TYPE_MOMO_WALLET = 'momo_wallet';
     public const TYPE_MOMO_WALLET_APP = 'momo_wallet_app';
+    public const TYPE_REVOLUTPAY = 'revolutpay';
     public const TYPE_PAYMAYA_WALLET = 'paymaya_wallet';
     public const TYPE_GRABPAY_SG = 'grabpay_SG';
     public const TYPE_GRABPAY_MY = 'grabpay_MY';
@@ -1274,6 +1278,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_AFFIRM,
             self::TYPE_AFTERPAY_DEFAULT,
             self::TYPE_AFTERPAYTOUCH,
+            self::TYPE_AFTERPAYTOUCH_US,
             self::TYPE_AFTERPAY_B2B,
             self::TYPE_CLEARPAY,
             self::TYPE_ALMA,
@@ -1467,6 +1472,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_BCMC_MOBILE_APP,
             self::TYPE_MOMO_WALLET,
             self::TYPE_MOMO_WALLET_APP,
+            self::TYPE_REVOLUTPAY,
             self::TYPE_PAYMAYA_WALLET,
             self::TYPE_GRABPAY_SG,
             self::TYPE_GRABPAY_MY,
