@@ -43,6 +43,11 @@ class LegalEntitiesApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -91,7 +96,7 @@ class LegalEntitiesApi extends BaseService
      * LegalEntitiesApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -105,7 +110,11 @@ class LegalEntitiesApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -151,9 +160,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\VerificationErrors
+     * @return \Adyen\Model\LegalEntityManagement\VerificationErrors|null
      */
-    public function checkLegalEntitysVerificationErrors(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\VerificationErrors
+    public function checkLegalEntitysVerificationErrors(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\VerificationErrors
     {
         list($response) = $this->checkLegalEntitysVerificationErrorsWithHttpInfo($id, $requestOptions);
         return $response;
@@ -169,7 +178,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\VerificationErrors, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\VerificationErrors|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkLegalEntitysVerificationErrorsWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -217,22 +226,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\VerificationErrors',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\VerificationErrors',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\VerificationErrors',
+            ],
+            '\Adyen\Model\LegalEntityManagement\VerificationErrors'
         );
     }
 
@@ -287,10 +287,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\VerificationErrors',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\VerificationErrors',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\VerificationErrors'
                     );
                 },
                 function ($exception) {
@@ -356,6 +359,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -375,12 +379,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -391,7 +395,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -399,13 +412,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -424,9 +437,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
+     * @return \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse|null
      */
-    public function confirmDataReview(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
+    public function confirmDataReview(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
     {
         list($response) = $this->confirmDataReviewWithHttpInfo($id, $requestOptions);
         return $response;
@@ -442,7 +455,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function confirmDataReviewWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -490,22 +503,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse'
         );
     }
 
@@ -560,10 +564,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse'
                     );
                 },
                 function ($exception) {
@@ -629,6 +636,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -648,12 +656,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -664,7 +672,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -672,13 +689,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -697,9 +714,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
+     * @return \Adyen\Model\LegalEntityManagement\LegalEntity|null
      */
-    public function createLegalEntity(\Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function createLegalEntity(\Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\LegalEntity
     {
         list($response) = $this->createLegalEntityWithHttpInfo($legalEntityInfoRequiredType, $requestOptions);
         return $response;
@@ -715,7 +732,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function createLegalEntityWithHttpInfo(\Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -763,22 +780,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\LegalEntity',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\LegalEntity',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+            ],
+            '\Adyen\Model\LegalEntityManagement\LegalEntity'
         );
     }
 
@@ -833,10 +841,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\LegalEntity'
                     );
                 },
                 function ($exception) {
@@ -886,6 +897,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -893,7 +905,7 @@ class LegalEntitiesApi extends BaseService
         // for model (json/xml)
         if (isset($legalEntityInfoRequiredType)) {
             $legalEntityInfoRequiredType = $this->injectApplicationInfo($legalEntityInfoRequiredType);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($legalEntityInfoRequiredType));
             } else {
@@ -913,12 +925,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -929,7 +941,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -937,13 +958,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -962,9 +983,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\BusinessLines
+     * @return \Adyen\Model\LegalEntityManagement\BusinessLines|null
      */
-    public function getAllBusinessLinesUnderLegalEntity(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLines
+    public function getAllBusinessLinesUnderLegalEntity(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\BusinessLines
     {
         list($response) = $this->getAllBusinessLinesUnderLegalEntityWithHttpInfo($id, $requestOptions);
         return $response;
@@ -980,7 +1001,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\BusinessLines, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\BusinessLines|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllBusinessLinesUnderLegalEntityWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1028,22 +1049,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\BusinessLines',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\BusinessLines',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\BusinessLines',
+            ],
+            '\Adyen\Model\LegalEntityManagement\BusinessLines'
         );
     }
 
@@ -1098,10 +1110,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\BusinessLines',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\BusinessLines',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\BusinessLines'
                     );
                 },
                 function ($exception) {
@@ -1167,6 +1182,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1186,12 +1202,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1202,7 +1218,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1210,13 +1235,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1235,9 +1260,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
+     * @return \Adyen\Model\LegalEntityManagement\LegalEntity|null
      */
-    public function getLegalEntity(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function getLegalEntity(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\LegalEntity
     {
         list($response) = $this->getLegalEntityWithHttpInfo($id, $requestOptions);
         return $response;
@@ -1253,7 +1278,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLegalEntityWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1301,22 +1326,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\LegalEntity',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\LegalEntity',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+            ],
+            '\Adyen\Model\LegalEntityManagement\LegalEntity'
         );
     }
 
@@ -1371,10 +1387,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\LegalEntity'
                     );
                 },
                 function ($exception) {
@@ -1440,6 +1459,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1459,12 +1479,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1475,7 +1495,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1483,13 +1512,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1693,6 +1722,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1712,12 +1742,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1726,7 +1756,16 @@ class LegalEntitiesApi extends BaseService
         $username = $this->config->getUsername();
         $password = $this->config->getPassword();
         if (!empty($apiKey)) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         } elseif (!empty($username) && !empty($password)) {
             $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
         }
@@ -1736,13 +1775,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1762,9 +1801,9 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
+     * @return \Adyen\Model\LegalEntityManagement\LegalEntity|null
      */
-    public function updateLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function updateLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\LegalEntity
     {
         list($response) = $this->updateLegalEntityWithHttpInfo($id, $legalEntityInfo, $requestOptions);
         return $response;
@@ -1781,7 +1820,7 @@ class LegalEntitiesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\LegalEntity|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateLegalEntityWithHttpInfo(string $id, \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1829,22 +1868,13 @@ class LegalEntitiesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\LegalEntity',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\LegalEntity',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+            ],
+            '\Adyen\Model\LegalEntityManagement\LegalEntity'
         );
     }
 
@@ -1901,10 +1931,13 @@ class LegalEntitiesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\LegalEntity',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\LegalEntity'
                     );
                 },
                 function ($exception) {
@@ -1971,6 +2004,7 @@ class LegalEntitiesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1978,7 +2012,7 @@ class LegalEntitiesApi extends BaseService
         // for model (json/xml)
         if (isset($legalEntityInfo)) {
             $legalEntityInfo = $this->injectApplicationInfo($legalEntityInfo);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($legalEntityInfo));
             } else {
@@ -1998,12 +2032,12 @@ class LegalEntitiesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -2014,7 +2048,16 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -2022,13 +2065,13 @@ class LegalEntitiesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2048,6 +2091,11 @@ class LegalEntitiesApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -2066,6 +2114,36 @@ class LegalEntitiesApi extends BaseService
         return $options;
     }
 
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
+    }
+
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
@@ -2077,7 +2155,7 @@ class LegalEntitiesApi extends BaseService
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
                 try {
-                    $content = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
                     // unexpected parsing error
                     throw new AdyenException(
@@ -2090,12 +2168,11 @@ class LegalEntitiesApi extends BaseService
                         $content
                     );
                 }
-                $content = json_decode(json_encode($content), false);
             }
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            ObjectSerializer::deserialize($content, $dataType, [], $this->config),
             $response->getStatusCode(),
             $response->getHeaders()
         ];

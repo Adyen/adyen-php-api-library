@@ -134,6 +134,21 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -274,13 +289,10 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -297,13 +309,13 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCity()
     {
-        return $this->container['city'];
+        return $this->container['city'] ?? null;
     }
 
     /**
      * Sets city
      *
-     * @param string|null $city The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.
+     * @param string|null $city The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.  The city name must be at least 3 characters. If the city name contains only repeated characters, the minimum length is two characters. For example, Aa is accepted, but Aaaa is not.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -321,7 +333,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCountry()
     {
-        return $this->container['country'];
+        return $this->container['country'] ?? null;
     }
 
     /**
@@ -345,7 +357,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPostalCode()
     {
-        return $this->container['postalCode'];
+        return $this->container['postalCode'] ?? null;
     }
 
     /**
@@ -369,7 +381,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStateOrProvince()
     {
-        return $this->container['stateOrProvince'];
+        return $this->container['stateOrProvince'] ?? null;
     }
 
     /**
@@ -393,13 +405,13 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStreet()
     {
-        return $this->container['street'];
+        return $this->container['street'] ?? null;
     }
 
     /**
      * Sets street
      *
-     * @param string|null $street The name of the street, and the house or building number. Required if `stateOrProvince` and/or `city` is provided.
+     * @param string|null $street The name of the street, and the house or building number. Must be at least 3 characters. Required if `stateOrProvince` and/or `city` is provided. For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -417,7 +429,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStreet2()
     {
-        return $this->container['street2'];
+        return $this->container['street2'] ?? null;
     }
 
     /**
@@ -472,6 +484,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -485,6 +498,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -503,14 +517,19 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
