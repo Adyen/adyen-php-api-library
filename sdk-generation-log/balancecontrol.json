@@ -1,8 +1,8 @@
 {
   "service": "balancecontrol",
   "project": "php",
-  "generatedAt": "2026-04-13T10:20:22Z",
-  "openapiCommitSha": "ab42e887fd36d43b82acbd9ff6ea3f5957c43a2e",
-  "automationCommitSha": "855b6c5526cb5fae757e921687c38df66d31dc4b",
-  "libraryCommitSha": "043387b2f1347a705b8ace39a84aa0ac03a09acf"
+  "generatedAt": "2026-11-06T10:38:08Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
