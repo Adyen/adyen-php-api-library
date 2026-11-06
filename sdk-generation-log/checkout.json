@@ -1,8 +1,8 @@
 {
   "service": "checkout",
   "project": "php",
-  "generatedAt": "2026-10-13T14:05:28Z",
-  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
-  "automationCommitSha": "b78db5c1f857f1d7d8d45116ce61f6266043fa60",
-  "libraryCommitSha": "abc7d08ead5261852c920cc15f01099bcffa3179"
+  "generatedAt": "2026-11-06T10:37:32Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
