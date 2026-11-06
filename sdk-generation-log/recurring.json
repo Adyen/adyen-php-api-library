@@ -1,8 +1,8 @@
 {
   "service": "recurring",
   "project": "php",
-  "generatedAt": "2026-06-15T16:45:19Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "8335f2051382a7a8da2ce16da8f848ef40b62de2"
+  "generatedAt": "2026-11-06T10:38:12Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
