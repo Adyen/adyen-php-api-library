@@ -47,6 +47,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => '\Adyen\Model\LegalEntityManagement\Address',
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
         'registrationNumber' => 'string',
+        'residentialAddressIndicator' => 'bool',
         'taxInformation' => '\Adyen\Model\LegalEntityManagement\TaxInformation[]',
         'type' => 'string',
         'vatAbsenceReason' => 'string',
@@ -70,6 +71,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => null,
         'registeredAddress' => null,
         'registrationNumber' => null,
+        'residentialAddressIndicator' => null,
         'taxInformation' => null,
         'type' => null,
         'vatAbsenceReason' => null,
@@ -91,6 +93,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => false,
         'registeredAddress' => false,
         'registrationNumber' => false,
+        'residentialAddressIndicator' => true,
         'taxInformation' => false,
         'type' => false,
         'vatAbsenceReason' => false,
@@ -155,6 +158,21 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -192,6 +210,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => 'principalPlaceOfBusiness',
         'registeredAddress' => 'registeredAddress',
         'registrationNumber' => 'registrationNumber',
+        'residentialAddressIndicator' => 'residentialAddressIndicator',
         'taxInformation' => 'taxInformation',
         'type' => 'type',
         'vatAbsenceReason' => 'vatAbsenceReason',
@@ -213,6 +232,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => 'setPrincipalPlaceOfBusiness',
         'registeredAddress' => 'setRegisteredAddress',
         'registrationNumber' => 'setRegistrationNumber',
+        'residentialAddressIndicator' => 'setResidentialAddressIndicator',
         'taxInformation' => 'setTaxInformation',
         'type' => 'setType',
         'vatAbsenceReason' => 'setVatAbsenceReason',
@@ -234,6 +254,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         'principalPlaceOfBusiness' => 'getPrincipalPlaceOfBusiness',
         'registeredAddress' => 'getRegisteredAddress',
         'registrationNumber' => 'getRegistrationNumber',
+        'residentialAddressIndicator' => 'getResidentialAddressIndicator',
         'taxInformation' => 'getTaxInformation',
         'type' => 'getType',
         'vatAbsenceReason' => 'getVatAbsenceReason',
@@ -388,6 +409,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('principalPlaceOfBusiness', $data ?? [], null);
         $this->setIfExists('registeredAddress', $data ?? [], null);
         $this->setIfExists('registrationNumber', $data ?? [], null);
+        $this->setIfExists('residentialAddressIndicator', $data ?? [], null);
         $this->setIfExists('taxInformation', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('vatAbsenceReason', $data ?? [], null);
@@ -405,13 +427,10 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -428,7 +447,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getCountryOfGoverningLaw()
     {
-        return $this->container['countryOfGoverningLaw'];
+        return $this->container['countryOfGoverningLaw'] ?? null;
     }
 
     /**
@@ -452,7 +471,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getDateOfIncorporation()
     {
-        return $this->container['dateOfIncorporation'];
+        return $this->container['dateOfIncorporation'] ?? null;
     }
 
     /**
@@ -476,7 +495,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -500,7 +519,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getDoingBusinessAs()
     {
-        return $this->container['doingBusinessAs'];
+        return $this->container['doingBusinessAs'] ?? null;
     }
 
     /**
@@ -524,7 +543,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getDoingBusinessAsAbsent()
     {
-        return $this->container['doingBusinessAsAbsent'];
+        return $this->container['doingBusinessAsAbsent'] ?? null;
     }
 
     /**
@@ -536,16 +555,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setDoingBusinessAsAbsent($doingBusinessAsAbsent): self
     {
-        if (is_null($doingBusinessAsAbsent)) {
-            array_push($this->openAPINullablesSetToNull, 'doingBusinessAsAbsent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('doingBusinessAsAbsent', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
+        $this->updateNullableSetToNull('doingBusinessAsAbsent', is_null($doingBusinessAsAbsent));
         $this->container['doingBusinessAsAbsent'] = $doingBusinessAsAbsent;
 
         return $this;
@@ -558,13 +568,13 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getName()
     {
-        return $this->container['name'];
+        return $this->container['name'] ?? null;
     }
 
     /**
      * Sets name
      *
-     * @param string $name The legal name.
+     * @param string $name The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -582,7 +592,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getPrincipalPlaceOfBusiness()
     {
-        return $this->container['principalPlaceOfBusiness'];
+        return $this->container['principalPlaceOfBusiness'] ?? null;
     }
 
     /**
@@ -606,7 +616,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getRegisteredAddress()
     {
-        return $this->container['registeredAddress'];
+        return $this->container['registeredAddress'] ?? null;
     }
 
     /**
@@ -630,7 +640,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getRegistrationNumber()
     {
-        return $this->container['registrationNumber'];
+        return $this->container['registrationNumber'] ?? null;
     }
 
     /**
@@ -648,13 +658,38 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets residentialAddressIndicator
+     *
+     * @return bool|null
+     */
+    public function getResidentialAddressIndicator()
+    {
+        return $this->container['residentialAddressIndicator'] ?? null;
+    }
+
+    /**
+     * Sets residentialAddressIndicator
+     *
+     * @param bool|null $residentialAddressIndicator Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+     *
+     * @return self
+     */
+    public function setResidentialAddressIndicator($residentialAddressIndicator): self
+    {
+        $this->updateNullableSetToNull('residentialAddressIndicator', is_null($residentialAddressIndicator));
+        $this->container['residentialAddressIndicator'] = $residentialAddressIndicator;
+
+        return $this;
+    }
+
+    /**
      * Gets taxInformation
      *
      * @return \Adyen\Model\LegalEntityManagement\TaxInformation[]|null
      */
     public function getTaxInformation()
     {
-        return $this->container['taxInformation'];
+        return $this->container['taxInformation'] ?? null;
     }
 
     /**
@@ -678,7 +713,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -690,6 +725,19 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -702,7 +750,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getVatAbsenceReason()
     {
-        return $this->container['vatAbsenceReason'];
+        return $this->container['vatAbsenceReason'] ?? null;
     }
 
     /**
@@ -714,6 +762,19 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setVatAbsenceReason($vatAbsenceReason): self
     {
+        if ($vatAbsenceReason !== null) {
+            $allowedValues = $this->getVatAbsenceReasonAllowableValues();
+            foreach ([$vatAbsenceReason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "vatAbsenceReason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['vatAbsenceReason'] = $vatAbsenceReason;
 
         return $this;
@@ -726,7 +787,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getVatNumber()
     {
-        return $this->container['vatNumber'];
+        return $this->container['vatNumber'] ?? null;
     }
 
     /**
@@ -781,6 +842,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -794,6 +856,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -812,14 +875,19 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
