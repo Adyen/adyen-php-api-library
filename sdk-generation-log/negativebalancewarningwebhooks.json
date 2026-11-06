@@ -1,0 +1,8 @@
+{
+  "service": "negativebalancewarningwebhooks",
+  "project": "php",
+  "generatedAt": "2026-11-06T10:36:13Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
+}
