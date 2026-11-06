@@ -125,6 +125,21 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -224,8 +239,8 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MODEL_NAMESPACE_ISO8583_RESPONSE_CODE = 'iso8583ResponseCode';
     public const MODEL_NAMESPACE_UK_FPS_REJECTION_CODE = 'ukFpsRejectionCode';
     public const MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE = 'ukFpsReturnReasonCode';
-    public const MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE = 'usAchReturnReasonCode';
     public const MODEL_NAMESPACE_US_ACH_CORRECTION_REASON_CODE = 'usAchCorrectionReasonCode';
+    public const MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE = 'usAchReturnReasonCode';
 
     /**
      * Gets allowable values of the enum
@@ -238,8 +253,8 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MODEL_NAMESPACE_ISO8583_RESPONSE_CODE,
             self::MODEL_NAMESPACE_UK_FPS_REJECTION_CODE,
             self::MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE,
-            self::MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE,
             self::MODEL_NAMESPACE_US_ACH_CORRECTION_REASON_CODE,
+            self::MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE,
         ];
     }
 
@@ -274,13 +289,10 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -297,13 +309,13 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCode()
     {
-        return $this->container['code'];
+        return $this->container['code'] ?? null;
     }
 
     /**
      * Sets code
      *
-     * @param string|null $code The reason code provided by the network.
+     * @param string|null $code The network-specific reason code. Use `namespace` to identify the code set.
      *
      * @return self
      */
@@ -321,13 +333,13 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
      * Sets description
      *
-     * @param string|null $description The description of the reason code.
+     * @param string|null $description A human-readable description of the reason code.
      *
      * @return self
      */
@@ -345,18 +357,31 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getNamespace()
     {
-        return $this->container['namespace'];
+        return $this->container['namespace'] ?? null;
     }
 
     /**
      * Sets namespace
      *
-     * @param string|null $namespace The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**
+     * @param string|null $namespace The category of codes that `code` belongs to. The `namespace` identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.
      *
      * @return self
      */
     public function setNamespace($namespace): self
     {
+        if ($namespace !== null) {
+            $allowedValues = $this->getNamespaceAllowableValues();
+            foreach ([$namespace] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "namespace: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['namespace'] = $namespace;
 
         return $this;
@@ -400,6 +425,7 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -413,6 +439,7 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -431,14 +458,19 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

@@ -1,8 +1,8 @@
 {
   "service": "transferwebhooks",
   "project": "php",
-  "generatedAt": "2026-09-23T15:27:30Z",
-  "openapiCommitSha": "4840aee6447f7d2cab8c1addb86d5d7980b3571c",
-  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
-  "libraryCommitSha": "125dc2e9666a3d765068fc33116f0ba1e28288cb"
+  "generatedAt": "2026-11-06T10:36:49Z",
+  "openapiCommitSha": "e7986c7dad1253fed107c4e7b90716497165b86d",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "693fcd44cdc687c93a9ce048cd0e70f62c5e6e28"
 }
