@@ -297,9 +297,9 @@ class StoredValueApiTest extends BaseTest
         $result = $service->changeStatus(new StoredValueStatusChangeRequest($params));
 
         self::assertSame(StoredValueStatusChangeResponse::RESULT_CODE_SUCCESS, $result['resultCode']);
-        self::assertSame(
-            $params,
-            json_decode((string) $container[0]['request']->getBody(), true, 512, JSON_THROW_ON_ERROR)
+        self::assertJsonStringEqualsJsonString(
+            json_encode($params, JSON_THROW_ON_ERROR),
+            (string) $container[0]['request']->getBody()
         );
     }
 
@@ -314,7 +314,8 @@ class StoredValueApiTest extends BaseTest
         $resultArray = $service->changeStatus(new StoredValueStatusChangeRequest())->toArray();
 
         self::assertSame(StoredValueStatusChangeResponse::RESULT_CODE_SUCCESS, $resultArray['resultCode']);
-        self::assertSame(['currency' => 'str', 'value' => 0], $resultArray['currentBalance']);
+        self::assertSame('str', $resultArray['currentBalance']['currency']);
+        self::assertSame(0, $resultArray['currentBalance']['value']);
     }
 
     public static function successChangeStatusProvider(): array
@@ -360,9 +361,9 @@ class StoredValueApiTest extends BaseTest
         $result = $service->voidTransaction(new StoredValueVoidRequest($params));
 
         self::assertSame(StoredValueVoidResponse::RESULT_CODE_NOT_ENOUGH_BALANCE, $result['resultCode']);
-        self::assertSame(
-            $params,
-            json_decode((string) $container[0]['request']->getBody(), true, 512, JSON_THROW_ON_ERROR)
+        self::assertJsonStringEqualsJsonString(
+            json_encode($params, JSON_THROW_ON_ERROR),
+            (string) $container[0]['request']->getBody()
         );
     }
 
@@ -377,7 +378,8 @@ class StoredValueApiTest extends BaseTest
         $resultArray = $service->voidTransaction(new StoredValueVoidRequest())->toArray();
 
         self::assertSame(StoredValueVoidResponse::RESULT_CODE_NOT_ENOUGH_BALANCE, $resultArray['resultCode']);
-        self::assertSame(['currency' => 'str', 'value' => 0], $resultArray['currentBalance']);
+        self::assertSame('str', $resultArray['currentBalance']['currency']);
+        self::assertSame(0, $resultArray['currentBalance']['value']);
     }
 
     public static function successVoidTransactionProvider(): array
