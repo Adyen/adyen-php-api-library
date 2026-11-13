@@ -39,6 +39,26 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     ];
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_PRIORITY = 'priority';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_MODIFICATION_MERCHANT_REFERENCE = 'modificationMerchantReference';
+    public const JSON_PROPERTY_MODIFICATION_PSP_REFERENCE = 'modificationPspReference';
+    public const JSON_PROPERTY_AUTHORISATION_TYPE = 'authorisationType';
+    public const JSON_PROPERTY_NETWORK_VARIANT = 'networkVariant';
+    public const JSON_PROPERTY_PAN_ENTRY_MODE = 'panEntryMode';
+    public const JSON_PROPERTY_PROCESSING_TYPE = 'processingType';
+    public const JSON_PROPERTY_RELAYED_AUTHORISATION_DATA = 'relayedAuthorisationData';
+    public const JSON_PROPERTY_SCHEME_TRACE_ID = 'schemeTraceId';
+    public const JSON_PROPERTY_SCHEME_UNIQUE_TRANSACTION_ID = 'schemeUniqueTransactionId';
+    public const JSON_PROPERTY_THREE_D_SECURE = 'threeDSecure';
+    public const JSON_PROPERTY_VALIDATION_FACTS = 'validationFacts';
+    public const JSON_PROPERTY_PAYMENT_MERCHANT_REFERENCE = 'paymentMerchantReference';
+    public const JSON_PROPERTY_PLATFORM_PAYMENT_TYPE = 'platformPaymentType';
+    public const JSON_PROPERTY_PSP_PAYMENT_REFERENCE = 'pspPaymentReference';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -174,6 +194,21 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -515,13 +550,10 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -538,7 +570,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPriority()
     {
-        return $this->container['priority'];
+        return $this->container['priority'] ?? null;
     }
 
     /**
@@ -550,6 +582,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPriority($priority): self
     {
+        if ($priority !== null) {
+            $allowedValues = $this->getPriorityAllowableValues();
+            foreach ([$priority] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "priority: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['priority'] = $priority;
 
         return $this;
@@ -562,7 +607,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -574,6 +619,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -586,7 +644,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getModificationMerchantReference()
     {
-        return $this->container['modificationMerchantReference'];
+        return $this->container['modificationMerchantReference'] ?? null;
     }
 
     /**
@@ -610,7 +668,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getModificationPspReference()
     {
-        return $this->container['modificationPspReference'];
+        return $this->container['modificationPspReference'] ?? null;
     }
 
     /**
@@ -634,7 +692,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getAuthorisationType()
     {
-        return $this->container['authorisationType'];
+        return $this->container['authorisationType'] ?? null;
     }
 
     /**
@@ -658,7 +716,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getNetworkVariant()
     {
-        return $this->container['networkVariant'];
+        return $this->container['networkVariant'] ?? null;
     }
 
     /**
@@ -670,6 +728,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setNetworkVariant($networkVariant): self
     {
+        if ($networkVariant !== null) {
+            $allowedValues = $this->getNetworkVariantAllowableValues();
+            foreach ([$networkVariant] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "networkVariant: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['networkVariant'] = $networkVariant;
 
         return $this;
@@ -682,7 +753,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPanEntryMode()
     {
-        return $this->container['panEntryMode'];
+        return $this->container['panEntryMode'] ?? null;
     }
 
     /**
@@ -694,6 +765,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPanEntryMode($panEntryMode): self
     {
+        if ($panEntryMode !== null) {
+            $allowedValues = $this->getPanEntryModeAllowableValues();
+            foreach ([$panEntryMode] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "panEntryMode: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['panEntryMode'] = $panEntryMode;
 
         return $this;
@@ -706,7 +790,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getProcessingType()
     {
-        return $this->container['processingType'];
+        return $this->container['processingType'] ?? null;
     }
 
     /**
@@ -718,6 +802,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setProcessingType($processingType): self
     {
+        if ($processingType !== null) {
+            $allowedValues = $this->getProcessingTypeAllowableValues();
+            foreach ([$processingType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "processingType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['processingType'] = $processingType;
 
         return $this;
@@ -730,7 +827,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getRelayedAuthorisationData()
     {
-        return $this->container['relayedAuthorisationData'];
+        return $this->container['relayedAuthorisationData'] ?? null;
     }
 
     /**
@@ -754,7 +851,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getSchemeTraceId()
     {
-        return $this->container['schemeTraceId'];
+        return $this->container['schemeTraceId'] ?? null;
     }
 
     /**
@@ -778,7 +875,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getSchemeUniqueTransactionId()
     {
-        return $this->container['schemeUniqueTransactionId'];
+        return $this->container['schemeUniqueTransactionId'] ?? null;
     }
 
     /**
@@ -802,7 +899,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getThreeDSecure()
     {
-        return $this->container['threeDSecure'];
+        return $this->container['threeDSecure'] ?? null;
     }
 
     /**
@@ -826,7 +923,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getValidationFacts()
     {
-        return $this->container['validationFacts'];
+        return $this->container['validationFacts'] ?? null;
     }
 
     /**
@@ -850,7 +947,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPaymentMerchantReference()
     {
-        return $this->container['paymentMerchantReference'];
+        return $this->container['paymentMerchantReference'] ?? null;
     }
 
     /**
@@ -874,7 +971,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPlatformPaymentType()
     {
-        return $this->container['platformPaymentType'];
+        return $this->container['platformPaymentType'] ?? null;
     }
 
     /**
@@ -886,6 +983,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPlatformPaymentType($platformPaymentType): self
     {
+        if ($platformPaymentType !== null) {
+            $allowedValues = $this->getPlatformPaymentTypeAllowableValues();
+            foreach ([$platformPaymentType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "platformPaymentType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['platformPaymentType'] = $platformPaymentType;
 
         return $this;
@@ -898,7 +1008,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPspPaymentReference()
     {
-        return $this->container['pspPaymentReference'];
+        return $this->container['pspPaymentReference'] ?? null;
     }
 
     /**
@@ -953,6 +1063,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -966,6 +1077,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -984,14 +1096,19 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
