@@ -26,6 +26,19 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDRESS = 'address';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_EMAIL = 'email';
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_FULL_NAME = 'fullName';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -140,6 +153,21 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -312,13 +340,10 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -335,7 +360,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAddress()
     {
-        return $this->container['address'];
+        return $this->container['address'] ?? null;
     }
 
     /**
@@ -359,7 +384,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDateOfBirth()
     {
-        return $this->container['dateOfBirth'];
+        return $this->container['dateOfBirth'] ?? null;
     }
 
     /**
@@ -383,7 +408,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getEmail()
     {
-        return $this->container['email'];
+        return $this->container['email'] ?? null;
     }
 
     /**
@@ -407,7 +432,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getFirstName()
     {
-        return $this->container['firstName'];
+        return $this->container['firstName'] ?? null;
     }
 
     /**
@@ -431,7 +456,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getFullName()
     {
-        return $this->container['fullName'];
+        return $this->container['fullName'] ?? null;
     }
 
     /**
@@ -455,7 +480,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getLastName()
     {
-        return $this->container['lastName'];
+        return $this->container['lastName'] ?? null;
     }
 
     /**
@@ -479,7 +504,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -503,7 +528,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -515,6 +540,19 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -527,7 +565,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getUrl()
     {
-        return $this->container['url'];
+        return $this->container['url'] ?? null;
     }
 
     /**
@@ -582,6 +620,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -595,6 +634,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -613,14 +653,19 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
