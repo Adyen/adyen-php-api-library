@@ -1,8 +1,8 @@
 {
   "service": "paymentsapp",
   "project": "php",
-  "generatedAt": "2026-09-16T13:00:18Z",
-  "openapiCommitSha": "da8325981e81e122d15036c36c00f395488d3131",
-  "automationCommitSha": "a049dfca47eb70f3e45ee5d7eba406fc17fde1aa",
-  "libraryCommitSha": "aeb3d01eede213f09109f197b5487dc80dcaee1a"
+  "generatedAt": "2026-11-13T11:25:59Z",
+  "openapiCommitSha": "ee0cdd3511442c12c49394636e75be31e46cd915",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "9a04b48b53572e3d3475d2af554e906b455fa27d"
 }
