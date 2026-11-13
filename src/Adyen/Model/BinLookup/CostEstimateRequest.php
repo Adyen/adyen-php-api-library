@@ -26,6 +26,20 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_ASSUMPTIONS = 'assumptions';
+    public const JSON_PROPERTY_CARD_NUMBER = 'cardNumber';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_DETAILS = 'merchantDetails';
+    public const JSON_PROPERTY_RECURRING = 'recurring';
+    public const JSON_PROPERTY_SELECTED_RECURRING_DETAIL_REFERENCE = 'selectedRecurringDetailReference';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -143,6 +157,21 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -321,13 +350,10 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -344,7 +370,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -368,7 +394,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAssumptions()
     {
-        return $this->container['assumptions'];
+        return $this->container['assumptions'] ?? null;
     }
 
     /**
@@ -392,7 +418,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getCardNumber()
     {
-        return $this->container['cardNumber'];
+        return $this->container['cardNumber'] ?? null;
     }
 
     /**
@@ -416,7 +442,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getEncryptedCardNumber()
     {
-        return $this->container['encryptedCardNumber'];
+        return $this->container['encryptedCardNumber'] ?? null;
     }
 
     /**
@@ -440,7 +466,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -464,7 +490,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantDetails()
     {
-        return $this->container['merchantDetails'];
+        return $this->container['merchantDetails'] ?? null;
     }
 
     /**
@@ -488,7 +514,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurring()
     {
-        return $this->container['recurring'];
+        return $this->container['recurring'] ?? null;
     }
 
     /**
@@ -512,7 +538,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSelectedRecurringDetailReference()
     {
-        return $this->container['selectedRecurringDetailReference'];
+        return $this->container['selectedRecurringDetailReference'] ?? null;
     }
 
     /**
@@ -536,7 +562,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperInteraction()
     {
-        return $this->container['shopperInteraction'];
+        return $this->container['shopperInteraction'] ?? null;
     }
 
     /**
@@ -548,6 +574,19 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperInteraction($shopperInteraction): self
     {
+        if ($shopperInteraction !== null) {
+            $allowedValues = $this->getShopperInteractionAllowableValues();
+            foreach ([$shopperInteraction] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "shopperInteraction: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -560,7 +599,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -615,6 +654,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -628,6 +668,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -646,14 +687,19 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
