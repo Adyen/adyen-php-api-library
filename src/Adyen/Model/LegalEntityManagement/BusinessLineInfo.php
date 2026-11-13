@@ -26,6 +26,18 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_INDUSTRY_CODE = 'industryCode';
+    public const JSON_PROPERTY_INDUSTRY_CODE_DESCRIPTION = 'industryCodeDescription';
+    public const JSON_PROPERTY_LEGAL_ENTITY_ID = 'legalEntityId';
+    public const JSON_PROPERTY_SALES_CHANNELS = 'salesChannels';
+    public const JSON_PROPERTY_SERVICE = 'service';
+    public const JSON_PROPERTY_SOURCE_OF_FUNDS = 'sourceOfFunds';
+    public const JSON_PROPERTY_WEB_DATA = 'webData';
+    public const JSON_PROPERTY_WEB_DATA_EXEMPTION = 'webDataExemption';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -137,6 +149,21 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -305,13 +332,10 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -328,7 +352,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getIndustryCode()
     {
-        return $this->container['industryCode'];
+        return $this->container['industryCode'] ?? null;
     }
 
     /**
@@ -352,7 +376,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getIndustryCodeDescription()
     {
-        return $this->container['industryCodeDescription'];
+        return $this->container['industryCodeDescription'] ?? null;
     }
 
     /**
@@ -376,7 +400,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getLegalEntityId()
     {
-        return $this->container['legalEntityId'];
+        return $this->container['legalEntityId'] ?? null;
     }
 
     /**
@@ -400,7 +424,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getSalesChannels()
     {
-        return $this->container['salesChannels'];
+        return $this->container['salesChannels'] ?? null;
     }
 
     /**
@@ -424,7 +448,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getService()
     {
-        return $this->container['service'];
+        return $this->container['service'] ?? null;
     }
 
     /**
@@ -436,6 +460,19 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setService($service): self
     {
+        if ($service !== null) {
+            $allowedValues = $this->getServiceAllowableValues();
+            foreach ([$service] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "service: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['service'] = $service;
 
         return $this;
@@ -448,7 +485,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getSourceOfFunds()
     {
-        return $this->container['sourceOfFunds'];
+        return $this->container['sourceOfFunds'] ?? null;
     }
 
     /**
@@ -472,7 +509,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getWebData()
     {
-        return $this->container['webData'];
+        return $this->container['webData'] ?? null;
     }
 
     /**
@@ -496,7 +533,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getWebDataExemption()
     {
-        return $this->container['webDataExemption'];
+        return $this->container['webDataExemption'] ?? null;
     }
 
     /**
@@ -551,6 +588,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -564,6 +602,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -582,14 +621,19 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

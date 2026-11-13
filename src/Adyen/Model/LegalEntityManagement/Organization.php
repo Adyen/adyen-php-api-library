@@ -26,6 +26,39 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_COUNTRY_OF_GOVERNING_LAW = 'countryOfGoverningLaw';
+    public const JSON_PROPERTY_DATE_OF_INCORPORATION = 'dateOfIncorporation';
+    public const JSON_PROPERTY_DATE_OF_INITIATION_OF_LEGAL_PROCEEDING = 'dateOfInitiationOfLegalProceeding';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_DOING_BUSINESS_AS = 'doingBusinessAs';
+    public const JSON_PROPERTY_DOING_BUSINESS_AS_ABSENT = 'doingBusinessAsAbsent';
+    public const JSON_PROPERTY_ECONOMIC_SECTOR = 'economicSector';
+    public const JSON_PROPERTY_EMAIL = 'email';
+    public const JSON_PROPERTY_FINANCIAL_REPORTS = 'financialReports';
+    public const JSON_PROPERTY_GLOBAL_LEGAL_ENTITY_IDENTIFIER = 'globalLegalEntityIdentifier';
+    public const JSON_PROPERTY_HEAD_OFFICE_INDICATOR = 'headOfficeIndicator';
+    public const JSON_PROPERTY_INSTITUTIONAL_SECTOR = 'institutionalSector';
+    public const JSON_PROPERTY_LEGAL_FORM = 'legalForm';
+    public const JSON_PROPERTY_LEGAL_NAME = 'legalName';
+    public const JSON_PROPERTY_PHONE = 'phone';
+    public const JSON_PROPERTY_PRINCIPAL_PLACE_OF_BUSINESS = 'principalPlaceOfBusiness';
+    public const JSON_PROPERTY_REGISTERED_ADDRESS = 'registeredAddress';
+    public const JSON_PROPERTY_REGISTRATION_NUMBER = 'registrationNumber';
+    public const JSON_PROPERTY_REGISTRATION_NUMBER_ABSENT = 'registrationNumberAbsent';
+    public const JSON_PROPERTY_RESIDENTIAL_ADDRESS_INDICATOR = 'residentialAddressIndicator';
+    public const JSON_PROPERTY_STATUS_OF_LEGAL_PROCEEDING = 'statusOfLegalProceeding';
+    public const JSON_PROPERTY_STOCK_DATA = 'stockData';
+    public const JSON_PROPERTY_SUPPORT = 'support';
+    public const JSON_PROPERTY_TAX_INFORMATION = 'taxInformation';
+    public const JSON_PROPERTY_TAX_REPORTING_CLASSIFICATION = 'taxReportingClassification';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VAT_ABSENCE_REASON = 'vatAbsenceReason';
+    public const JSON_PROPERTY_VAT_NUMBER = 'vatNumber';
+    public const JSON_PROPERTY_WEB_DATA = 'webData';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -57,6 +90,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
         'registrationNumber' => 'string',
         'registrationNumberAbsent' => 'bool',
+        'residentialAddressIndicator' => 'bool',
         'statusOfLegalProceeding' => 'string',
         'stockData' => '\Adyen\Model\LegalEntityManagement\StockData',
         'support' => '\Adyen\Model\LegalEntityManagement\Support',
@@ -95,6 +129,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => null,
         'registrationNumber' => null,
         'registrationNumberAbsent' => null,
+        'residentialAddressIndicator' => null,
         'statusOfLegalProceeding' => null,
         'stockData' => null,
         'support' => null,
@@ -131,6 +166,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => false,
         'registrationNumber' => false,
         'registrationNumberAbsent' => true,
+        'residentialAddressIndicator' => true,
         'statusOfLegalProceeding' => false,
         'stockData' => false,
         'support' => false,
@@ -200,6 +236,21 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -247,6 +298,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => 'registeredAddress',
         'registrationNumber' => 'registrationNumber',
         'registrationNumberAbsent' => 'registrationNumberAbsent',
+        'residentialAddressIndicator' => 'residentialAddressIndicator',
         'statusOfLegalProceeding' => 'statusOfLegalProceeding',
         'stockData' => 'stockData',
         'support' => 'support',
@@ -283,6 +335,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => 'setRegisteredAddress',
         'registrationNumber' => 'setRegistrationNumber',
         'registrationNumberAbsent' => 'setRegistrationNumberAbsent',
+        'residentialAddressIndicator' => 'setResidentialAddressIndicator',
         'statusOfLegalProceeding' => 'setStatusOfLegalProceeding',
         'stockData' => 'setStockData',
         'support' => 'setSupport',
@@ -319,6 +372,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'registeredAddress' => 'getRegisteredAddress',
         'registrationNumber' => 'getRegistrationNumber',
         'registrationNumberAbsent' => 'getRegistrationNumberAbsent',
+        'residentialAddressIndicator' => 'getResidentialAddressIndicator',
         'statusOfLegalProceeding' => 'getStatusOfLegalProceeding',
         'stockData' => 'getStockData',
         'support' => 'getSupport',
@@ -508,6 +562,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('registeredAddress', $data ?? [], null);
         $this->setIfExists('registrationNumber', $data ?? [], null);
         $this->setIfExists('registrationNumberAbsent', $data ?? [], null);
+        $this->setIfExists('residentialAddressIndicator', $data ?? [], null);
         $this->setIfExists('statusOfLegalProceeding', $data ?? [], null);
         $this->setIfExists('stockData', $data ?? [], null);
         $this->setIfExists('support', $data ?? [], null);
@@ -530,13 +585,10 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -553,7 +605,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCountryOfGoverningLaw()
     {
-        return $this->container['countryOfGoverningLaw'];
+        return $this->container['countryOfGoverningLaw'] ?? null;
     }
 
     /**
@@ -577,7 +629,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDateOfIncorporation()
     {
-        return $this->container['dateOfIncorporation'];
+        return $this->container['dateOfIncorporation'] ?? null;
     }
 
     /**
@@ -601,7 +653,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDateOfInitiationOfLegalProceeding()
     {
-        return $this->container['dateOfInitiationOfLegalProceeding'];
+        return $this->container['dateOfInitiationOfLegalProceeding'] ?? null;
     }
 
     /**
@@ -625,7 +677,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -649,7 +701,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDoingBusinessAs()
     {
-        return $this->container['doingBusinessAs'];
+        return $this->container['doingBusinessAs'] ?? null;
     }
 
     /**
@@ -673,7 +725,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDoingBusinessAsAbsent()
     {
-        return $this->container['doingBusinessAsAbsent'];
+        return $this->container['doingBusinessAsAbsent'] ?? null;
     }
 
     /**
@@ -685,16 +737,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDoingBusinessAsAbsent($doingBusinessAsAbsent): self
     {
-        if (is_null($doingBusinessAsAbsent)) {
-            array_push($this->openAPINullablesSetToNull, 'doingBusinessAsAbsent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('doingBusinessAsAbsent', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
+        $this->updateNullableSetToNull('doingBusinessAsAbsent', is_null($doingBusinessAsAbsent));
         $this->container['doingBusinessAsAbsent'] = $doingBusinessAsAbsent;
 
         return $this;
@@ -707,7 +750,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEconomicSector()
     {
-        return $this->container['economicSector'];
+        return $this->container['economicSector'] ?? null;
     }
 
     /**
@@ -731,7 +774,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEmail()
     {
-        return $this->container['email'];
+        return $this->container['email'] ?? null;
     }
 
     /**
@@ -755,7 +798,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getFinancialReports()
     {
-        return $this->container['financialReports'];
+        return $this->container['financialReports'] ?? null;
     }
 
     /**
@@ -779,7 +822,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getGlobalLegalEntityIdentifier()
     {
-        return $this->container['globalLegalEntityIdentifier'];
+        return $this->container['globalLegalEntityIdentifier'] ?? null;
     }
 
     /**
@@ -803,7 +846,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getHeadOfficeIndicator()
     {
-        return $this->container['headOfficeIndicator'];
+        return $this->container['headOfficeIndicator'] ?? null;
     }
 
     /**
@@ -827,7 +870,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getInstitutionalSector()
     {
-        return $this->container['institutionalSector'];
+        return $this->container['institutionalSector'] ?? null;
     }
 
     /**
@@ -839,6 +882,19 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInstitutionalSector($institutionalSector): self
     {
+        if ($institutionalSector !== null) {
+            $allowedValues = $this->getInstitutionalSectorAllowableValues();
+            foreach ([$institutionalSector] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "institutionalSector: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['institutionalSector'] = $institutionalSector;
 
         return $this;
@@ -851,7 +907,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getLegalForm()
     {
-        return $this->container['legalForm'];
+        return $this->container['legalForm'] ?? null;
     }
 
     /**
@@ -875,13 +931,13 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getLegalName()
     {
-        return $this->container['legalName'];
+        return $this->container['legalName'] ?? null;
     }
 
     /**
      * Sets legalName
      *
-     * @param string $legalName The organization's legal name.
+     * @param string $legalName The organization's legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -899,7 +955,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPhone()
     {
-        return $this->container['phone'];
+        return $this->container['phone'] ?? null;
     }
 
     /**
@@ -923,7 +979,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPrincipalPlaceOfBusiness()
     {
-        return $this->container['principalPlaceOfBusiness'];
+        return $this->container['principalPlaceOfBusiness'] ?? null;
     }
 
     /**
@@ -947,7 +1003,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRegisteredAddress()
     {
-        return $this->container['registeredAddress'];
+        return $this->container['registeredAddress'] ?? null;
     }
 
     /**
@@ -971,7 +1027,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRegistrationNumber()
     {
-        return $this->container['registrationNumber'];
+        return $this->container['registrationNumber'] ?? null;
     }
 
     /**
@@ -995,7 +1051,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRegistrationNumberAbsent()
     {
-        return $this->container['registrationNumberAbsent'];
+        return $this->container['registrationNumberAbsent'] ?? null;
     }
 
     /**
@@ -1007,17 +1063,33 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegistrationNumberAbsent($registrationNumberAbsent): self
     {
-        if (is_null($registrationNumberAbsent)) {
-            array_push($this->openAPINullablesSetToNull, 'registrationNumberAbsent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('registrationNumberAbsent', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
+        $this->updateNullableSetToNull('registrationNumberAbsent', is_null($registrationNumberAbsent));
         $this->container['registrationNumberAbsent'] = $registrationNumberAbsent;
+
+        return $this;
+    }
+
+    /**
+     * Gets residentialAddressIndicator
+     *
+     * @return bool|null
+     */
+    public function getResidentialAddressIndicator()
+    {
+        return $this->container['residentialAddressIndicator'] ?? null;
+    }
+
+    /**
+     * Sets residentialAddressIndicator
+     *
+     * @param bool|null $residentialAddressIndicator Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+     *
+     * @return self
+     */
+    public function setResidentialAddressIndicator($residentialAddressIndicator): self
+    {
+        $this->updateNullableSetToNull('residentialAddressIndicator', is_null($residentialAddressIndicator));
+        $this->container['residentialAddressIndicator'] = $residentialAddressIndicator;
 
         return $this;
     }
@@ -1029,7 +1101,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStatusOfLegalProceeding()
     {
-        return $this->container['statusOfLegalProceeding'];
+        return $this->container['statusOfLegalProceeding'] ?? null;
     }
 
     /**
@@ -1041,6 +1113,19 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatusOfLegalProceeding($statusOfLegalProceeding): self
     {
+        if ($statusOfLegalProceeding !== null) {
+            $allowedValues = $this->getStatusOfLegalProceedingAllowableValues();
+            foreach ([$statusOfLegalProceeding] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "statusOfLegalProceeding: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['statusOfLegalProceeding'] = $statusOfLegalProceeding;
 
         return $this;
@@ -1053,7 +1138,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStockData()
     {
-        return $this->container['stockData'];
+        return $this->container['stockData'] ?? null;
     }
 
     /**
@@ -1077,7 +1162,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getSupport()
     {
-        return $this->container['support'];
+        return $this->container['support'] ?? null;
     }
 
     /**
@@ -1101,7 +1186,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTaxInformation()
     {
-        return $this->container['taxInformation'];
+        return $this->container['taxInformation'] ?? null;
     }
 
     /**
@@ -1125,7 +1210,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTaxReportingClassification()
     {
-        return $this->container['taxReportingClassification'];
+        return $this->container['taxReportingClassification'] ?? null;
     }
 
     /**
@@ -1149,7 +1234,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -1161,6 +1246,19 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -1173,7 +1271,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getVatAbsenceReason()
     {
-        return $this->container['vatAbsenceReason'];
+        return $this->container['vatAbsenceReason'] ?? null;
     }
 
     /**
@@ -1185,6 +1283,19 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVatAbsenceReason($vatAbsenceReason): self
     {
+        if ($vatAbsenceReason !== null) {
+            $allowedValues = $this->getVatAbsenceReasonAllowableValues();
+            foreach ([$vatAbsenceReason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "vatAbsenceReason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['vatAbsenceReason'] = $vatAbsenceReason;
 
         return $this;
@@ -1197,7 +1308,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getVatNumber()
     {
-        return $this->container['vatNumber'];
+        return $this->container['vatNumber'] ?? null;
     }
 
     /**
@@ -1221,7 +1332,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getWebData()
     {
-        return $this->container['webData'];
+        return $this->container['webData'] ?? null;
     }
 
     /**
@@ -1276,6 +1387,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1289,6 +1401,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1307,14 +1420,19 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
