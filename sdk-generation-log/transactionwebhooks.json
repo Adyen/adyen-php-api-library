@@ -1,8 +1,8 @@
 {
   "service": "transactionwebhooks",
   "project": "php",
-  "generatedAt": "2026-09-23T15:28:42Z",
-  "openapiCommitSha": "4840aee6447f7d2cab8c1addb86d5d7980b3571c",
-  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
-  "libraryCommitSha": "125dc2e9666a3d765068fc33116f0ba1e28288cb"
+  "generatedAt": "2026-11-13T11:24:04Z",
+  "openapiCommitSha": "ee0cdd3511442c12c49394636e75be31e46cd915",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "9a04b48b53572e3d3475d2af554e906b455fa27d"
 }
