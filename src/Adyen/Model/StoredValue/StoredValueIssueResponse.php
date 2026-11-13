@@ -26,6 +26,17 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTH_CODE = 'authCode';
+    public const JSON_PROPERTY_CURRENT_BALANCE = 'currentBalance';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFUSAL_REASON = 'refusalReason';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+    public const JSON_PROPERTY_THIRD_PARTY_REFUSAL_REASON = 'thirdPartyRefusalReason';
+
+    /**
       * The original name of the model.
       *
       * @var string
