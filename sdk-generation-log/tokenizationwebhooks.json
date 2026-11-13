@@ -1,0 +1,8 @@
+{
+  "service": "tokenizationwebhooks",
+  "project": "php",
+  "generatedAt": "2026-11-13T11:25:32Z",
+  "openapiCommitSha": "ee0cdd3511442c12c49394636e75be31e46cd915",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "9a04b48b53572e3d3475d2af554e906b455fa27d"
+}
