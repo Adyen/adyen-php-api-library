@@ -1,8 +1,8 @@
 {
   "service": "legalentitymanagement",
   "project": "php",
-  "generatedAt": "2026-10-08T14:32:21Z",
-  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
-  "automationCommitSha": "82147244fd717b50362f88a20e4436e693d0aed6",
-  "libraryCommitSha": "8c6b91a685794228c64140cf106788c72928da24"
+  "generatedAt": "2026-11-13T11:24:01Z",
+  "openapiCommitSha": "ee0cdd3511442c12c49394636e75be31e46cd915",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "9a04b48b53572e3d3475d2af554e906b455fa27d"
 }
