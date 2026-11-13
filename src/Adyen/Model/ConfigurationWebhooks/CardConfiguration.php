@@ -26,6 +26,25 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACTIVATION = 'activation';
+    public const JSON_PROPERTY_ACTIVATION_URL = 'activationUrl';
+    public const JSON_PROPERTY_BULK_ADDRESS = 'bulkAddress';
+    public const JSON_PROPERTY_CARD_IMAGE_ID = 'cardImageId';
+    public const JSON_PROPERTY_CARRIER = 'carrier';
+    public const JSON_PROPERTY_CARRIER_IMAGE_ID = 'carrierImageId';
+    public const JSON_PROPERTY_CONFIGURATION_PROFILE_ID = 'configurationProfileId';
+    public const JSON_PROPERTY_CURRENCY = 'currency';
+    public const JSON_PROPERTY_ENVELOPE = 'envelope';
+    public const JSON_PROPERTY_INSERT = 'insert';
+    public const JSON_PROPERTY_LANGUAGE = 'language';
+    public const JSON_PROPERTY_LOGO_IMAGE_ID = 'logoImageId';
+    public const JSON_PROPERTY_PIN_MAILER = 'pinMailer';
+    public const JSON_PROPERTY_PRINT_LINE = 'printLine';
+    public const JSON_PROPERTY_SHIPMENT_METHOD = 'shipmentMethod';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -158,6 +177,21 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -337,13 +371,10 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -360,7 +391,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getActivation()
     {
-        return $this->container['activation'];
+        return $this->container['activation'] ?? null;
     }
 
     /**
@@ -384,7 +415,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getActivationUrl()
     {
-        return $this->container['activationUrl'];
+        return $this->container['activationUrl'] ?? null;
     }
 
     /**
@@ -408,7 +439,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getBulkAddress()
     {
-        return $this->container['bulkAddress'];
+        return $this->container['bulkAddress'] ?? null;
     }
 
     /**
@@ -432,7 +463,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getCardImageId()
     {
-        return $this->container['cardImageId'];
+        return $this->container['cardImageId'] ?? null;
     }
 
     /**
@@ -456,7 +487,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getCarrier()
     {
-        return $this->container['carrier'];
+        return $this->container['carrier'] ?? null;
     }
 
     /**
@@ -480,7 +511,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getCarrierImageId()
     {
-        return $this->container['carrierImageId'];
+        return $this->container['carrierImageId'] ?? null;
     }
 
     /**
@@ -504,7 +535,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getConfigurationProfileId()
     {
-        return $this->container['configurationProfileId'];
+        return $this->container['configurationProfileId'] ?? null;
     }
 
     /**
@@ -528,7 +559,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getCurrency()
     {
-        return $this->container['currency'];
+        return $this->container['currency'] ?? null;
     }
 
     /**
@@ -552,7 +583,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getEnvelope()
     {
-        return $this->container['envelope'];
+        return $this->container['envelope'] ?? null;
     }
 
     /**
@@ -576,7 +607,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getInsert()
     {
-        return $this->container['insert'];
+        return $this->container['insert'] ?? null;
     }
 
     /**
@@ -600,7 +631,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getLanguage()
     {
-        return $this->container['language'];
+        return $this->container['language'] ?? null;
     }
 
     /**
@@ -624,7 +655,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getLogoImageId()
     {
-        return $this->container['logoImageId'];
+        return $this->container['logoImageId'] ?? null;
     }
 
     /**
@@ -648,7 +679,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getPinMailer()
     {
-        return $this->container['pinMailer'];
+        return $this->container['pinMailer'] ?? null;
     }
 
     /**
@@ -672,7 +703,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getPrintLine()
     {
-        return $this->container['printLine'];
+        return $this->container['printLine'] ?? null;
     }
 
     /**
@@ -696,7 +727,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getShipmentMethod()
     {
-        return $this->container['shipmentMethod'];
+        return $this->container['shipmentMethod'] ?? null;
     }
 
     /**
@@ -751,6 +782,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -764,6 +796,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -782,14 +815,19 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
