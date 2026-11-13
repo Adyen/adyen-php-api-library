@@ -26,6 +26,12 @@ class Room implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_NUMBER_OF_NIGHTS = 'numberOfNights';
+    public const JSON_PROPERTY_RATE = 'rate';
+
+    /**
       * The original name of the model.
       *
       * @var string

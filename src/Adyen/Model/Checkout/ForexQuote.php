@@ -26,6 +26,22 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT = 'account';
+    public const JSON_PROPERTY_ACCOUNT_TYPE = 'accountType';
+    public const JSON_PROPERTY_BASE_AMOUNT = 'baseAmount';
+    public const JSON_PROPERTY_BASE_POINTS = 'basePoints';
+    public const JSON_PROPERTY_BUY = 'buy';
+    public const JSON_PROPERTY_INTERBANK = 'interbank';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SELL = 'sell';
+    public const JSON_PROPERTY_SIGNATURE = 'signature';
+    public const JSON_PROPERTY_SOURCE = 'source';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VALID_TILL = 'validTill';
+
+    /**
       * The original name of the model.
       *
       * @var string

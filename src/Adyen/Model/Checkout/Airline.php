@@ -26,6 +26,23 @@ class Airline implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AGENCY = 'agency';
+    public const JSON_PROPERTY_BOARDING_FEE = 'boardingFee';
+    public const JSON_PROPERTY_CODE = 'code';
+    public const JSON_PROPERTY_COMPUTERIZED_RESERVATION_SYSTEM = 'computerizedReservationSystem';
+    public const JSON_PROPERTY_CUSTOMER_REFERENCE_NUMBER = 'customerReferenceNumber';
+    public const JSON_PROPERTY_DESIGNATOR_CODE = 'designatorCode';
+    public const JSON_PROPERTY_DOCUMENT_TYPE = 'documentType';
+    public const JSON_PROPERTY_FLIGHT_DATE = 'flightDate';
+    public const JSON_PROPERTY_LEGS = 'legs';
+    public const JSON_PROPERTY_PASSENGER_NAME = 'passengerName';
+    public const JSON_PROPERTY_PASSENGERS = 'passengers';
+    public const JSON_PROPERTY_TICKET = 'ticket';
+    public const JSON_PROPERTY_TRAVEL_AGENCY = 'travelAgency';
+
+    /**
       * The original name of the model.
       *
       * @var string

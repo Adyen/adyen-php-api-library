@@ -26,6 +26,11 @@ class ResponseAdditionalDataSwish implements ModelInterface, ArrayAccess, \JsonS
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_SWISH_PAYER_ALIAS = 'swish.payerAlias';
+
+    /**
       * The original name of the model.
       *
       * @var string

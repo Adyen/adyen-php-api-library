@@ -25,6 +25,11 @@ class UPIPaymentMethod extends ShopperIdPaymentMethod
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_VIRTUAL_PAYMENT_ADDRESS = 'virtualPaymentAddress';
+
+    /**
       * The original name of the model.
       *
       * @var string

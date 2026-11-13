@@ -26,6 +26,14 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_THREE_D_S_REQ_PRIOR_AUTH_DATA = 'threeDSReqPriorAuthData';
+    public const JSON_PROPERTY_THREE_D_S_REQ_PRIOR_AUTH_METHOD = 'threeDSReqPriorAuthMethod';
+    public const JSON_PROPERTY_THREE_D_S_REQ_PRIOR_AUTH_TIMESTAMP = 'threeDSReqPriorAuthTimestamp';
+    public const JSON_PROPERTY_THREE_D_S_REQ_PRIOR_REF = 'threeDSReqPriorRef';
+
+    /**
       * The original name of the model.
       *
       * @var string

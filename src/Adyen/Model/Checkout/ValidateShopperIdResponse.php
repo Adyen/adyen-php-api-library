@@ -26,6 +26,12 @@ class ValidateShopperIdResponse implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_REASON = 'reason';
+    public const JSON_PROPERTY_RESULT = 'result';
+
+    /**
       * The original name of the model.
       *
       * @var string

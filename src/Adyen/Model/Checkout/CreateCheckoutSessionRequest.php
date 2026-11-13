@@ -26,6 +26,75 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_INFO = 'accountInfo';
+    public const JSON_PROPERTY_ADDITIONAL_AMOUNT = 'additionalAmount';
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_ALLOWED_PAYMENT_METHODS = 'allowedPaymentMethods';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_AUTHENTICATION_DATA = 'authenticationData';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BLOCKED_PAYMENT_METHODS = 'blockedPaymentMethods';
+    public const JSON_PROPERTY_CAPTURE_DELAY_HOURS = 'captureDelayHours';
+    public const JSON_PROPERTY_CHANNEL = 'channel';
+    public const JSON_PROPERTY_COMPANY = 'company';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DELIVER_AT = 'deliverAt';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_ENABLE_ONE_CLICK = 'enableOneClick';
+    public const JSON_PROPERTY_ENABLE_PAY_OUT = 'enablePayOut';
+    public const JSON_PROPERTY_ENABLE_RECURRING = 'enableRecurring';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA = 'enhancedSchemeData';
+    public const JSON_PROPERTY_EXPIRES_AT = 'expiresAt';
+    public const JSON_PROPERTY_FUND_ORIGIN = 'fundOrigin';
+    public const JSON_PROPERTY_FUND_RECIPIENT = 'fundRecipient';
+    public const JSON_PROPERTY_INSTALLMENT_OPTIONS = 'installmentOptions';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MANDATE = 'mandate';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_ORDER_REFERENCE = 'merchantOrderReference';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_MODE = 'mode';
+    public const JSON_PROPERTY_MPI_DATA = 'mpiData';
+    public const JSON_PROPERTY_PAYABLE = 'payable';
+    public const JSON_PROPERTY_PLATFORM_CHARGEBACK_LOGIC = 'platformChargebackLogic';
+    public const JSON_PROPERTY_RECURRING_EXPIRY = 'recurringExpiry';
+    public const JSON_PROPERTY_RECURRING_FREQUENCY = 'recurringFrequency';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REDIRECT_FROM_ISSUER_METHOD = 'redirectFromIssuerMethod';
+    public const JSON_PROPERTY_REDIRECT_TO_ISSUER_METHOD = 'redirectToIssuerMethod';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_RETURN_URL = 'returnUrl';
+    public const JSON_PROPERTY_RISK_DATA = 'riskData';
+    public const JSON_PROPERTY_SHOPPER_CONVERSION_ID = 'shopperConversionId';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SHOPPER_STATEMENT = 'shopperStatement';
+    public const JSON_PROPERTY_SHOW_INSTALLMENT_AMOUNT = 'showInstallmentAmount';
+    public const JSON_PROPERTY_SHOW_REMOVE_PAYMENT_METHOD_BUTTON = 'showRemovePaymentMethodButton';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_SPLIT_CARD_FUNDING_SOURCES = 'splitCardFundingSources';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_STORE_FILTRATION_MODE = 'storeFiltrationMode';
+    public const JSON_PROPERTY_STORE_PAYMENT_METHOD = 'storePaymentMethod';
+    public const JSON_PROPERTY_STORE_PAYMENT_METHOD_MODE = 'storePaymentMethodMode';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THEME_ID = 'themeId';
+    public const JSON_PROPERTY_THIRD_PARTY_TOKEN_REDUNDANCY_INFO = 'thirdPartyTokenRedundancyInfo';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+    public const JSON_PROPERTY_THREE_D_S_AUTHENTICATION_ONLY = 'threeDSAuthenticationOnly';
+    public const JSON_PROPERTY_TRUSTED_SHOPPER = 'trustedShopper';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -57,6 +126,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => 'bool',
         'enablePayOut' => 'bool',
         'enableRecurring' => 'bool',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'expiresAt' => '\DateTime',
         'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
         'fundRecipient' => '\Adyen\Model\Checkout\FundRecipient',
@@ -131,6 +201,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => null,
         'enablePayOut' => null,
         'enableRecurring' => null,
+        'enhancedSchemeData' => null,
         'expiresAt' => 'date-time',
         'fundOrigin' => null,
         'fundRecipient' => null,
@@ -203,6 +274,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => false,
         'enablePayOut' => false,
         'enableRecurring' => false,
+        'enhancedSchemeData' => false,
         'expiresAt' => false,
         'fundOrigin' => false,
         'fundRecipient' => false,
@@ -370,6 +442,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => 'enableOneClick',
         'enablePayOut' => 'enablePayOut',
         'enableRecurring' => 'enableRecurring',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'expiresAt' => 'expiresAt',
         'fundOrigin' => 'fundOrigin',
         'fundRecipient' => 'fundRecipient',
@@ -442,6 +515,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => 'setEnableOneClick',
         'enablePayOut' => 'setEnablePayOut',
         'enableRecurring' => 'setEnableRecurring',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'expiresAt' => 'setExpiresAt',
         'fundOrigin' => 'setFundOrigin',
         'fundRecipient' => 'setFundRecipient',
@@ -514,6 +588,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'enableOneClick' => 'getEnableOneClick',
         'enablePayOut' => 'getEnablePayOut',
         'enableRecurring' => 'getEnableRecurring',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'expiresAt' => 'getExpiresAt',
         'fundOrigin' => 'getFundOrigin',
         'fundRecipient' => 'getFundRecipient',
@@ -739,6 +814,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('enableOneClick', $data ?? [], null);
         $this->setIfExists('enablePayOut', $data ?? [], null);
         $this->setIfExists('enableRecurring', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('expiresAt', $data ?? [], null);
         $this->setIfExists('fundOrigin', $data ?? [], null);
         $this->setIfExists('fundRecipient', $data ?? [], null);
@@ -1275,6 +1351,30 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     public function setEnableRecurring($enableRecurring): self
     {
         $this->container['enableRecurring'] = $enableRecurring;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'] ?? null;
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData): self
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }

@@ -26,6 +26,14 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BRANDS = 'brands';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_IS_CARD_COMMERCIAL = 'isCardCommercial';
+    public const JSON_PROPERTY_ISSUING_COUNTRY_CODE = 'issuingCountryCode';
+
+    /**
       * The original name of the model.
       *
       * @var string

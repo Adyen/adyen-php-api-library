@@ -26,6 +26,15 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CONTRACT = 'contract';
+    public const JSON_PROPERTY_RECURRING_DETAIL_NAME = 'recurringDetailName';
+    public const JSON_PROPERTY_RECURRING_EXPIRY = 'recurringExpiry';
+    public const JSON_PROPERTY_RECURRING_FREQUENCY = 'recurringFrequency';
+    public const JSON_PROPERTY_TOKEN_SERVICE = 'tokenService';
+
+    /**
       * The original name of the model.
       *
       * @var string

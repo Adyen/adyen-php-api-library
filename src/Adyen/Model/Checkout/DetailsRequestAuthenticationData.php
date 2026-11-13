@@ -26,6 +26,11 @@ class DetailsRequestAuthenticationData implements ModelInterface, ArrayAccess, \
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHENTICATION_ONLY = 'authenticationOnly';
+
+    /**
       * The original name of the model.
       *
       * @var string

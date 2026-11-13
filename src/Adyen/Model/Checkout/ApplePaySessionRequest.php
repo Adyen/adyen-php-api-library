@@ -26,6 +26,13 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DISPLAY_NAME = 'displayName';
+    public const JSON_PROPERTY_DOMAIN_NAME = 'domainName';
+    public const JSON_PROPERTY_MERCHANT_IDENTIFIER = 'merchantIdentifier';
+
+    /**
       * The original name of the model.
       *
       * @var string

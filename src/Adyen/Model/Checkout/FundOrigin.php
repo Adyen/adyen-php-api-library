@@ -26,6 +26,15 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_WALLET_IDENTIFIER = 'walletIdentifier';
+
+    /**
       * The original name of the model.
       *
       * @var string

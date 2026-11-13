@@ -26,6 +26,22 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_I_B_A_N = 'IBAN';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUB_MERCHANT = 'subMerchant';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_WALLET_IDENTIFIER = 'walletIdentifier';
+    public const JSON_PROPERTY_WALLET_OWNER_TAX_ID = 'walletOwnerTaxId';
+    public const JSON_PROPERTY_WALLET_PURPOSE = 'walletPurpose';
+
+    /**
       * The original name of the model.
       *
       * @var string

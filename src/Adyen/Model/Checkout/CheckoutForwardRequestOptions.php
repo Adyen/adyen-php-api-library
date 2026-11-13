@@ -26,6 +26,16 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_UPDATE = 'accountUpdate';
+    public const JSON_PROPERTY_DRY_RUN = 'dryRun';
+    public const JSON_PROPERTY_NETWORK_TOKEN = 'networkToken';
+    public const JSON_PROPERTY_NETWORK_TX_REFERENCE_PATHS = 'networkTxReferencePaths';
+    public const JSON_PROPERTY_TOKENIZE = 'tokenize';
+    public const JSON_PROPERTY_TRANSACTION_LINK_ID_PATHS = 'transactionLinkIdPaths';
+
+    /**
       * The original name of the model.
       *
       * @var string

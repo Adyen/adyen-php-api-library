@@ -26,6 +26,11 @@ class DonationCampaignsResponse implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DONATION_CAMPAIGNS = 'donationCampaigns';
+
+    /**
       * The original name of the model.
       *
       * @var string

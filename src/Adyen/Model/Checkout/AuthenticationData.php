@@ -26,6 +26,13 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ATTEMPT_AUTHENTICATION = 'attemptAuthentication';
+    public const JSON_PROPERTY_AUTHENTICATION_ONLY = 'authenticationOnly';
+    public const JSON_PROPERTY_THREE_D_S_REQUEST_DATA = 'threeDSRequestData';
+
+    /**
       * The original name of the model.
       *
       * @var string

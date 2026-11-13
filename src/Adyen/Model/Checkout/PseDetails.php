@@ -26,6 +26,17 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BANK = 'bank';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_CLIENT_TYPE = 'clientType';
+    public const JSON_PROPERTY_IDENTIFICATION = 'identification';
+    public const JSON_PROPERTY_IDENTIFICATION_TYPE = 'identificationType';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,18 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_APP_ID = 'appId';
+    public const JSON_PROPERTY_BILLING_SEQUENCE_NUMBER = 'billingSequenceNumber';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_SHOPPER_NOTIFICATION_REFERENCE = 'shopperNotificationReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,21 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_APPS = 'apps';
+    public const JSON_PROPERTY_BRAND = 'brand';
+    public const JSON_PROPERTY_BRANDS = 'brands';
+    public const JSON_PROPERTY_CONFIGURATION = 'configuration';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_GROUP = 'group';
+    public const JSON_PROPERTY_INPUT_DETAILS = 'inputDetails';
+    public const JSON_PROPERTY_ISSUERS = 'issuers';
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_PROMOTED = 'promoted';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

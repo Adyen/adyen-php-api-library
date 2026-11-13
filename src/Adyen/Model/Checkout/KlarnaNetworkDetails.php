@@ -26,6 +26,19 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_KLARNA_NETWORK_DATA = 'klarnaNetworkData';
+    public const JSON_PROPERTY_KLARNA_NETWORK_PAYMENT_ACCOUNT_ID = 'klarnaNetworkPaymentAccountId';
+    public const JSON_PROPERTY_KLARNA_NETWORK_SESSION_TOKEN = 'klarnaNetworkSessionToken';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -45,6 +58,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => 'string',
         'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
+        'subtype' => 'string',
         'type' => 'string'
     ];
 
@@ -63,6 +77,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => null,
         'sdkData' => null,
         'storedPaymentMethodId' => null,
+        'subtype' => null,
         'type' => null
     ];
 
@@ -79,6 +94,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => false,
         'sdkData' => false,
         'storedPaymentMethodId' => false,
+        'subtype' => false,
         'type' => false
     ];
 
@@ -190,6 +206,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => 'recurringDetailReference',
         'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'subtype' => 'subtype',
         'type' => 'type'
     ];
 
@@ -206,6 +223,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => 'setRecurringDetailReference',
         'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'subtype' => 'setSubtype',
         'type' => 'setType'
     ];
 
@@ -222,6 +240,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'recurringDetailReference' => 'getRecurringDetailReference',
         'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'subtype' => 'getSubtype',
         'type' => 'getType'
     ];
 
@@ -266,7 +285,22 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+    public const SUBTYPE_REDIRECT = 'redirect';
+    public const SUBTYPE_SDK = 'sdk';
     public const TYPE_KLARNA_NETWORK = 'klarna_network';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSubtypeAllowableValues()
+    {
+        return [
+            self::SUBTYPE_REDIRECT,
+            self::SUBTYPE_SDK,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -302,6 +336,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'klarna_network');
     }
 
@@ -495,6 +530,43 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setStoredPaymentMethodId($storedPaymentMethodId): self
     {
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'] ?? null;
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The type of flow to initiate. Defaults to redirect when omitted.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype): self
+    {
+        if ($subtype !== null) {
+            $allowedValues = $this->getSubtypeAllowableValues();
+            foreach ([$subtype] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "subtype: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
+        $this->container['subtype'] = $subtype;
 
         return $this;
     }

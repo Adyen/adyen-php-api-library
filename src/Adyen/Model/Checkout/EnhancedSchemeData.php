@@ -26,6 +26,16 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AIRLINE = 'airline';
+    public const JSON_PROPERTY_CAR_RENTAL = 'carRental';
+    public const JSON_PROPERTY_HEALTHCARE = 'healthcare';
+    public const JSON_PROPERTY_LEVEL_TWO_THREE = 'levelTwoThree';
+    public const JSON_PROPERTY_LODGING = 'lodging';
+    public const JSON_PROPERTY_TEMPORARY_SERVICES = 'temporaryServices';
+
+    /**
       * The original name of the model.
       *
       * @var string

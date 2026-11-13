@@ -26,6 +26,22 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_SUB_MERCHANT_NUMBER_OF_SUB_SELLERS = 'subMerchant.numberOfSubSellers';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_CITY = 'subMerchant.subSeller[subSellerNr].city';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_COUNTRY = 'subMerchant.subSeller[subSellerNr].country';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_EMAIL = 'subMerchant.subSeller[subSellerNr].email';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_ID = 'subMerchant.subSeller[subSellerNr].id';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_MCC = 'subMerchant.subSeller[subSellerNr].mcc';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_NAME = 'subMerchant.subSeller[subSellerNr].name';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_PHONE_NUMBER = 'subMerchant.subSeller[subSellerNr].phoneNumber';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_POSTAL_CODE = 'subMerchant.subSeller[subSellerNr].postalCode';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_STATE = 'subMerchant.subSeller[subSellerNr].state';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_STREET = 'subMerchant.subSeller[subSellerNr].street';
+    public const JSON_PROPERTY_SUB_MERCHANT_SUB_SELLER_SUB_SELLER_NR_TAX_ID = 'subMerchant.subSeller[subSellerNr].taxId';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,15 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_MASTERPASS_TRANSACTION_ID = 'masterpassTransactionId';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

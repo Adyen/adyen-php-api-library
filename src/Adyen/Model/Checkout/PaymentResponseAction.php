@@ -45,6 +45,47 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     ];
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_PAYMENT_DATA = 'paymentData';
+    public const JSON_PROPERTY_PAYMENT_METHOD_TYPE = 'paymentMethodType';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+    public const JSON_PROPERTY_ACCOUNT_NUMBER = 'accountNumber';
+    public const JSON_PROPERTY_BANK_CODE = 'bankCode';
+    public const JSON_PROPERTY_BENEFICIARY = 'beneficiary';
+    public const JSON_PROPERTY_BIC = 'bic';
+    public const JSON_PROPERTY_BRANCH_CODE = 'branchCode';
+    public const JSON_PROPERTY_DOWNLOAD_URL = 'downloadUrl';
+    public const JSON_PROPERTY_IBAN = 'iban';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_ROUTING_NUMBER = 'routingNumber';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SORT_CODE = 'sortCode';
+    public const JSON_PROPERTY_TOTAL_AMOUNT = 'totalAmount';
+    public const JSON_PROPERTY_AUTHORISATION_TOKEN = 'authorisationToken';
+    public const JSON_PROPERTY_TOKEN = 'token';
+    public const JSON_PROPERTY_DATA = 'data';
+    public const JSON_PROPERTY_METHOD = 'method';
+    public const JSON_PROPERTY_NATIVE_REDIRECT_DATA = 'nativeRedirectData';
+    public const JSON_PROPERTY_EXPIRES_AT = 'expiresAt';
+    public const JSON_PROPERTY_QR_CODE_DATA = 'qrCodeData';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_ALTERNATIVE_REFERENCE = 'alternativeReference';
+    public const JSON_PROPERTY_COLLECTION_INSTITUTION_NUMBER = 'collectionInstitutionNumber';
+    public const JSON_PROPERTY_ENTITY = 'entity';
+    public const JSON_PROPERTY_INITIAL_AMOUNT = 'initialAmount';
+    public const JSON_PROPERTY_INSTRUCTIONS_URL = 'instructionsUrl';
+    public const JSON_PROPERTY_ISSUER = 'issuer';
+    public const JSON_PROPERTY_MASKED_TELEPHONE_NUMBER = 'maskedTelephoneNumber';
+    public const JSON_PROPERTY_MERCHANT_NAME = 'merchantName';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_PASS_CREATION_TOKEN = 'passCreationToken';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SURCHARGE = 'surcharge';
+
+    /**
       * The original name of the model.
       *
       * @var string

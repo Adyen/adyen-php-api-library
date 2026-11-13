@@ -26,6 +26,12 @@ class CheckoutNetworkTokenOption implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_INCLUDE_CRYPTOGRAM = 'includeCryptogram';
+    public const JSON_PROPERTY_USE_NETWORK_TOKEN = 'useNetworkToken';
+
+    /**
       * The original name of the model.
       *
       * @var string

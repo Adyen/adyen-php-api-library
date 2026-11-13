@@ -26,6 +26,56 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALLOWED_PAYMENT_METHODS = 'allowedPaymentMethods';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BLOCKED_PAYMENT_METHODS = 'blockedPaymentMethods';
+    public const JSON_PROPERTY_CAPTURE_DELAY_HOURS = 'captureDelayHours';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DELIVER_AT = 'deliverAt';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_EXPIRES_AT = 'expiresAt';
+    public const JSON_PROPERTY_FUND_ORIGIN = 'fundOrigin';
+    public const JSON_PROPERTY_FUND_RECIPIENT = 'fundRecipient';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_INSTALLMENT_OPTIONS = 'installmentOptions';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MANUAL_CAPTURE = 'manualCapture';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_ORDER_REFERENCE = 'merchantOrderReference';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_PLATFORM_CHARGEBACK_LOGIC = 'platformChargebackLogic';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_REQUIRED_SHOPPER_FIELDS = 'requiredShopperFields';
+    public const JSON_PROPERTY_RETURN_URL = 'returnUrl';
+    public const JSON_PROPERTY_REUSABLE = 'reusable';
+    public const JSON_PROPERTY_RISK_DATA = 'riskData';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SHOPPER_STATEMENT = 'shopperStatement';
+    public const JSON_PROPERTY_SHOW_REMOVE_PAYMENT_METHOD_BUTTON = 'showRemovePaymentMethodButton';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_SPLIT_CARD_FUNDING_SOURCES = 'splitCardFundingSources';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_STORE_PAYMENT_METHOD_MODE = 'storePaymentMethodMode';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THEME_ID = 'themeId';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+    public const JSON_PROPERTY_UPDATED_AT = 'updatedAt';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

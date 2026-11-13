@@ -26,6 +26,25 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_PAY_PAL_COUNTRY_CODE = 'PayPal.CountryCode';
+    public const JSON_PROPERTY_PAY_PAL_EMAIL_ID = 'PayPal.EmailId';
+    public const JSON_PROPERTY_PAY_PAL_FIRST_NAME = 'PayPal.FirstName';
+    public const JSON_PROPERTY_PAY_PAL_LAST_NAME = 'PayPal.LastName';
+    public const JSON_PROPERTY_PAY_PAL_PAYER_ID = 'PayPal.PayerId';
+    public const JSON_PROPERTY_PAY_PAL_PHONE = 'PayPal.Phone';
+    public const JSON_PROPERTY_PAY_PAL_PROTECTION_ELIGIBILITY = 'PayPal.ProtectionEligibility';
+    public const JSON_PROPERTY_PAY_PAL_TRANSACTION_ID = 'PayPal.TransactionId';
+    public const JSON_PROPERTY_AVS_RESULT_RAW = 'avsResultRaw';
+    public const JSON_PROPERTY_BIN = 'bin';
+    public const JSON_PROPERTY_CVC_RESULT_RAW = 'cvcResultRaw';
+    public const JSON_PROPERTY_RISK_TOKEN = 'riskToken';
+    public const JSON_PROPERTY_THREE_D_AUTHENTICATED = 'threeDAuthenticated';
+    public const JSON_PROPERTY_THREE_D_OFFERED = 'threeDOffered';
+    public const JSON_PROPERTY_TOKEN_DATA_TYPE = 'tokenDataType';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,18 @@ class PixPayByBankRiskSignals implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CONFIDENCE_SCORE = 'confidenceScore';
+    public const JSON_PROPERTY_ELAPSED_TIME_SINCE_BOOT = 'elapsedTimeSinceBoot';
+    public const JSON_PROPERTY_IS_ROOTED_DEVICE = 'isRootedDevice';
+    public const JSON_PROPERTY_LANGUAGE = 'language';
+    public const JSON_PROPERTY_OS_VERSION = 'osVersion';
+    public const JSON_PROPERTY_SCREEN_BRIGHTNESS = 'screenBrightness';
+    public const JSON_PROPERTY_SCREEN_DIMENSIONS = 'screenDimensions';
+    public const JSON_PROPERTY_USER_TIME_ZONE_OFFSET = 'userTimeZoneOffset';
+
+    /**
       * The original name of the model.
       *
       * @var string

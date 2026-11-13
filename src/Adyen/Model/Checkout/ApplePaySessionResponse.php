@@ -26,6 +26,11 @@ class ApplePaySessionResponse implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DATA = 'data';
+
+    /**
       * The original name of the model.
       *
       * @var string

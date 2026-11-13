@@ -26,6 +26,13 @@ class RentalSurcharges implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_FUEL = 'fuel';
+    public const JSON_PROPERTY_INSURANCE = 'insurance';
+    public const JSON_PROPERTY_ONE_WAY_DROP_OFF = 'oneWayDropOff';
+
+    /**
       * The original name of the model.
       *
       * @var string

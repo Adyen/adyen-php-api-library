@@ -26,6 +26,15 @@ class ReturnInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CITY = 'city';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE = 'date';
+    public const JSON_PROPERTY_LOCATION_ID = 'locationId';
+    public const JSON_PROPERTY_STATE_OR_PROVINCE = 'stateOrProvince';
+
+    /**
       * The original name of the model.
       *
       * @var string

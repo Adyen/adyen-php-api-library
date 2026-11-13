@@ -26,6 +26,20 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CARD_ALT_I_D = 'cardAltID';
+    public const JSON_PROPERTY_CARD_BIN = 'cardBin';
+    public const JSON_PROPERTY_CARD_HOLDER_NAME = 'cardHolderName';
+    public const JSON_PROPERTY_CARD_ISSUING_BANK = 'cardIssuingBank';
+    public const JSON_PROPERTY_CARD_ISSUING_COUNTRY = 'cardIssuingCountry';
+    public const JSON_PROPERTY_CARD_ISSUING_CURRENCY = 'cardIssuingCurrency';
+    public const JSON_PROPERTY_CARD_PAYMENT_METHOD = 'cardPaymentMethod';
+    public const JSON_PROPERTY_CARD_PRODUCT_ID = 'cardProductId';
+    public const JSON_PROPERTY_CARD_SUMMARY = 'cardSummary';
+    public const JSON_PROPERTY_ISSUER_BIN = 'issuerBin';
+
+    /**
       * The original name of the model.
       *
       * @var string

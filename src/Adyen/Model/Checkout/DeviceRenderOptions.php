@@ -26,6 +26,12 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_SDK_INTERFACE = 'sdkInterface';
+    public const JSON_PROPERTY_SDK_UI_TYPE = 'sdkUiType';
+
+    /**
       * The original name of the model.
       *
       * @var string

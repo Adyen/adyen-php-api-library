@@ -26,6 +26,16 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_HOMEPAGE = 'homepage';
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_REGISTRATION_NUMBER = 'registrationNumber';
+    public const JSON_PROPERTY_REGISTRY_LOCATION = 'registryLocation';
+    public const JSON_PROPERTY_TAX_ID = 'taxId';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

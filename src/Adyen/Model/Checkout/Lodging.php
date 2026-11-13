@@ -26,6 +26,24 @@ class Lodging implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECK_IN_DATE = 'checkInDate';
+    public const JSON_PROPERTY_CHECK_OUT_DATE = 'checkOutDate';
+    public const JSON_PROPERTY_CUSTOMER_SERVICE_PHONE_NUMBER = 'customerServicePhoneNumber';
+    public const JSON_PROPERTY_FIRE_SAFETY_COMPLIANCE = 'fireSafetyCompliance';
+    public const JSON_PROPERTY_FOLIO = 'folio';
+    public const JSON_PROPERTY_FOOD_BEVERAGE_CHARGES = 'foodBeverageCharges';
+    public const JSON_PROPERTY_LODGING_CHARGE_TYPE = 'lodgingChargeType';
+    public const JSON_PROPERTY_NO_SHOW = 'noShow';
+    public const JSON_PROPERTY_PREPAID_EXPENSES = 'prepaidExpenses';
+    public const JSON_PROPERTY_PROPERTY_PHONE_NUMBER = 'propertyPhoneNumber';
+    public const JSON_PROPERTY_RENTER_NAME = 'renterName';
+    public const JSON_PROPERTY_ROOMS = 'rooms';
+    public const JSON_PROPERTY_TOTAL_ROOM_TAX = 'totalRoomTax';
+    public const JSON_PROPERTY_TOTAL_TAX = 'totalTax';
+
+    /**
       * The original name of the model.
       *
       * @var string

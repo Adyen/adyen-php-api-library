@@ -26,6 +26,15 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CARD_NUMBER = 'cardNumber';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_SUPPORTED_BRANDS = 'supportedBrands';
+
+    /**
       * The original name of the model.
       *
       * @var string

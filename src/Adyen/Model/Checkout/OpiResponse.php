@@ -26,6 +26,12 @@ class OpiResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ISSUER_ID = 'issuerId';
+    public const JSON_PROPERTY_TRANS_TOKEN = 'transToken';
+
+    /**
       * The original name of the model.
       *
       * @var string

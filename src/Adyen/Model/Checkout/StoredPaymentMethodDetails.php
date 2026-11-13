@@ -26,6 +26,15 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -265,6 +274,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
     public const TYPE_MOMO_WALLET = 'momo_wallet';
     public const TYPE_MOMO_WALLET_APP = 'momo_wallet_app';
+    public const TYPE_REVOLUTPAY = 'revolutpay';
     public const TYPE_PAYMAYA_WALLET = 'paymaya_wallet';
     public const TYPE_GRABPAY_SG = 'grabpay_SG';
     public const TYPE_GRABPAY_MY = 'grabpay_MY';
@@ -305,6 +315,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_BCMC_MOBILE_APP,
             self::TYPE_MOMO_WALLET,
             self::TYPE_MOMO_WALLET_APP,
+            self::TYPE_REVOLUTPAY,
             self::TYPE_PAYMAYA_WALLET,
             self::TYPE_GRABPAY_SG,
             self::TYPE_GRABPAY_MY,

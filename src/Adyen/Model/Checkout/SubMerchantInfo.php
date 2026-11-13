@@ -26,6 +26,20 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDRESS = 'address';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_EMAIL = 'email';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_PHONE_NUMBER = 'phoneNumber';
+    public const JSON_PROPERTY_REGISTERED_SINCE = 'registeredSince';
+    public const JSON_PROPERTY_TAX_ID = 'taxId';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

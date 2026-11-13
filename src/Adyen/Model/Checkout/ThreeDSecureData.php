@@ -26,6 +26,22 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHENTICATION_RESPONSE = 'authenticationResponse';
+    public const JSON_PROPERTY_CAVV = 'cavv';
+    public const JSON_PROPERTY_CAVV_ALGORITHM = 'cavvAlgorithm';
+    public const JSON_PROPERTY_CHALLENGE_CANCEL = 'challengeCancel';
+    public const JSON_PROPERTY_DIRECTORY_RESPONSE = 'directoryResponse';
+    public const JSON_PROPERTY_DS_TRANS_I_D = 'dsTransID';
+    public const JSON_PROPERTY_ECI = 'eci';
+    public const JSON_PROPERTY_RISK_SCORE = 'riskScore';
+    public const JSON_PROPERTY_THREE_D_S_VERSION = 'threeDSVersion';
+    public const JSON_PROPERTY_TOKEN_AUTHENTICATION_VERIFICATION_VALUE = 'tokenAuthenticationVerificationValue';
+    public const JSON_PROPERTY_TRANS_STATUS_REASON = 'transStatusReason';
+    public const JSON_PROPERTY_XID = 'xid';
+
+    /**
       * The original name of the model.
       *
       * @var string

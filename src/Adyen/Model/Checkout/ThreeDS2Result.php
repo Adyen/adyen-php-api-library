@@ -26,6 +26,24 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHENTICATION_VALUE = 'authenticationValue';
+    public const JSON_PROPERTY_CAVV_ALGORITHM = 'cavvAlgorithm';
+    public const JSON_PROPERTY_CHALLENGE_CANCEL = 'challengeCancel';
+    public const JSON_PROPERTY_DS_TRANS_I_D = 'dsTransID';
+    public const JSON_PROPERTY_ECI = 'eci';
+    public const JSON_PROPERTY_EXEMPTION_INDICATOR = 'exemptionIndicator';
+    public const JSON_PROPERTY_MESSAGE_VERSION = 'messageVersion';
+    public const JSON_PROPERTY_RISK_SCORE = 'riskScore';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_CHALLENGE_IND = 'threeDSRequestorChallengeInd';
+    public const JSON_PROPERTY_THREE_D_S_SERVER_TRANS_I_D = 'threeDSServerTransID';
+    public const JSON_PROPERTY_TIMESTAMP = 'timestamp';
+    public const JSON_PROPERTY_TRANS_STATUS = 'transStatus';
+    public const JSON_PROPERTY_TRANS_STATUS_REASON = 'transStatusReason';
+    public const JSON_PROPERTY_WHITE_LIST_STATUS = 'whiteListStatus';
+
+    /**
       * The original name of the model.
       *
       * @var string

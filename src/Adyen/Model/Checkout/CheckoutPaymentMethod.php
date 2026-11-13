@@ -40,6 +40,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'afterpay_default' => 'Adyen\Model\Checkout\AfterpayDetails',
         'afterpay_directdebit' => 'Adyen\Model\Checkout\OpenInvoiceDetails',
         'afterpaytouch' => 'Adyen\Model\Checkout\AfterpayDetails',
+        'afterpaytouch_US' => 'Adyen\Model\Checkout\AfterpayDetails',
         'afterpaytouch_pos' => 'Adyen\Model\Checkout\AfterpayDetails',
         'alipay' => 'Adyen\Model\Checkout\PaymentDetails',
         'alipay_hk' => 'Adyen\Model\Checkout\PaymentDetails',
@@ -237,6 +238,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'rakutenpay' => 'Adyen\Model\Checkout\RakutenPayDetails',
         'ratepay' => 'Adyen\Model\Checkout\RatepayDetails',
         'ratepay_directdebit' => 'Adyen\Model\Checkout\RatepayDetails',
+        'revolutpay' => 'Adyen\Model\Checkout\StoredPaymentMethodDetails',
         'riverty' => 'Adyen\Model\Checkout\RivertyDetails',
         'riverty_account' => 'Adyen\Model\Checkout\RivertyDetails',
         'riverty_installments' => 'Adyen\Model\Checkout\RivertyDetails',
@@ -276,6 +278,97 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'zip' => 'Adyen\Model\Checkout\ZipDetails',
         'zip_pos' => 'Adyen\Model\Checkout\ZipDetails',
     ];
+
+    /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_HOLDER_TYPE = 'accountHolderType';
+    public const JSON_PROPERTY_BANK_ACCOUNT_NUMBER = 'bankAccountNumber';
+    public const JSON_PROPERTY_BANK_ACCOUNT_TYPE = 'bankAccountType';
+    public const JSON_PROPERTY_BANK_LOCATION_ID = 'bankLocationId';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_ENCRYPTED_BANK_ACCOUNT_NUMBER = 'encryptedBankAccountNumber';
+    public const JSON_PROPERTY_ENCRYPTED_BANK_LOCATION_ID = 'encryptedBankLocationId';
+    public const JSON_PROPERTY_OWNER_NAME = 'ownerName';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_TRANSFER_INSTRUMENT_ID = 'transferInstrumentId';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_FINANCING_PROGRAM = 'financingProgram';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_PERSONAL_DETAILS = 'personalDetails';
+    public const JSON_PROPERTY_FEE_TYPE = 'feeType';
+    public const JSON_PROPERTY_AMAZON_PAY_TOKEN = 'amazonPayToken';
+    public const JSON_PROPERTY_CHECKOUT_SESSION_ID = 'checkoutSessionId';
+    public const JSON_PROPERTY_BENEFICIARY_ID = 'beneficiaryId';
+    public const JSON_PROPERTY_APPLE_PAY_TOKEN = 'applePayToken';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_ISSUER = 'issuer';
+    public const JSON_PROPERTY_BLIK_CODE = 'blikCode';
+    public const JSON_PROPERTY_BILLING_SEQUENCE_NUMBER = 'billingSequenceNumber';
+    public const JSON_PROPERTY_BRAND = 'brand';
+    public const JSON_PROPERTY_CUPSECUREPLUS_SMSCODE = 'cupsecureplus.smscode';
+    public const JSON_PROPERTY_CVC = 'cvc';
+    public const JSON_PROPERTY_ENCRYPTED_CARD = 'encryptedCard';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_MONTH = 'encryptedExpiryMonth';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_YEAR = 'encryptedExpiryYear';
+    public const JSON_PROPERTY_ENCRYPTED_PASSWORD = 'encryptedPassword';
+    public const JSON_PROPERTY_ENCRYPTED_SECURITY_CODE = 'encryptedSecurityCode';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_FASTLANE_DATA = 'fastlaneData';
+    public const JSON_PROPERTY_NETWORK_PAYMENT_REFERENCE = 'networkPaymentReference';
+    public const JSON_PROPERTY_NUMBER = 'number';
+    public const JSON_PROPERTY_SHOPPER_NOTIFICATION_REFERENCE = 'shopperNotificationReference';
+    public const JSON_PROPERTY_SRC_CORRELATION_ID = 'srcCorrelationId';
+    public const JSON_PROPERTY_SRC_DIGITAL_CARD_ID = 'srcDigitalCardId';
+    public const JSON_PROPERTY_SRC_SCHEME = 'srcScheme';
+    public const JSON_PROPERTY_SRC_TOKEN_REFERENCE = 'srcTokenReference';
+    public const JSON_PROPERTY_THREE_D_S2_SDK_VERSION = 'threeDS2SdkVersion';
+    public const JSON_PROPERTY_CASHTAG = 'cashtag';
+    public const JSON_PROPERTY_CUSTOMER_ID = 'customerId';
+    public const JSON_PROPERTY_GRANT_ID = 'grantId';
+    public const JSON_PROPERTY_ON_FILE_GRANT_ID = 'onFileGrantId';
+    public const JSON_PROPERTY_REQUEST_ID = 'requestId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_BANK_BRANCH_CODE = 'bankBranchCode';
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_BANK_CODE = 'bankCode';
+    public const JSON_PROPERTY_GOOGLE_PAY_CARD_NETWORK = 'googlePayCardNetwork';
+    public const JSON_PROPERTY_GOOGLE_PAY_TOKEN = 'googlePayToken';
+    public const JSON_PROPERTY_MERCHANT_DATA = 'merchantData';
+    public const JSON_PROPERTY_KLARNA_NETWORK_DATA = 'klarnaNetworkData';
+    public const JSON_PROPERTY_KLARNA_NETWORK_PAYMENT_ACCOUNT_ID = 'klarnaNetworkPaymentAccountId';
+    public const JSON_PROPERTY_KLARNA_NETWORK_SESSION_TOKEN = 'klarnaNetworkSessionToken';
+    public const JSON_PROPERTY_MASTERPASS_TRANSACTION_ID = 'masterpassTransactionId';
+    public const JSON_PROPERTY_ORDER_I_D = 'orderID';
+    public const JSON_PROPERTY_PAYEE_PREFERRED = 'payeePreferred';
+    public const JSON_PROPERTY_PAYER_I_D = 'payerID';
+    public const JSON_PROPERTY_PAYER_SELECTED = 'payerSelected';
+    public const JSON_PROPERTY_SHOPPER_ACCOUNT_IDENTIFIER = 'shopperAccountIdentifier';
+    public const JSON_PROPERTY_VIRTUAL_PAYMENT_ADDRESS = 'virtualPaymentAddress';
+    public const JSON_PROPERTY_PIX_RECURRING = 'pixRecurring';
+    public const JSON_PROPERTY_DEVICE_ID = 'deviceId';
+    public const JSON_PROPERTY_RISK_SIGNALS = 'riskSignals';
+    public const JSON_PROPERTY_BANK = 'bank';
+    public const JSON_PROPERTY_CLIENT_TYPE = 'clientType';
+    public const JSON_PROPERTY_IDENTIFICATION = 'identification';
+    public const JSON_PROPERTY_IDENTIFICATION_TYPE = 'identificationType';
+    public const JSON_PROPERTY_DEVICE_FINGERPRINT = 'deviceFingerprint';
+    public const JSON_PROPERTY_IBAN = 'iban';
+    public const JSON_PROPERTY_SAMSUNG_PAY_TOKEN = 'samsungPayToken';
+    public const JSON_PROPERTY_DUE_DATE = 'dueDate';
+    public const JSON_PROPERTY_APP_ID = 'appId';
+    public const JSON_PROPERTY_VISA_CHECKOUT_CALL_ID = 'visaCheckoutCallId';
+    public const JSON_PROPERTY_OPENID = 'openid';
+    public const JSON_PROPERTY_CLICK_AND_COLLECT = 'clickAndCollect';
 
     /**
       * The original name of the model.
@@ -1006,6 +1099,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_AFFIRM = 'affirm';
     public const TYPE_AFTERPAY_DEFAULT = 'afterpay_default';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
+    public const TYPE_AFTERPAYTOUCH_US = 'afterpaytouch_US';
     public const TYPE_AFTERPAY_B2B = 'afterpay_b2b';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_ALMA = 'alma';
@@ -1199,6 +1293,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
     public const TYPE_MOMO_WALLET = 'momo_wallet';
     public const TYPE_MOMO_WALLET_APP = 'momo_wallet_app';
+    public const TYPE_REVOLUTPAY = 'revolutpay';
     public const TYPE_PAYMAYA_WALLET = 'paymaya_wallet';
     public const TYPE_GRABPAY_SG = 'grabpay_SG';
     public const TYPE_GRABPAY_MY = 'grabpay_MY';
@@ -1274,6 +1369,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_AFFIRM,
             self::TYPE_AFTERPAY_DEFAULT,
             self::TYPE_AFTERPAYTOUCH,
+            self::TYPE_AFTERPAYTOUCH_US,
             self::TYPE_AFTERPAY_B2B,
             self::TYPE_CLEARPAY,
             self::TYPE_ALMA,
@@ -1467,6 +1563,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_BCMC_MOBILE_APP,
             self::TYPE_MOMO_WALLET,
             self::TYPE_MOMO_WALLET_APP,
+            self::TYPE_REVOLUTPAY,
             self::TYPE_PAYMAYA_WALLET,
             self::TYPE_GRABPAY_SG,
             self::TYPE_GRABPAY_MY,

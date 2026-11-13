@@ -26,6 +26,27 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_LODGING_SPECIAL_PROGRAM_CODE = 'lodging.SpecialProgramCode';
+    public const JSON_PROPERTY_LODGING_CHECK_IN_DATE = 'lodging.checkInDate';
+    public const JSON_PROPERTY_LODGING_CHECK_OUT_DATE = 'lodging.checkOutDate';
+    public const JSON_PROPERTY_LODGING_CUSTOMER_SERVICE_TOLL_FREE_NUMBER = 'lodging.customerServiceTollFreeNumber';
+    public const JSON_PROPERTY_LODGING_FIRE_SAFETY_ACT_INDICATOR = 'lodging.fireSafetyActIndicator';
+    public const JSON_PROPERTY_LODGING_FOLIO_CASH_ADVANCES = 'lodging.folioCashAdvances';
+    public const JSON_PROPERTY_LODGING_FOLIO_NUMBER = 'lodging.folioNumber';
+    public const JSON_PROPERTY_LODGING_FOOD_BEVERAGE_CHARGES = 'lodging.foodBeverageCharges';
+    public const JSON_PROPERTY_LODGING_NO_SHOW_INDICATOR = 'lodging.noShowIndicator';
+    public const JSON_PROPERTY_LODGING_PREPAID_EXPENSES = 'lodging.prepaidExpenses';
+    public const JSON_PROPERTY_LODGING_PROPERTY_PHONE_NUMBER = 'lodging.propertyPhoneNumber';
+    public const JSON_PROPERTY_LODGING_ROOM1_NUMBER_OF_NIGHTS = 'lodging.room1.numberOfNights';
+    public const JSON_PROPERTY_LODGING_ROOM1_RATE = 'lodging.room1.rate';
+    public const JSON_PROPERTY_LODGING_TOTAL_ROOM_TAX = 'lodging.totalRoomTax';
+    public const JSON_PROPERTY_LODGING_TOTAL_TAX = 'lodging.totalTax';
+    public const JSON_PROPERTY_TRAVEL_ENTERTAINMENT_AUTH_DATA_DURATION = 'travelEntertainmentAuthData.duration';
+    public const JSON_PROPERTY_TRAVEL_ENTERTAINMENT_AUTH_DATA_MARKET = 'travelEntertainmentAuthData.market';
+
+    /**
       * The original name of the model.
       *
       * @var string

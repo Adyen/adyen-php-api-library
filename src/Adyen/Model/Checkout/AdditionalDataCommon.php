@@ -26,6 +26,32 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_REQUESTED_TEST_ACQUIRER_RESPONSE_CODE = 'RequestedTestAcquirerResponseCode';
+    public const JSON_PROPERTY_REQUESTED_TEST_ERROR_RESPONSE_CODE = 'RequestedTestErrorResponseCode';
+    public const JSON_PROPERTY_ALLOW_PARTIAL_AUTH = 'allowPartialAuth';
+    public const JSON_PROPERTY_AUTHORISATION_TYPE = 'authorisationType';
+    public const JSON_PROPERTY_AUTO_RESCUE = 'autoRescue';
+    public const JSON_PROPERTY_CUSTOM_ROUTING_FLAG = 'customRoutingFlag';
+    public const JSON_PROPERTY_INDUSTRY_USAGE = 'industryUsage';
+    public const JSON_PROPERTY_MANUAL_CAPTURE = 'manualCapture';
+    public const JSON_PROPERTY_MAX_DAYS_TO_RESCUE = 'maxDaysToRescue';
+    public const JSON_PROPERTY_NETWORK_TX_REFERENCE = 'networkTxReference';
+    public const JSON_PROPERTY_OVERWRITE_BRAND = 'overwriteBrand';
+    public const JSON_PROPERTY_SUB_MERCHANT_CITY = 'subMerchantCity';
+    public const JSON_PROPERTY_SUB_MERCHANT_COUNTRY = 'subMerchantCountry';
+    public const JSON_PROPERTY_SUB_MERCHANT_EMAIL = 'subMerchantEmail';
+    public const JSON_PROPERTY_SUB_MERCHANT_I_D = 'subMerchantID';
+    public const JSON_PROPERTY_SUB_MERCHANT_NAME = 'subMerchantName';
+    public const JSON_PROPERTY_SUB_MERCHANT_PHONE_NUMBER = 'subMerchantPhoneNumber';
+    public const JSON_PROPERTY_SUB_MERCHANT_POSTAL_CODE = 'subMerchantPostalCode';
+    public const JSON_PROPERTY_SUB_MERCHANT_STATE = 'subMerchantState';
+    public const JSON_PROPERTY_SUB_MERCHANT_STREET = 'subMerchantStreet';
+    public const JSON_PROPERTY_SUB_MERCHANT_TAX_ID = 'subMerchantTaxId';
+    public const JSON_PROPERTY_TRANSACTION_LINK_ID = 'transactionLinkId';
+
+    /**
       * The original name of the model.
       *
       * @var string

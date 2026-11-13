@@ -26,6 +26,13 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BEHAVIOR = 'behavior';
+    public const JSON_PROPERTY_COST_ALLOCATION_ACCOUNT = 'costAllocationAccount';
+    public const JSON_PROPERTY_TARGET_ACCOUNT = 'targetAccount';
+
+    /**
       * The original name of the model.
       *
       * @var string
