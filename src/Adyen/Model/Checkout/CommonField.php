@@ -26,6 +26,12 @@ class CommonField implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_VERSION = 'version';
+
+    /**
       * The original name of the model.
       *
       * @var string

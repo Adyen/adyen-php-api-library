@@ -26,6 +26,12 @@ class EncryptedOrderData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ORDER_DATA = 'orderData';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+
+    /**
       * The original name of the model.
       *
       * @var string

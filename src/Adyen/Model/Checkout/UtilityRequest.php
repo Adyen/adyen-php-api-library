@@ -26,6 +26,11 @@ class UtilityRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ORIGIN_DOMAINS = 'originDomains';
+
+    /**
       * The original name of the model.
       *
       * @var string

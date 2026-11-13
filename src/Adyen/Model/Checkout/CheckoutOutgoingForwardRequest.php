@@ -26,6 +26,15 @@ class CheckoutOutgoingForwardRequest implements ModelInterface, ArrayAccess, \Js
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BODY = 'body';
+    public const JSON_PROPERTY_CREDENTIALS = 'credentials';
+    public const JSON_PROPERTY_HEADERS = 'headers';
+    public const JSON_PROPERTY_HTTP_METHOD = 'httpMethod';
+    public const JSON_PROPERTY_URL_SUFFIX = 'urlSuffix';
+
+    /**
       * The original name of the model.
       *
       * @var string

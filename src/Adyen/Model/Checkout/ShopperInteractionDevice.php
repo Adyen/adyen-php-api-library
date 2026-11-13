@@ -26,6 +26,13 @@ class ShopperInteractionDevice implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_LOCALE = 'locale';
+    public const JSON_PROPERTY_OS = 'os';
+    public const JSON_PROPERTY_OS_VERSION = 'osVersion';
+
+    /**
       * The original name of the model.
       *
       * @var string

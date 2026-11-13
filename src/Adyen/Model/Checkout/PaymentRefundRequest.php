@@ -26,6 +26,20 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_CAPTURE_PSP_REFERENCE = 'capturePspReference';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA = 'enhancedSchemeData';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_REFUND_REASON = 'merchantRefundReason';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STORE = 'store';
+
+    /**
       * The original name of the model.
       *
       * @var string

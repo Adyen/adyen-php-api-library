@@ -26,6 +26,18 @@ class LevelTwoThree implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CUSTOMER_REFERENCE_NUMBER = 'customerReferenceNumber';
+    public const JSON_PROPERTY_DESTINATION = 'destination';
+    public const JSON_PROPERTY_DUTY_AMOUNT = 'dutyAmount';
+    public const JSON_PROPERTY_FREIGHT_AMOUNT = 'freightAmount';
+    public const JSON_PROPERTY_ITEM_DETAIL_LINES = 'itemDetailLines';
+    public const JSON_PROPERTY_ORDER_DATE = 'orderDate';
+    public const JSON_PROPERTY_SHIP_FROM_POSTAL_CODE = 'shipFromPostalCode';
+    public const JSON_PROPERTY_TOTAL_TAX_AMOUNT = 'totalTaxAmount';
+
+    /**
       * The original name of the model.
       *
       * @var string

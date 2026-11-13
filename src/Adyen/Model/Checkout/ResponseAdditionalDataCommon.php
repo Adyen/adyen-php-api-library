@@ -26,6 +26,75 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACQUIRER_ACCOUNT_CODE = 'acquirerAccountCode';
+    public const JSON_PROPERTY_ACQUIRER_CODE = 'acquirerCode';
+    public const JSON_PROPERTY_ACQUIRER_REFERENCE = 'acquirerReference';
+    public const JSON_PROPERTY_ALIAS = 'alias';
+    public const JSON_PROPERTY_ALIAS_TYPE = 'aliasType';
+    public const JSON_PROPERTY_AUTH_CODE = 'authCode';
+    public const JSON_PROPERTY_AUTHORISATION_MID = 'authorisationMid';
+    public const JSON_PROPERTY_AUTHORISED_AMOUNT_CURRENCY = 'authorisedAmountCurrency';
+    public const JSON_PROPERTY_AUTHORISED_AMOUNT_VALUE = 'authorisedAmountValue';
+    public const JSON_PROPERTY_AVS_RESULT = 'avsResult';
+    public const JSON_PROPERTY_AVS_RESULT_RAW = 'avsResultRaw';
+    public const JSON_PROPERTY_BIC = 'bic';
+    public const JSON_PROPERTY_CO_BRANDED_WITH = 'coBrandedWith';
+    public const JSON_PROPERTY_CVC_RESULT = 'cvcResult';
+    public const JSON_PROPERTY_CVC_RESULT_RAW = 'cvcResultRaw';
+    public const JSON_PROPERTY_DS_TRANS_I_D = 'dsTransID';
+    public const JSON_PROPERTY_ECI = 'eci';
+    public const JSON_PROPERTY_EXPIRY_DATE = 'expiryDate';
+    public const JSON_PROPERTY_EXTRA_COSTS_CURRENCY = 'extraCostsCurrency';
+    public const JSON_PROPERTY_EXTRA_COSTS_VALUE = 'extraCostsValue';
+    public const JSON_PROPERTY_FRAUD_CHECK_ITEM_NR_FRAUD_CHECKNAME = 'fraudCheck-[itemNr]-[FraudCheckname]';
+    public const JSON_PROPERTY_FRAUD_MANUAL_REVIEW = 'fraudManualReview';
+    public const JSON_PROPERTY_FRAUD_RESULT_TYPE = 'fraudResultType';
+    public const JSON_PROPERTY_FRAUD_RISK_LEVEL = 'fraudRiskLevel';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_FUNDS_AVAILABILITY = 'fundsAvailability';
+    public const JSON_PROPERTY_INFERRED_REFUSAL_REASON = 'inferredRefusalReason';
+    public const JSON_PROPERTY_IS_CARD_COMMERCIAL = 'isCardCommercial';
+    public const JSON_PROPERTY_ISSUER_COUNTRY = 'issuerCountry';
+    public const JSON_PROPERTY_LIABILITY_SHIFT = 'liabilityShift';
+    public const JSON_PROPERTY_MC_BANK_NET_REFERENCE_NUMBER = 'mcBankNetReferenceNumber';
+    public const JSON_PROPERTY_MERCHANT_ADVICE_CODE = 'merchantAdviceCode';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_NETWORK_PROCESSING_MODE = 'networkProcessingMode';
+    public const JSON_PROPERTY_NETWORK_TX_REFERENCE = 'networkTxReference';
+    public const JSON_PROPERTY_OWNER_NAME = 'ownerName';
+    public const JSON_PROPERTY_PAYMENT_ACCOUNT_REFERENCE = 'paymentAccountReference';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_PAYMENT_METHOD_VARIANT = 'paymentMethodVariant';
+    public const JSON_PROPERTY_PAYOUT_ELIGIBLE = 'payoutEligible';
+    public const JSON_PROPERTY_REALTIME_ACCOUNT_UPDATER_STATUS = 'realtimeAccountUpdaterStatus';
+    public const JSON_PROPERTY_RECEIPT_FREE_TEXT = 'receiptFreeText';
+    public const JSON_PROPERTY_RECURRING_CONTRACT_TYPES = 'recurring.contractTypes';
+    public const JSON_PROPERTY_RECURRING_FIRST_PSP_REFERENCE = 'recurring.firstPspReference';
+    public const JSON_PROPERTY_RECURRING_RECURRING_DETAIL_REFERENCE = 'recurring.recurringDetailReference';
+    public const JSON_PROPERTY_RECURRING_SHOPPER_REFERENCE = 'recurring.shopperReference';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REFERRED = 'referred';
+    public const JSON_PROPERTY_REFUSAL_REASON_RAW = 'refusalReasonRaw';
+    public const JSON_PROPERTY_REQUEST_AMOUNT = 'requestAmount';
+    public const JSON_PROPERTY_REQUEST_CURRENCY_CODE = 'requestCurrencyCode';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_TERMINAL_ID = 'terminalId';
+    public const JSON_PROPERTY_THREE_D_AUTHENTICATED = 'threeDAuthenticated';
+    public const JSON_PROPERTY_THREE_D_AUTHENTICATED_RESPONSE = 'threeDAuthenticatedResponse';
+    public const JSON_PROPERTY_THREE_D_OFFERED = 'threeDOffered';
+    public const JSON_PROPERTY_THREE_D_OFFERED_RESPONSE = 'threeDOfferedResponse';
+    public const JSON_PROPERTY_THREE_D_S_VERSION = 'threeDSVersion';
+    public const JSON_PROPERTY_TOKENIZATION_SHOPPER_REFERENCE = 'tokenization.shopperReference';
+    public const JSON_PROPERTY_TOKENIZATION_STORE_OPERATION_TYPE = 'tokenization.store.operationType';
+    public const JSON_PROPERTY_TOKENIZATION_STORED_PAYMENT_METHOD_ID = 'tokenization.storedPaymentMethodId';
+    public const JSON_PROPERTY_TRANSACTION_LINK_ID = 'transactionLinkId';
+    public const JSON_PROPERTY_VISA_TRANSACTION_ID = 'visaTransactionId';
+    public const JSON_PROPERTY_XID = 'xid';
+
+    /**
       * The original name of the model.
       *
       * @var string

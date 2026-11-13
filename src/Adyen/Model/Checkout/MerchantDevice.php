@@ -26,6 +26,13 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_OS = 'os';
+    public const JSON_PROPERTY_OS_VERSION = 'osVersion';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+
+    /**
       * The original name of the model.
       *
       * @var string

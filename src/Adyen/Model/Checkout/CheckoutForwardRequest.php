@@ -26,6 +26,19 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_BASE_URL = 'baseUrl';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_OPTIONS = 'options';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_REQUEST = 'request';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+
+    /**
       * The original name of the model.
       *
       * @var string

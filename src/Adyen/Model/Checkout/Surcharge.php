@@ -26,6 +26,11 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_VALUE = 'value';
+
+    /**
       * The original name of the model.
       *
       * @var string

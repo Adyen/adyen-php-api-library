@@ -26,6 +26,11 @@ class AdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_OPI_INCLUDE_TRANS_TOKEN = 'opi.includeTransToken';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,46 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCT_INFO = 'acctInfo';
+    public const JSON_PROPERTY_ACCT_TYPE = 'acctType';
+    public const JSON_PROPERTY_ACQUIRER_B_I_N = 'acquirerBIN';
+    public const JSON_PROPERTY_ACQUIRER_MERCHANT_I_D = 'acquirerMerchantID';
+    public const JSON_PROPERTY_ADDR_MATCH = 'addrMatch';
+    public const JSON_PROPERTY_AUTHENTICATION_ONLY = 'authenticationOnly';
+    public const JSON_PROPERTY_CHALLENGE_INDICATOR = 'challengeIndicator';
+    public const JSON_PROPERTY_DEVICE_RENDER_OPTIONS = 'deviceRenderOptions';
+    public const JSON_PROPERTY_HOME_PHONE = 'homePhone';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_NAME = 'merchantName';
+    public const JSON_PROPERTY_MESSAGE_VERSION = 'messageVersion';
+    public const JSON_PROPERTY_MOBILE_PHONE = 'mobilePhone';
+    public const JSON_PROPERTY_NOTIFICATION_U_R_L = 'notificationURL';
+    public const JSON_PROPERTY_PAY_TOKEN_IND = 'payTokenInd';
+    public const JSON_PROPERTY_PAYMENT_AUTHENTICATION_USE_CASE = 'paymentAuthenticationUseCase';
+    public const JSON_PROPERTY_PURCHASE_INSTAL_DATA = 'purchaseInstalData';
+    public const JSON_PROPERTY_RECURRING_EXPIRY = 'recurringExpiry';
+    public const JSON_PROPERTY_RECURRING_FREQUENCY = 'recurringFrequency';
+    public const JSON_PROPERTY_SDK_APP_I_D = 'sdkAppID';
+    public const JSON_PROPERTY_SDK_EPHEM_PUB_KEY = 'sdkEphemPubKey';
+    public const JSON_PROPERTY_SDK_MAX_TIMEOUT = 'sdkMaxTimeout';
+    public const JSON_PROPERTY_SDK_REFERENCE_NUMBER = 'sdkReferenceNumber';
+    public const JSON_PROPERTY_SDK_TRANS_I_D = 'sdkTransID';
+    public const JSON_PROPERTY_THREE_D_S_COMP_IND = 'threeDSCompInd';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_AUTHENTICATION_IND = 'threeDSRequestorAuthenticationInd';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_AUTHENTICATION_INFO = 'threeDSRequestorAuthenticationInfo';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_CHALLENGE_IND = 'threeDSRequestorChallengeInd';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_I_D = 'threeDSRequestorID';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_NAME = 'threeDSRequestorName';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_PRIOR_AUTHENTICATION_INFO = 'threeDSRequestorPriorAuthenticationInfo';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_U_R_L = 'threeDSRequestorURL';
+    public const JSON_PROPERTY_TRANS_TYPE = 'transType';
+    public const JSON_PROPERTY_TRANSACTION_TYPE = 'transactionType';
+    public const JSON_PROPERTY_WHITE_LIST_STATUS = 'whiteListStatus';
+    public const JSON_PROPERTY_WORK_PHONE = 'workPhone';
+
+    /**
       * The original name of the model.
       *
       * @var string

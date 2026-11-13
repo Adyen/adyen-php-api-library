@@ -26,6 +26,20 @@ class CreateOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_EXPIRES_AT = 'expiresAt';
+    public const JSON_PROPERTY_FRAUD_RESULT = 'fraudResult';
+    public const JSON_PROPERTY_ORDER_DATA = 'orderData';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_REFUSAL_REASON = 'refusalReason';
+    public const JSON_PROPERTY_REMAINING_AMOUNT = 'remainingAmount';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+
+    /**
       * The original name of the model.
       *
       * @var string

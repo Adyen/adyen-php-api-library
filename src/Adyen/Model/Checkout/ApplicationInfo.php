@@ -26,6 +26,16 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADYEN_LIBRARY = 'adyenLibrary';
+    public const JSON_PROPERTY_ADYEN_PAYMENT_SOURCE = 'adyenPaymentSource';
+    public const JSON_PROPERTY_EXTERNAL_PLATFORM = 'externalPlatform';
+    public const JSON_PROPERTY_MERCHANT_APPLICATION = 'merchantApplication';
+    public const JSON_PROPERTY_MERCHANT_DEVICE = 'merchantDevice';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION_DEVICE = 'shopperInteractionDevice';
+
+    /**
       * The original name of the model.
       *
       * @var string

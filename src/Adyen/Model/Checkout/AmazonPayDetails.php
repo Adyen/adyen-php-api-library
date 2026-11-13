@@ -26,6 +26,15 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMAZON_PAY_TOKEN = 'amazonPayToken';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_CHECKOUT_SESSION_ID = 'checkoutSessionId';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

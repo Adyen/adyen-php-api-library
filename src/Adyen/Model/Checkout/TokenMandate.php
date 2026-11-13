@@ -26,6 +26,32 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_ID_TYPE = 'accountIdType';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_AMOUNT_RULE = 'amountRule';
+    public const JSON_PROPERTY_BILLING_ATTEMPTS_RULE = 'billingAttemptsRule';
+    public const JSON_PROPERTY_BILLING_DAY = 'billingDay';
+    public const JSON_PROPERTY_COUNT = 'count';
+    public const JSON_PROPERTY_CURRENCY = 'currency';
+    public const JSON_PROPERTY_ENDS_AT = 'endsAt';
+    public const JSON_PROPERTY_FREQUENCY = 'frequency';
+    public const JSON_PROPERTY_MANDATE_ID = 'mandateId';
+    public const JSON_PROPERTY_MASKED_ACCOUNT_ID = 'maskedAccountId';
+    public const JSON_PROPERTY_MIN_AMOUNT = 'minAmount';
+    public const JSON_PROPERTY_PREVIOUS_MANDATE_ID = 'previousMandateId';
+    public const JSON_PROPERTY_PROVIDER_ID = 'providerId';
+    public const JSON_PROPERTY_PURPOSE_CODE = 'purposeCode';
+    public const JSON_PROPERTY_RECURRING_AMOUNT = 'recurringAmount';
+    public const JSON_PROPERTY_RECURRING_STATEMENT = 'recurringStatement';
+    public const JSON_PROPERTY_REMARKS = 'remarks';
+    public const JSON_PROPERTY_RETRY_POLICY = 'retryPolicy';
+    public const JSON_PROPERTY_STARTS_AT = 'startsAt';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_TX_VARIANT = 'txVariant';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -50,7 +76,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => 'string',
         'maskedAccountId' => 'string',
         'minAmount' => 'string',
+        'previousMandateId' => 'string',
         'providerId' => 'string',
+        'purposeCode' => 'string',
         'recurringAmount' => 'string',
         'recurringStatement' => 'string',
         'remarks' => 'string',
@@ -80,7 +108,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => null,
         'maskedAccountId' => null,
         'minAmount' => null,
+        'previousMandateId' => null,
         'providerId' => null,
+        'purposeCode' => null,
         'recurringAmount' => null,
         'recurringStatement' => null,
         'remarks' => null,
@@ -108,7 +138,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => false,
         'maskedAccountId' => false,
         'minAmount' => false,
+        'previousMandateId' => false,
         'providerId' => false,
+        'purposeCode' => false,
         'recurringAmount' => false,
         'recurringStatement' => false,
         'remarks' => false,
@@ -231,7 +263,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => 'mandateId',
         'maskedAccountId' => 'maskedAccountId',
         'minAmount' => 'minAmount',
+        'previousMandateId' => 'previousMandateId',
         'providerId' => 'providerId',
+        'purposeCode' => 'purposeCode',
         'recurringAmount' => 'recurringAmount',
         'recurringStatement' => 'recurringStatement',
         'remarks' => 'remarks',
@@ -259,7 +293,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => 'setMandateId',
         'maskedAccountId' => 'setMaskedAccountId',
         'minAmount' => 'setMinAmount',
+        'previousMandateId' => 'setPreviousMandateId',
         'providerId' => 'setProviderId',
+        'purposeCode' => 'setPurposeCode',
         'recurringAmount' => 'setRecurringAmount',
         'recurringStatement' => 'setRecurringStatement',
         'remarks' => 'setRemarks',
@@ -287,7 +323,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'mandateId' => 'getMandateId',
         'maskedAccountId' => 'getMaskedAccountId',
         'minAmount' => 'getMinAmount',
+        'previousMandateId' => 'getPreviousMandateId',
         'providerId' => 'getProviderId',
+        'purposeCode' => 'getPurposeCode',
         'recurringAmount' => 'getRecurringAmount',
         'recurringStatement' => 'getRecurringStatement',
         'remarks' => 'getRemarks',
@@ -440,7 +478,9 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('mandateId', $data ?? [], null);
         $this->setIfExists('maskedAccountId', $data ?? [], null);
         $this->setIfExists('minAmount', $data ?? [], null);
+        $this->setIfExists('previousMandateId', $data ?? [], null);
         $this->setIfExists('providerId', $data ?? [], null);
+        $this->setIfExists('purposeCode', $data ?? [], null);
         $this->setIfExists('recurringAmount', $data ?? [], null);
         $this->setIfExists('recurringStatement', $data ?? [], null);
         $this->setIfExists('remarks', $data ?? [], null);
@@ -802,6 +842,30 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets previousMandateId
+     *
+     * @return string|null
+     */
+    public function getPreviousMandateId()
+    {
+        return $this->container['previousMandateId'] ?? null;
+    }
+
+    /**
+     * Sets previousMandateId
+     *
+     * @param string|null $previousMandateId The previous value of the `mandateId`, if the scheme has replaced it.  For UPI mandates, the `mandateId` is the Unique Mandate Number (UMN), which the scheme replaces when the mandate moves to another payment provider. In that case, this field holds the UMN the mandate was registered with before the move.
+     *
+     * @return self
+     */
+    public function setPreviousMandateId($previousMandateId): self
+    {
+        $this->container['previousMandateId'] = $previousMandateId;
+
+        return $this;
+    }
+
+    /**
      * Gets providerId
      *
      * @return string
@@ -821,6 +885,30 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setProviderId($providerId): self
     {
         $this->container['providerId'] = $providerId;
+
+        return $this;
+    }
+
+    /**
+     * Gets purposeCode
+     *
+     * @return string|null
+     */
+    public function getPurposeCode()
+    {
+        return $this->container['purposeCode'] ?? null;
+    }
+
+    /**
+     * Sets purposeCode
+     *
+     * @param string|null $purposeCode The purpose code the mandate is registered with at the scheme.  Possible values for UPI mandates:   * **14**: The mandate can only be debited by the payment provider that registered it.   * **AZ**: The mandate can be debited by any payment provider.
+     *
+     * @return self
+     */
+    public function setPurposeCode($purposeCode): self
+    {
+        $this->container['purposeCode'] = $purposeCode;
 
         return $this;
     }

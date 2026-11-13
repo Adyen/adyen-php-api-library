@@ -26,6 +26,35 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALIAS = 'alias';
+    public const JSON_PROPERTY_ALIAS_TYPE = 'aliasType';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BRAND = 'brand';
+    public const JSON_PROPERTY_CARD_BIN = 'cardBin';
+    public const JSON_PROPERTY_CREATED_AT = 'createdAt';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_EXTERNAL_RESPONSE_CODE = 'externalResponseCode';
+    public const JSON_PROPERTY_EXTERNAL_TOKEN_REFERENCE = 'externalTokenReference';
+    public const JSON_PROPERTY_FIRST_PSP_REFERENCE = 'firstPspReference';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_IBAN = 'iban';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_ISSUER_NAME = 'issuerName';
+    public const JSON_PROPERTY_LAST_FOUR = 'lastFour';
+    public const JSON_PROPERTY_MANDATE = 'mandate';
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_NETWORK_TX_REFERENCE = 'networkTxReference';
+    public const JSON_PROPERTY_OPI = 'opi';
+    public const JSON_PROPERTY_OWNER_NAME = 'ownerName';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SUPPORTED_RECURRING_PROCESSING_MODELS = 'supportedRecurringProcessingModels';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,12 @@ class AppIdentifierInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ANDROID_PACKAGE_ID = 'androidPackageId';
+    public const JSON_PROPERTY_IOS_SCHEME = 'iosScheme';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,26 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CH_ACC_AGE_IND = 'chAccAgeInd';
+    public const JSON_PROPERTY_CH_ACC_CHANGE = 'chAccChange';
+    public const JSON_PROPERTY_CH_ACC_CHANGE_IND = 'chAccChangeInd';
+    public const JSON_PROPERTY_CH_ACC_PW_CHANGE = 'chAccPwChange';
+    public const JSON_PROPERTY_CH_ACC_PW_CHANGE_IND = 'chAccPwChangeInd';
+    public const JSON_PROPERTY_CH_ACC_STRING = 'chAccString';
+    public const JSON_PROPERTY_NB_PURCHASE_ACCOUNT = 'nbPurchaseAccount';
+    public const JSON_PROPERTY_PAYMENT_ACC_AGE = 'paymentAccAge';
+    public const JSON_PROPERTY_PAYMENT_ACC_IND = 'paymentAccInd';
+    public const JSON_PROPERTY_PROVISION_ATTEMPTS_DAY = 'provisionAttemptsDay';
+    public const JSON_PROPERTY_SHIP_ADDRESS_USAGE = 'shipAddressUsage';
+    public const JSON_PROPERTY_SHIP_ADDRESS_USAGE_IND = 'shipAddressUsageInd';
+    public const JSON_PROPERTY_SHIP_NAME_INDICATOR = 'shipNameIndicator';
+    public const JSON_PROPERTY_SUSPICIOUS_ACC_ACTIVITY = 'suspiciousAccActivity';
+    public const JSON_PROPERTY_TXN_ACTIVITY_DAY = 'txnActivityDay';
+    public const JSON_PROPERTY_TXN_ACTIVITY_YEAR = 'txnActivityYear';
+
+    /**
       * The original name of the model.
       *
       * @var string

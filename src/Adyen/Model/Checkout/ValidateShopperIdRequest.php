@@ -26,6 +26,15 @@ class ValidateShopperIdRequest implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+
+    /**
       * The original name of the model.
       *
       * @var string

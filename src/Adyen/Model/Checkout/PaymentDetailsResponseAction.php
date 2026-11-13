@@ -36,6 +36,17 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     ];
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHORISATION_TOKEN = 'authorisationToken';
+    public const JSON_PROPERTY_PAYMENT_DATA = 'paymentData';
+    public const JSON_PROPERTY_PAYMENT_METHOD_TYPE = 'paymentMethodType';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TOKEN = 'token';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

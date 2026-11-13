@@ -26,6 +26,20 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_ORDER_I_D = 'orderID';
+    public const JSON_PROPERTY_PAYEE_PREFERRED = 'payeePreferred';
+    public const JSON_PROPERTY_PAYER_I_D = 'payerID';
+    public const JSON_PROPERTY_PAYER_SELECTED = 'payerSelected';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,11 @@ class PaymentValidations implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_NAME = 'name';
+
+    /**
       * The original name of the model.
       *
       * @var string

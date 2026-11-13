@@ -26,6 +26,13 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_RETRY_CHAIN_ATTEMPT_NUMBER = 'retry.chainAttemptNumber';
+    public const JSON_PROPERTY_RETRY_ORDER_ATTEMPT_NUMBER = 'retry.orderAttemptNumber';
+    public const JSON_PROPERTY_RETRY_SKIP_RETRY = 'retry.skipRetry';
+
+    /**
       * The original name of the model.
       *
       * @var string

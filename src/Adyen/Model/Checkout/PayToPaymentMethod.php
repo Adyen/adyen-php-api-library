@@ -25,6 +25,11 @@ class PayToPaymentMethod extends ShopperIdPaymentMethod
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+
+    /**
       * The original name of the model.
       *
       * @var string

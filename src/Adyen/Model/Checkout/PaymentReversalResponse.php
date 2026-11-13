@@ -26,6 +26,15 @@ class PaymentReversalResponse implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_PAYMENT_PSP_REFERENCE = 'paymentPspReference';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_STATUS = 'status';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,28 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_ALLOWED_PAYMENT_METHODS = 'allowedPaymentMethods';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_BLOCKED_PAYMENT_METHODS = 'blockedPaymentMethods';
+    public const JSON_PROPERTY_BROWSER_INFO = 'browserInfo';
+    public const JSON_PROPERTY_CHANNEL = 'channel';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_ORDER = 'order';
+    public const JSON_PROPERTY_SHOPPER_CONVERSION_ID = 'shopperConversionId';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SPLIT_CARD_FUNDING_SOURCES = 'splitCardFundingSources';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_STORE_FILTRATION_MODE = 'storeFiltrationMode';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+
+    /**
       * The original name of the model.
       *
       * @var string

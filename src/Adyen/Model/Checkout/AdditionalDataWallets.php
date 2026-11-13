@@ -26,6 +26,16 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ANDROIDPAY_TOKEN = 'androidpay.token';
+    public const JSON_PROPERTY_MASTERPASS_TRANSACTION_ID = 'masterpass.transactionId';
+    public const JSON_PROPERTY_PAYMENT_TOKEN = 'payment.token';
+    public const JSON_PROPERTY_PAYWITHGOOGLE_TOKEN = 'paywithgoogle.token';
+    public const JSON_PROPERTY_SAMSUNGPAY_TOKEN = 'samsungpay.token';
+    public const JSON_PROPERTY_VISACHECKOUT_CALL_ID = 'visacheckout.callId';
+
+    /**
       * The original name of the model.
       *
       * @var string

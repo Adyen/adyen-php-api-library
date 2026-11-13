@@ -26,6 +26,16 @@ class CheckoutNativeRedirectAction implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DATA = 'data';
+    public const JSON_PROPERTY_METHOD = 'method';
+    public const JSON_PROPERTY_NATIVE_REDIRECT_DATA = 'nativeRedirectData';
+    public const JSON_PROPERTY_PAYMENT_METHOD_TYPE = 'paymentMethodType';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

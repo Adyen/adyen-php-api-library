@@ -26,6 +26,12 @@ class ResponseAdditionalDataDomesticError implements ModelInterface, ArrayAccess
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DOMESTIC_REFUSAL_REASON_RAW = 'domesticRefusalReasonRaw';
+    public const JSON_PROPERTY_DOMESTIC_SHOPPER_ADVICE = 'domesticShopperAdvice';
+
+    /**
       * The original name of the model.
       *
       * @var string

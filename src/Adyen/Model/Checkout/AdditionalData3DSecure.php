@@ -26,6 +26,16 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALLOW3_D_S2 = 'allow3DS2';
+    public const JSON_PROPERTY_CHALLENGE_WINDOW_SIZE = 'challengeWindowSize';
+    public const JSON_PROPERTY_EXECUTE_THREE_D = 'executeThreeD';
+    public const JSON_PROPERTY_MPI_IMPLEMENTATION_TYPE = 'mpiImplementationType';
+    public const JSON_PROPERTY_SCA_EXEMPTION = 'scaExemption';
+    public const JSON_PROPERTY_THREE_D_S_VERSION = 'threeDSVersion';
+
+    /**
       * The original name of the model.
       *
       * @var string

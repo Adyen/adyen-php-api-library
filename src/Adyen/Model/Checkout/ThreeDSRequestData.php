@@ -26,6 +26,14 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHALLENGE_WINDOW_SIZE = 'challengeWindowSize';
+    public const JSON_PROPERTY_DATA_ONLY = 'dataOnly';
+    public const JSON_PROPERTY_NATIVE_THREE_D_S = 'nativeThreeDS';
+    public const JSON_PROPERTY_THREE_D_S_VERSION = 'threeDSVersion';
+
+    /**
       * The original name of the model.
       *
       * @var string

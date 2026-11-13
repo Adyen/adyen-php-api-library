@@ -26,6 +26,38 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BILLING_SEQUENCE_NUMBER = 'billingSequenceNumber';
+    public const JSON_PROPERTY_BRAND = 'brand';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_CUPSECUREPLUS_SMSCODE = 'cupsecureplus.smscode';
+    public const JSON_PROPERTY_CVC = 'cvc';
+    public const JSON_PROPERTY_ENCRYPTED_CARD = 'encryptedCard';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_MONTH = 'encryptedExpiryMonth';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_YEAR = 'encryptedExpiryYear';
+    public const JSON_PROPERTY_ENCRYPTED_PASSWORD = 'encryptedPassword';
+    public const JSON_PROPERTY_ENCRYPTED_SECURITY_CODE = 'encryptedSecurityCode';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_FASTLANE_DATA = 'fastlaneData';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_NETWORK_PAYMENT_REFERENCE = 'networkPaymentReference';
+    public const JSON_PROPERTY_NUMBER = 'number';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_SHOPPER_NOTIFICATION_REFERENCE = 'shopperNotificationReference';
+    public const JSON_PROPERTY_SRC_CORRELATION_ID = 'srcCorrelationId';
+    public const JSON_PROPERTY_SRC_DIGITAL_CARD_ID = 'srcDigitalCardId';
+    public const JSON_PROPERTY_SRC_SCHEME = 'srcScheme';
+    public const JSON_PROPERTY_SRC_TOKEN_REFERENCE = 'srcTokenReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_THREE_D_S2_SDK_VERSION = 'threeDS2SdkVersion';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

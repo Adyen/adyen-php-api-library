@@ -26,6 +26,19 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCEPT_HEADER = 'acceptHeader';
+    public const JSON_PROPERTY_COLOR_DEPTH = 'colorDepth';
+    public const JSON_PROPERTY_JAVA_ENABLED = 'javaEnabled';
+    public const JSON_PROPERTY_JAVA_SCRIPT_ENABLED = 'javaScriptEnabled';
+    public const JSON_PROPERTY_LANGUAGE = 'language';
+    public const JSON_PROPERTY_SCREEN_HEIGHT = 'screenHeight';
+    public const JSON_PROPERTY_SCREEN_WIDTH = 'screenWidth';
+    public const JSON_PROPERTY_TIME_ZONE_OFFSET = 'timeZoneOffset';
+    public const JSON_PROPERTY_USER_AGENT = 'userAgent';
+
+    /**
       * The original name of the model.
       *
       * @var string

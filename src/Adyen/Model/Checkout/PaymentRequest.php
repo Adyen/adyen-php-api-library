@@ -26,6 +26,85 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_INFO = 'accountInfo';
+    public const JSON_PROPERTY_ADDITIONAL_AMOUNT = 'additionalAmount';
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_AUTHENTICATION_DATA = 'authenticationData';
+    public const JSON_PROPERTY_BANK_ACCOUNT = 'bankAccount';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BROWSER_INFO = 'browserInfo';
+    public const JSON_PROPERTY_CAPTURE_DELAY_HOURS = 'captureDelayHours';
+    public const JSON_PROPERTY_CHANNEL = 'channel';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_COMPANY = 'company';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DCC_QUOTE = 'dccQuote';
+    public const JSON_PROPERTY_DELIVER_AT = 'deliverAt';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DELIVERY_DATE = 'deliveryDate';
+    public const JSON_PROPERTY_DEVICE_FINGERPRINT = 'deviceFingerprint';
+    public const JSON_PROPERTY_ENABLE_ONE_CLICK = 'enableOneClick';
+    public const JSON_PROPERTY_ENABLE_PAY_OUT = 'enablePayOut';
+    public const JSON_PROPERTY_ENABLE_RECURRING = 'enableRecurring';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA = 'enhancedSchemeData';
+    public const JSON_PROPERTY_ENTITY_TYPE = 'entityType';
+    public const JSON_PROPERTY_FRAUD_OFFSET = 'fraudOffset';
+    public const JSON_PROPERTY_FUND_ORIGIN = 'fundOrigin';
+    public const JSON_PROPERTY_FUND_RECIPIENT = 'fundRecipient';
+    public const JSON_PROPERTY_INDUSTRY_USAGE = 'industryUsage';
+    public const JSON_PROPERTY_INSTALLMENTS = 'installments';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_LOCALIZED_SHOPPER_STATEMENT = 'localizedShopperStatement';
+    public const JSON_PROPERTY_MANDATE = 'mandate';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_ORDER_REFERENCE = 'merchantOrderReference';
+    public const JSON_PROPERTY_MERCHANT_RISK_INDICATOR = 'merchantRiskIndicator';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_MPI_DATA = 'mpiData';
+    public const JSON_PROPERTY_OPI = 'opi';
+    public const JSON_PROPERTY_ORDER = 'order';
+    public const JSON_PROPERTY_ORDER_REFERENCE = 'orderReference';
+    public const JSON_PROPERTY_ORIGIN = 'origin';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_PAYMENT_VALIDATIONS = 'paymentValidations';
+    public const JSON_PROPERTY_PLATFORM_CHARGEBACK_LOGIC = 'platformChargebackLogic';
+    public const JSON_PROPERTY_RECURRING_EXPIRY = 'recurringExpiry';
+    public const JSON_PROPERTY_RECURRING_FREQUENCY = 'recurringFrequency';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REDIRECT_FROM_ISSUER_METHOD = 'redirectFromIssuerMethod';
+    public const JSON_PROPERTY_REDIRECT_TO_ISSUER_METHOD = 'redirectToIssuerMethod';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_RETURN_URL = 'returnUrl';
+    public const JSON_PROPERTY_RISK_DATA = 'riskData';
+    public const JSON_PROPERTY_SESSION_VALIDITY = 'sessionValidity';
+    public const JSON_PROPERTY_SHOPPER_CONVERSION_ID = 'shopperConversionId';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SHOPPER_STATEMENT = 'shopperStatement';
+    public const JSON_PROPERTY_SHOPPER_TAX_INFO = 'shopperTaxInfo';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_STORE_PAYMENT_METHOD = 'storePaymentMethod';
+    public const JSON_PROPERTY_SUB_MERCHANTS = 'subMerchants';
+    public const JSON_PROPERTY_SURCHARGE = 'surcharge';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THIRD_PARTY_TOKEN_REDUNDANCY_INFO = 'thirdPartyTokenRedundancyInfo';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+    public const JSON_PROPERTY_THREE_D_S_AUTHENTICATION_ONLY = 'threeDSAuthenticationOnly';
+    public const JSON_PROPERTY_TRUSTED_SHOPPER = 'trustedShopper';
+
+    /**
       * The original name of the model.
       *
       * @var string

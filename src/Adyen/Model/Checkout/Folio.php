@@ -26,6 +26,12 @@ class Folio implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CASH_ADVANCES = 'cashAdvances';
+    public const JSON_PROPERTY_NUMBER = 'number';
+
+    /**
       * The original name of the model.
       *
       * @var string

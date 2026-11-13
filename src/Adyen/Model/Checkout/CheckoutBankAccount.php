@@ -26,6 +26,20 @@ class CheckoutBankAccount implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_TYPE = 'accountType';
+    public const JSON_PROPERTY_BANK_ACCOUNT_NUMBER = 'bankAccountNumber';
+    public const JSON_PROPERTY_BANK_CITY = 'bankCity';
+    public const JSON_PROPERTY_BANK_LOCATION_ID = 'bankLocationId';
+    public const JSON_PROPERTY_BANK_NAME = 'bankName';
+    public const JSON_PROPERTY_BIC = 'bic';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_IBAN = 'iban';
+    public const JSON_PROPERTY_OWNER_NAME = 'ownerName';
+    public const JSON_PROPERTY_TAX_ID = 'taxId';
+
+    /**
       * The original name of the model.
       *
       * @var string

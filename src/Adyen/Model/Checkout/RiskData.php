@@ -26,6 +26,14 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CLIENT_DATA = 'clientData';
+    public const JSON_PROPERTY_CUSTOM_FIELDS = 'customFields';
+    public const JSON_PROPERTY_FRAUD_OFFSET = 'fraudOffset';
+    public const JSON_PROPERTY_PROFILE_REFERENCE = 'profileReference';
+
+    /**
       * The original name of the model.
       *
       * @var string

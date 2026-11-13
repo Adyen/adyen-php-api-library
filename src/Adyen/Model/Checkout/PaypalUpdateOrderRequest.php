@@ -26,6 +26,19 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DELIVERY_METHODS = 'deliveryMethods';
+    public const JSON_PROPERTY_DISCOUNT_AMOUNT = 'discountAmount';
+    public const JSON_PROPERTY_PAYMENT_DATA = 'paymentData';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_SESSION_ID = 'sessionId';
+    public const JSON_PROPERTY_SHIPPING_AMOUNT = 'shippingAmount';
+    public const JSON_PROPERTY_TAX_TOTAL = 'taxTotal';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,33 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CAR_RENTAL_CHECK_OUT_DATE = 'carRental.checkOutDate';
+    public const JSON_PROPERTY_CAR_RENTAL_CUSTOMER_SERVICE_TOLL_FREE_NUMBER = 'carRental.customerServiceTollFreeNumber';
+    public const JSON_PROPERTY_CAR_RENTAL_DAYS_RENTED = 'carRental.daysRented';
+    public const JSON_PROPERTY_CAR_RENTAL_FUEL_CHARGES = 'carRental.fuelCharges';
+    public const JSON_PROPERTY_CAR_RENTAL_INSURANCE_CHARGES = 'carRental.insuranceCharges';
+    public const JSON_PROPERTY_CAR_RENTAL_LOCATION_CITY = 'carRental.locationCity';
+    public const JSON_PROPERTY_CAR_RENTAL_LOCATION_COUNTRY = 'carRental.locationCountry';
+    public const JSON_PROPERTY_CAR_RENTAL_LOCATION_STATE_PROVINCE = 'carRental.locationStateProvince';
+    public const JSON_PROPERTY_CAR_RENTAL_NO_SHOW_INDICATOR = 'carRental.noShowIndicator';
+    public const JSON_PROPERTY_CAR_RENTAL_ONE_WAY_DROP_OFF_CHARGES = 'carRental.oneWayDropOffCharges';
+    public const JSON_PROPERTY_CAR_RENTAL_RATE = 'carRental.rate';
+    public const JSON_PROPERTY_CAR_RENTAL_RATE_INDICATOR = 'carRental.rateIndicator';
+    public const JSON_PROPERTY_CAR_RENTAL_RENTAL_AGREEMENT_NUMBER = 'carRental.rentalAgreementNumber';
+    public const JSON_PROPERTY_CAR_RENTAL_RENTAL_CLASS_ID = 'carRental.rentalClassId';
+    public const JSON_PROPERTY_CAR_RENTAL_RENTER_NAME = 'carRental.renterName';
+    public const JSON_PROPERTY_CAR_RENTAL_RETURN_CITY = 'carRental.returnCity';
+    public const JSON_PROPERTY_CAR_RENTAL_RETURN_COUNTRY = 'carRental.returnCountry';
+    public const JSON_PROPERTY_CAR_RENTAL_RETURN_DATE = 'carRental.returnDate';
+    public const JSON_PROPERTY_CAR_RENTAL_RETURN_LOCATION_ID = 'carRental.returnLocationId';
+    public const JSON_PROPERTY_CAR_RENTAL_RETURN_STATE_PROVINCE = 'carRental.returnStateProvince';
+    public const JSON_PROPERTY_CAR_RENTAL_TAX_EXEMPT_INDICATOR = 'carRental.taxExemptIndicator';
+    public const JSON_PROPERTY_TRAVEL_ENTERTAINMENT_AUTH_DATA_DURATION = 'travelEntertainmentAuthData.duration';
+    public const JSON_PROPERTY_TRAVEL_ENTERTAINMENT_AUTH_DATA_MARKET = 'travelEntertainmentAuthData.market';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,12 @@ class Agency implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_INVOICE_NUMBER = 'invoiceNumber';
+    public const JSON_PROPERTY_PLAN_NAME = 'planName';
+
+    /**
       * The original name of the model.
       *
       * @var string

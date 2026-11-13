@@ -26,6 +26,15 @@ class CheckoutErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonS
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ERROR_CODE = 'errorCode';
+    public const JSON_PROPERTY_ERROR_TYPE = 'errorType';
+    public const JSON_PROPERTY_MESSAGE = 'message';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_STATUS = 'status';
+
+    /**
       * The original name of the model.
       *
       * @var string

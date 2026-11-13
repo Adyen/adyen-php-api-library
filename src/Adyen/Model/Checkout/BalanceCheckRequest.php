@@ -26,6 +26,54 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_INFO = 'accountInfo';
+    public const JSON_PROPERTY_ADDITIONAL_AMOUNT = 'additionalAmount';
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BROWSER_INFO = 'browserInfo';
+    public const JSON_PROPERTY_CAPTURE_DELAY_HOURS = 'captureDelayHours';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DCC_QUOTE = 'dccQuote';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DELIVERY_DATE = 'deliveryDate';
+    public const JSON_PROPERTY_DEVICE_FINGERPRINT = 'deviceFingerprint';
+    public const JSON_PROPERTY_FRAUD_OFFSET = 'fraudOffset';
+    public const JSON_PROPERTY_INSTALLMENTS = 'installments';
+    public const JSON_PROPERTY_LOCALIZED_SHOPPER_STATEMENT = 'localizedShopperStatement';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_ORDER_REFERENCE = 'merchantOrderReference';
+    public const JSON_PROPERTY_MERCHANT_RISK_INDICATOR = 'merchantRiskIndicator';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_ORDER_REFERENCE = 'orderReference';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_RECURRING = 'recurring';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SELECTED_BRAND = 'selectedBrand';
+    public const JSON_PROPERTY_SELECTED_RECURRING_DETAIL_REFERENCE = 'selectedRecurringDetailReference';
+    public const JSON_PROPERTY_SESSION_ID = 'sessionId';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SHOPPER_STATEMENT = 'shopperStatement';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+    public const JSON_PROPERTY_THREE_D_S_AUTHENTICATION_ONLY = 'threeDSAuthenticationOnly';
+    public const JSON_PROPERTY_TOTALS_GROUP = 'totalsGroup';
+    public const JSON_PROPERTY_TRUSTED_SHOPPER = 'trustedShopper';
+
+    /**
       * The original name of the model.
       *
       * @var string

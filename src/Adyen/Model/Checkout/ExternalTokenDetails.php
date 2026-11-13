@@ -26,6 +26,18 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_NUMBER = 'number';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

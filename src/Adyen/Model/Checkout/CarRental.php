@@ -26,6 +26,22 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CUSTOMER_SERVICE_PHONE_NUMBER = 'customerServicePhoneNumber';
+    public const JSON_PROPERTY_NO_SHOW = 'noShow';
+    public const JSON_PROPERTY_PICKUP_INFO = 'pickupInfo';
+    public const JSON_PROPERTY_RATE_TYPE = 'rateType';
+    public const JSON_PROPERTY_RENTAL_AGREEMENT_NUMBER = 'rentalAgreementNumber';
+    public const JSON_PROPERTY_RENTAL_CLASS_ID = 'rentalClassId';
+    public const JSON_PROPERTY_RENTAL_DAYS = 'rentalDays';
+    public const JSON_PROPERTY_RENTAL_RATE = 'rentalRate';
+    public const JSON_PROPERTY_RENTAL_SURCHARGES = 'rentalSurcharges';
+    public const JSON_PROPERTY_RENTER_NAME = 'renterName';
+    public const JSON_PROPERTY_RETURN_INFO = 'returnInfo';
+    public const JSON_PROPERTY_TAX_EXEMPT = 'taxExempt';
+
+    /**
       * The original name of the model.
       *
       * @var string

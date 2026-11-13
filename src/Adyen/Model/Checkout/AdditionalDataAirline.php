@@ -26,6 +26,39 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AIRLINE_AGENCY_INVOICE_NUMBER = 'airline.agency_invoice_number';
+    public const JSON_PROPERTY_AIRLINE_AGENCY_PLAN_NAME = 'airline.agency_plan_name';
+    public const JSON_PROPERTY_AIRLINE_AIRLINE_CODE = 'airline.airline_code';
+    public const JSON_PROPERTY_AIRLINE_AIRLINE_DESIGNATOR_CODE = 'airline.airline_designator_code';
+    public const JSON_PROPERTY_AIRLINE_BOARDING_FEE = 'airline.boarding_fee';
+    public const JSON_PROPERTY_AIRLINE_COMPUTERIZED_RESERVATION_SYSTEM = 'airline.computerized_reservation_system';
+    public const JSON_PROPERTY_AIRLINE_CUSTOMER_REFERENCE_NUMBER = 'airline.customer_reference_number';
+    public const JSON_PROPERTY_AIRLINE_DOCUMENT_TYPE = 'airline.document_type';
+    public const JSON_PROPERTY_AIRLINE_FLIGHT_DATE = 'airline.flight_date';
+    public const JSON_PROPERTY_AIRLINE_ISSUE_DATE = 'airline.issue_date';
+    public const JSON_PROPERTY_AIRLINE_LEG_CARRIER_CODE = 'airline.leg.carrier_code';
+    public const JSON_PROPERTY_AIRLINE_LEG_CLASS_OF_TRAVEL = 'airline.leg.class_of_travel';
+    public const JSON_PROPERTY_AIRLINE_LEG_DATE_OF_TRAVEL = 'airline.leg.date_of_travel';
+    public const JSON_PROPERTY_AIRLINE_LEG_DEPART_AIRPORT = 'airline.leg.depart_airport';
+    public const JSON_PROPERTY_AIRLINE_LEG_DEPART_TAX = 'airline.leg.depart_tax';
+    public const JSON_PROPERTY_AIRLINE_LEG_DESTINATION_CODE = 'airline.leg.destination_code';
+    public const JSON_PROPERTY_AIRLINE_LEG_FARE_BASE_CODE = 'airline.leg.fare_base_code';
+    public const JSON_PROPERTY_AIRLINE_LEG_FLIGHT_NUMBER = 'airline.leg.flight_number';
+    public const JSON_PROPERTY_AIRLINE_LEG_STOP_OVER_CODE = 'airline.leg.stop_over_code';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_DATE_OF_BIRTH = 'airline.passenger.date_of_birth';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_FIRST_NAME = 'airline.passenger.first_name';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_LAST_NAME = 'airline.passenger.last_name';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_PHONE_NUMBER = 'airline.passenger.phone_number';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_TRAVELLER_TYPE = 'airline.passenger.traveller_type';
+    public const JSON_PROPERTY_AIRLINE_PASSENGER_NAME = 'airline.passenger_name';
+    public const JSON_PROPERTY_AIRLINE_TICKET_ISSUE_ADDRESS = 'airline.ticket_issue_address';
+    public const JSON_PROPERTY_AIRLINE_TICKET_NUMBER = 'airline.ticket_number';
+    public const JSON_PROPERTY_AIRLINE_TRAVEL_AGENCY_CODE = 'airline.travel_agency_code';
+    public const JSON_PROPERTY_AIRLINE_TRAVEL_AGENCY_NAME = 'airline.travel_agency_name';
+
+    /**
       * The original name of the model.
       *
       * @var string

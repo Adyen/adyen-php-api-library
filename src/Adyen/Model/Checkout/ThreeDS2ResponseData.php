@@ -26,6 +26,29 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACS_CHALLENGE_MANDATED = 'acsChallengeMandated';
+    public const JSON_PROPERTY_ACS_OPERATOR_I_D = 'acsOperatorID';
+    public const JSON_PROPERTY_ACS_REFERENCE_NUMBER = 'acsReferenceNumber';
+    public const JSON_PROPERTY_ACS_SIGNED_CONTENT = 'acsSignedContent';
+    public const JSON_PROPERTY_ACS_TRANS_I_D = 'acsTransID';
+    public const JSON_PROPERTY_ACS_U_R_L = 'acsURL';
+    public const JSON_PROPERTY_AUTHENTICATION_TYPE = 'authenticationType';
+    public const JSON_PROPERTY_CARD_HOLDER_INFO = 'cardHolderInfo';
+    public const JSON_PROPERTY_CAVV_ALGORITHM = 'cavvAlgorithm';
+    public const JSON_PROPERTY_CHALLENGE_INDICATOR = 'challengeIndicator';
+    public const JSON_PROPERTY_DS_REFERENCE_NUMBER = 'dsReferenceNumber';
+    public const JSON_PROPERTY_DS_TRANS_I_D = 'dsTransID';
+    public const JSON_PROPERTY_EXEMPTION_INDICATOR = 'exemptionIndicator';
+    public const JSON_PROPERTY_MESSAGE_VERSION = 'messageVersion';
+    public const JSON_PROPERTY_RISK_SCORE = 'riskScore';
+    public const JSON_PROPERTY_SDK_EPHEM_PUB_KEY = 'sdkEphemPubKey';
+    public const JSON_PROPERTY_THREE_D_S_SERVER_TRANS_I_D = 'threeDSServerTransID';
+    public const JSON_PROPERTY_TRANS_STATUS = 'transStatus';
+    public const JSON_PROPERTY_TRANS_STATUS_REASON = 'transStatusReason';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,20 @@ class CheckoutForwardRequestCard implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CVC = 'cvc';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_MONTH = 'encryptedExpiryMonth';
+    public const JSON_PROPERTY_ENCRYPTED_EXPIRY_YEAR = 'encryptedExpiryYear';
+    public const JSON_PROPERTY_ENCRYPTED_SECURITY_CODE = 'encryptedSecurityCode';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_NUMBER = 'number';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,12 @@ class ConfidenceScore implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ERRORS = 'errors';
+    public const JSON_PROPERTY_SCORE = 'score';
+
+    /**
       * The original name of the model.
       *
       * @var string
