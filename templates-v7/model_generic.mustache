@@ -13,6 +13,15 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         {{/-last}}{{/mappedModels}}
     ];
 {{/discriminator}}
+{{#vars}}
+{{#-first}}
+
+    /**
+     * JSON field names of this model's properties.
+     */
+{{/-first}}
+    public const JSON_PROPERTY_{{nameInSnakeCase}} = '{{baseName}}';
+{{/vars}}
 
     /**
       * The original name of the model.

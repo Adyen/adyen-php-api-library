@@ -10,6 +10,7 @@
 
 namespace Adyen\Tests\Unit;
 
+use Adyen\Model\BalanceControl\BalanceTransferRequest;
 use Adyen\Model\BinLookup\BinDetail;
 use Adyen\Model\BinLookup\DSPublicKeyDetail;
 use Adyen\Model\BinLookup\ThreeDS2CardRangeDetail;
@@ -354,6 +355,42 @@ class ModelTest extends TestCase
 
         self::assertStringContainsString(Result::class . ': unexpected enum value', $warnings);
         self::assertSame(2, substr_count($warnings, 'unexpected enum value'));
+    }
+
+    /**
+     * Each model field has a JSON_PROPERTY_* constant holding its JSON field name.
+     */
+    public function testFieldNameConstantsMatchTheModelFields(): void
+    {
+        self::assertSame('fromMerchant', BalanceTransferRequest::JSON_PROPERTY_FROM_MERCHANT);
+        self::assertSame('toMerchant', BalanceTransferRequest::JSON_PROPERTY_TO_MERCHANT);
+
+        $constants = array_filter(
+            (new \ReflectionClass(BalanceTransferRequest::class))->getConstants(),
+            static fn (string $name): bool => str_starts_with($name, 'JSON_PROPERTY_'),
+            ARRAY_FILTER_USE_KEY
+        );
+        $fieldNames = array_values(BalanceTransferRequest::attributeMap());
+        $constantValues = array_values($constants);
+        sort($fieldNames);
+        sort($constantValues);
+
+        self::assertSame($fieldNames, $constantValues);
+    }
+
+    /**
+     * Field-name constants can replace string keys when building and reading a model.
+     */
+    public function testFieldNameConstantsWorkAsArrayKeys(): void
+    {
+        $model = new BalanceTransferRequest([
+            BalanceTransferRequest::JSON_PROPERTY_FROM_MERCHANT => 'MerchantA',
+            BalanceTransferRequest::JSON_PROPERTY_REFERENCE => 'transfer-123',
+        ]);
+
+        self::assertSame('MerchantA', $model->getFromMerchant());
+        self::assertSame('transfer-123', $model[BalanceTransferRequest::JSON_PROPERTY_REFERENCE]);
+        self::assertArrayHasKey(BalanceTransferRequest::JSON_PROPERTY_FROM_MERCHANT, $model->toArray());
     }
 
     /**

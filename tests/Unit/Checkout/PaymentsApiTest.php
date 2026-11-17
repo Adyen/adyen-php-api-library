@@ -120,6 +120,51 @@ class PaymentsApiTest extends BaseTest
         );
     }
 
+    /**
+     * A sessionResult token with reserved characters is percent-encoded and reaches the server unchanged.
+     *
+     * @dataProvider sessionResultWithReservedCharactersProvider
+     */
+    public function testGetResultOfPaymentSessionPreservesReservedCharactersInSessionResult(
+        string $sessionResult,
+        string $expectedQuery
+    ): void {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/getResultOfPaymentSession-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->getResultOfPaymentSession('CS12345678', $sessionResult);
+
+        $uri = $container[0]['request']->getUri();
+        $this->assertSame($expectedQuery, $uri->getQuery());
+        // parse_str decodes "+" as a space, like servers that use form decoding,
+        // so an unencoded "+" in the token would fail this check.
+        parse_str($uri->getQuery(), $query);
+        $this->assertSame(['sessionResult' => $sessionResult], $query);
+        $this->assertSame('/v72/sessions/CS12345678', $uri->getPath());
+    }
+
+    public static function sessionResultWithReservedCharactersProvider(): array
+    {
+        return [
+            'plus' => ['Ab1+cd+ef', 'sessionResult=Ab1%2Bcd%2Bef'],
+            'slash' => ['Ab1/cd/ef', 'sessionResult=Ab1%2Fcd%2Fef'],
+            'base64 padding' => ['Ab1cd==', 'sessionResult=Ab1cd%3D%3D'],
+            'ampersand and equals' => ['a&sessionId=other', 'sessionResult=a%26sessionId%3Dother'],
+            'hash and space' => ['part one#fragment', 'sessionResult=part%20one%23fragment'],
+            'realistic base64 token' => [
+                'Ab02b4c0!BQABAgB+/Xy9zK8wR==&x=1',
+                'sessionResult=Ab02b4c0%21BQABAgB%2B%2FXy9zK8wR%3D%3D%26x%3D1',
+            ],
+            'unreserved characters stay as-is' => ['Ab-1_c.d~e', 'sessionResult=Ab-1_c.d~e'],
+            'other sub-delimiters' => ["!*()',;:@\$?[]%", 'sessionResult=%21%2A%28%29%27%2C%3B%3A%40%24%3F%5B%5D%25'],
+        ];
+    }
+
     public function testPaymentsSendsExpectedUrlOnTest(): void
     {
         $container = [];
