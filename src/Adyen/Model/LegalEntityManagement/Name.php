@@ -26,6 +26,13 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_INFIX = 'infix';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -122,6 +129,21 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -253,13 +275,10 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -276,13 +295,13 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getFirstName()
     {
-        return $this->container['firstName'];
+        return $this->container['firstName'] ?? null;
     }
 
     /**
      * Sets firstName
      *
-     * @param string $firstName The individual's first name. Must not be blank.
+     * @param string $firstName The individual's first name. Must not be blank.  The combined length of `firstName` and `lastName` must be at least 3 characters. For example, a `firstName` of N and `lastName` of Ha is accepted.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -300,13 +319,13 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getInfix()
     {
-        return $this->container['infix'];
+        return $this->container['infix'] ?? null;
     }
 
     /**
      * Sets infix
      *
-     * @param string|null $infix The infix in the individual's name, if any.
+     * @param string|null $infix The infix in the individual's name, if any.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only symbols, only numbers, or only spaces.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -324,13 +343,13 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getLastName()
     {
-        return $this->container['lastName'];
+        return $this->container['lastName'] ?? null;
     }
 
     /**
      * Sets lastName
      *
-     * @param string $lastName The individual's last name. Must not be blank.
+     * @param string $lastName The individual's last name. Must not be blank.  The combined length of `firstName` and `lastName` must be at least 3 characters.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
      *
      * @return self
      */
@@ -379,6 +398,7 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -392,6 +412,7 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -410,14 +431,19 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
