@@ -26,6 +26,20 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_HOLDER = 'accountHolder';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_BALANCE_ACCOUNT = 'balanceAccount';
+    public const JSON_PROPERTY_BALANCE_PLATFORM = 'balancePlatform';
+    public const JSON_PROPERTY_BATCH_REFERENCE = 'batchReference';
+    public const JSON_PROPERTY_BLOCKED_BALANCE_AFTER = 'blockedBalanceAfter';
+    public const JSON_PROPERTY_BLOCKED_BALANCE_BEFORE = 'blockedBalanceBefore';
+    public const JSON_PROPERTY_CREATION_DATE = 'creationDate';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_VALUE_DATE = 'valueDate';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -143,6 +157,21 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -302,13 +331,10 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -325,7 +351,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getAccountHolder()
     {
-        return $this->container['accountHolder'];
+        return $this->container['accountHolder'] ?? null;
     }
 
     /**
@@ -349,7 +375,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -373,7 +399,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getBalanceAccount()
     {
-        return $this->container['balanceAccount'];
+        return $this->container['balanceAccount'] ?? null;
     }
 
     /**
@@ -397,7 +423,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -421,7 +447,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getBatchReference()
     {
-        return $this->container['batchReference'];
+        return $this->container['batchReference'] ?? null;
     }
 
     /**
@@ -445,7 +471,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getBlockedBalanceAfter()
     {
-        return $this->container['blockedBalanceAfter'];
+        return $this->container['blockedBalanceAfter'] ?? null;
     }
 
     /**
@@ -469,7 +495,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getBlockedBalanceBefore()
     {
-        return $this->container['blockedBalanceBefore'];
+        return $this->container['blockedBalanceBefore'] ?? null;
     }
 
     /**
@@ -493,7 +519,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getCreationDate()
     {
-        return $this->container['creationDate'];
+        return $this->container['creationDate'] ?? null;
     }
 
     /**
@@ -517,7 +543,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -541,7 +567,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
      */
     public function getValueDate()
     {
-        return $this->container['valueDate'];
+        return $this->container['valueDate'] ?? null;
     }
 
     /**
@@ -596,6 +622,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -609,6 +636,7 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -627,14 +655,19 @@ class ReleaseBlockedBalanceNotificationData implements ModelInterface, ArrayAcce
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
