@@ -26,6 +26,18 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_PERSONAL_DETAILS = 'personalDetails';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -268,6 +280,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_AFTERPAY_DEFAULT = 'afterpay_default';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
+    public const TYPE_AFTERPAYTOUCH_US = 'afterpaytouch_US';
     public const TYPE_AFTERPAY_B2B = 'afterpay_b2b';
     public const TYPE_CLEARPAY = 'clearpay';
 
@@ -281,6 +294,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_AFTERPAY_DEFAULT,
             self::TYPE_AFTERPAYTOUCH,
+            self::TYPE_AFTERPAYTOUCH_US,
             self::TYPE_AFTERPAY_B2B,
             self::TYPE_CLEARPAY,
         ];

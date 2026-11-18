@@ -26,6 +26,12 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_PAYMENT_METHODS = 'paymentMethods';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHODS = 'storedPaymentMethods';
+
+    /**
       * The original name of the model.
       *
       * @var string

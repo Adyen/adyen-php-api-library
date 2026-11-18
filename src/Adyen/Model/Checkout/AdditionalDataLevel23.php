@@ -26,6 +26,27 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_CUSTOMER_REFERENCE = 'enhancedSchemeData.customerReference';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_DESTINATION_COUNTRY_CODE = 'enhancedSchemeData.destinationCountryCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_DESTINATION_POSTAL_CODE = 'enhancedSchemeData.destinationPostalCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_DESTINATION_STATE_PROVINCE_CODE = 'enhancedSchemeData.destinationStateProvinceCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_DUTY_AMOUNT = 'enhancedSchemeData.dutyAmount';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_FREIGHT_AMOUNT = 'enhancedSchemeData.freightAmount';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_COMMODITY_CODE = 'enhancedSchemeData.itemDetailLine[itemNr].commodityCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_DESCRIPTION = 'enhancedSchemeData.itemDetailLine[itemNr].description';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_DISCOUNT_AMOUNT = 'enhancedSchemeData.itemDetailLine[itemNr].discountAmount';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_PRODUCT_CODE = 'enhancedSchemeData.itemDetailLine[itemNr].productCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_QUANTITY = 'enhancedSchemeData.itemDetailLine[itemNr].quantity';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_TOTAL_AMOUNT = 'enhancedSchemeData.itemDetailLine[itemNr].totalAmount';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_UNIT_OF_MEASURE = 'enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ITEM_DETAIL_LINE_ITEM_NR_UNIT_PRICE = 'enhancedSchemeData.itemDetailLine[itemNr].unitPrice';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_ORDER_DATE = 'enhancedSchemeData.orderDate';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_SHIP_FROM_POSTAL_CODE = 'enhancedSchemeData.shipFromPostalCode';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_TOTAL_TAX_AMOUNT = 'enhancedSchemeData.totalTaxAmount';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,14 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_SEPADIRECTDEBIT_DATE_OF_SIGNATURE = 'sepadirectdebit.dateOfSignature';
+    public const JSON_PROPERTY_SEPADIRECTDEBIT_MANDATE_ID = 'sepadirectdebit.mandateId';
+    public const JSON_PROPERTY_SEPADIRECTDEBIT_SEPADIRECTDEBIT_DUE_DATE = 'sepadirectdebit.sepadirectdebit.dueDate';
+    public const JSON_PROPERTY_SEPADIRECTDEBIT_SEQUENCE_TYPE = 'sepadirectdebit.sequenceType';
+
+    /**
       * The original name of the model.
       *
       * @var string

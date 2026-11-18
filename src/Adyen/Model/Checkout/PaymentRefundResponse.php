@@ -26,6 +26,21 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_CAPTURE_PSP_REFERENCE = 'capturePspReference';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_REFUND_REASON = 'merchantRefundReason';
+    public const JSON_PROPERTY_PAYMENT_PSP_REFERENCE = 'paymentPspReference';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_STORE = 'store';
+
+    /**
       * The original name of the model.
       *
       * @var string

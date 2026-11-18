@@ -26,6 +26,31 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_RISKDATA_CUSTOM_FIELD_NAME = 'riskdata.[customFieldName]';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_AMOUNT_PER_ITEM = 'riskdata.basket.item[itemNr].amountPerItem';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_BRAND = 'riskdata.basket.item[itemNr].brand';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_CATEGORY = 'riskdata.basket.item[itemNr].category';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_COLOR = 'riskdata.basket.item[itemNr].color';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_CURRENCY = 'riskdata.basket.item[itemNr].currency';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_ITEM_I_D = 'riskdata.basket.item[itemNr].itemID';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_MANUFACTURER = 'riskdata.basket.item[itemNr].manufacturer';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_PRODUCT_TITLE = 'riskdata.basket.item[itemNr].productTitle';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_QUANTITY = 'riskdata.basket.item[itemNr].quantity';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_RECEIVER_EMAIL = 'riskdata.basket.item[itemNr].receiverEmail';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_SIZE = 'riskdata.basket.item[itemNr].size';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_SKU = 'riskdata.basket.item[itemNr].sku';
+    public const JSON_PROPERTY_RISKDATA_BASKET_ITEM_ITEM_NR_UPC = 'riskdata.basket.item[itemNr].upc';
+    public const JSON_PROPERTY_RISKDATA_PROMOTIONS_PROMOTION_ITEM_NR_PROMOTION_CODE = 'riskdata.promotions.promotion[itemNr].promotionCode';
+    public const JSON_PROPERTY_RISKDATA_PROMOTIONS_PROMOTION_ITEM_NR_PROMOTION_DISCOUNT_AMOUNT = 'riskdata.promotions.promotion[itemNr].promotionDiscountAmount';
+    public const JSON_PROPERTY_RISKDATA_PROMOTIONS_PROMOTION_ITEM_NR_PROMOTION_DISCOUNT_CURRENCY = 'riskdata.promotions.promotion[itemNr].promotionDiscountCurrency';
+    public const JSON_PROPERTY_RISKDATA_PROMOTIONS_PROMOTION_ITEM_NR_PROMOTION_DISCOUNT_PERCENTAGE = 'riskdata.promotions.promotion[itemNr].promotionDiscountPercentage';
+    public const JSON_PROPERTY_RISKDATA_PROMOTIONS_PROMOTION_ITEM_NR_PROMOTION_NAME = 'riskdata.promotions.promotion[itemNr].promotionName';
+    public const JSON_PROPERTY_RISKDATA_RISK_PROFILE_REFERENCE = 'riskdata.riskProfileReference';
+    public const JSON_PROPERTY_RISKDATA_SKIP_RISK = 'riskdata.skipRisk';
+
+    /**
       * The original name of the model.
       *
       * @var string

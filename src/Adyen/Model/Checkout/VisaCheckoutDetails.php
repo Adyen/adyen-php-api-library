@@ -26,6 +26,15 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_FUNDING_SOURCE = 'fundingSource';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VISA_CHECKOUT_CALL_ID = 'visaCheckoutCallId';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,14 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CRV = 'crv';
+    public const JSON_PROPERTY_KTY = 'kty';
+    public const JSON_PROPERTY_X = 'x';
+    public const JSON_PROPERTY_Y = 'y';
+
+    /**
       * The original name of the model.
       *
       * @var string

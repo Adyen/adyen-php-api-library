@@ -26,6 +26,21 @@ class DonationCampaign implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNTS = 'amounts';
+    public const JSON_PROPERTY_BANNER_URL = 'bannerUrl';
+    public const JSON_PROPERTY_CAMPAIGN_NAME = 'campaignName';
+    public const JSON_PROPERTY_CAUSE_NAME = 'causeName';
+    public const JSON_PROPERTY_DONATION = 'donation';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_LOGO_URL = 'logoUrl';
+    public const JSON_PROPERTY_NONPROFIT_DESCRIPTION = 'nonprofitDescription';
+    public const JSON_PROPERTY_NONPROFIT_NAME = 'nonprofitName';
+    public const JSON_PROPERTY_NONPROFIT_URL = 'nonprofitUrl';
+    public const JSON_PROPERTY_TERMS_AND_CONDITIONS_URL = 'termsAndConditionsUrl';
+
+    /**
       * The original name of the model.
       *
       * @var string

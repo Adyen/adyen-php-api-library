@@ -26,6 +26,15 @@ class Passenger implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+    public const JSON_PROPERTY_PHONE_NUMBER = 'phoneNumber';
+    public const JSON_PROPERTY_TRAVELLER_TYPE = 'travellerType';
+
+    /**
       * The original name of the model.
       *
       * @var string
