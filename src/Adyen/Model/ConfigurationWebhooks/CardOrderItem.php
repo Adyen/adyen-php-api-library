@@ -26,6 +26,18 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BALANCE_PLATFORM = 'balancePlatform';
+    public const JSON_PROPERTY_CARD = 'card';
+    public const JSON_PROPERTY_CARD_ORDER_ITEM_ID = 'cardOrderItemId';
+    public const JSON_PROPERTY_CREATION_DATE = 'creationDate';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_PAYMENT_INSTRUMENT_ID = 'paymentInstrumentId';
+    public const JSON_PROPERTY_PIN = 'pin';
+    public const JSON_PROPERTY_SHIPPING_METHOD = 'shippingMethod';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -137,6 +149,21 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -288,13 +315,10 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -311,7 +335,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -335,7 +359,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCard()
     {
-        return $this->container['card'];
+        return $this->container['card'] ?? null;
     }
 
     /**
@@ -359,7 +383,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCardOrderItemId()
     {
-        return $this->container['cardOrderItemId'];
+        return $this->container['cardOrderItemId'] ?? null;
     }
 
     /**
@@ -383,7 +407,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCreationDate()
     {
-        return $this->container['creationDate'];
+        return $this->container['creationDate'] ?? null;
     }
 
     /**
@@ -407,7 +431,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -431,7 +455,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPaymentInstrumentId()
     {
-        return $this->container['paymentInstrumentId'];
+        return $this->container['paymentInstrumentId'] ?? null;
     }
 
     /**
@@ -455,7 +479,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPin()
     {
-        return $this->container['pin'];
+        return $this->container['pin'] ?? null;
     }
 
     /**
@@ -479,7 +503,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getShippingMethod()
     {
-        return $this->container['shippingMethod'];
+        return $this->container['shippingMethod'] ?? null;
     }
 
     /**
@@ -534,6 +558,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -547,6 +572,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -565,14 +591,19 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

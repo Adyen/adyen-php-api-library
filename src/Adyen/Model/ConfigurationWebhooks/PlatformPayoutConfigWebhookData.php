@@ -26,6 +26,22 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BALANCE_PLATFORM = 'balancePlatform';
+    public const JSON_PROPERTY_BALANCE_PLATFORM_PAYOUT_SCHEDULE_ID = 'balancePlatformPayoutScheduleId';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_CURRENCY = 'currency';
+    public const JSON_PROPERTY_DEFAULT_DESCRIPTION = 'defaultDescription';
+    public const JSON_PROPERTY_DEFAULT_FREQUENCY = 'defaultFrequency';
+    public const JSON_PROPERTY_DEFAULT_FREQUENCY_VALUE = 'defaultFrequencyValue';
+    public const JSON_PROPERTY_DEFAULT_REFERENCE = 'defaultReference';
+    public const JSON_PROPERTY_DEFAULT_REFERENCE_FOR_BENEFICIARY = 'defaultReferenceForBeneficiary';
+    public const JSON_PROPERTY_MAX_PAYOUT_AMOUNT = 'maxPayoutAmount';
+    public const JSON_PROPERTY_MIN_PAYOUT_AMOUNT = 'minPayoutAmount';
+    public const JSON_PROPERTY_RETAINED_AMOUNT = 'retainedAmount';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -149,6 +165,21 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -316,13 +347,10 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -339,7 +367,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -363,7 +391,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getBalancePlatformPayoutScheduleId()
     {
-        return $this->container['balancePlatformPayoutScheduleId'];
+        return $this->container['balancePlatformPayoutScheduleId'] ?? null;
     }
 
     /**
@@ -387,7 +415,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getCountryCode()
     {
-        return $this->container['countryCode'];
+        return $this->container['countryCode'] ?? null;
     }
 
     /**
@@ -411,7 +439,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getCurrency()
     {
-        return $this->container['currency'];
+        return $this->container['currency'] ?? null;
     }
 
     /**
@@ -435,7 +463,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getDefaultDescription()
     {
-        return $this->container['defaultDescription'];
+        return $this->container['defaultDescription'] ?? null;
     }
 
     /**
@@ -459,7 +487,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getDefaultFrequency()
     {
-        return $this->container['defaultFrequency'];
+        return $this->container['defaultFrequency'] ?? null;
     }
 
     /**
@@ -483,7 +511,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getDefaultFrequencyValue()
     {
-        return $this->container['defaultFrequencyValue'];
+        return $this->container['defaultFrequencyValue'] ?? null;
     }
 
     /**
@@ -507,7 +535,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getDefaultReference()
     {
-        return $this->container['defaultReference'];
+        return $this->container['defaultReference'] ?? null;
     }
 
     /**
@@ -531,7 +559,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getDefaultReferenceForBeneficiary()
     {
-        return $this->container['defaultReferenceForBeneficiary'];
+        return $this->container['defaultReferenceForBeneficiary'] ?? null;
     }
 
     /**
@@ -555,7 +583,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getMaxPayoutAmount()
     {
-        return $this->container['maxPayoutAmount'];
+        return $this->container['maxPayoutAmount'] ?? null;
     }
 
     /**
@@ -579,7 +607,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getMinPayoutAmount()
     {
-        return $this->container['minPayoutAmount'];
+        return $this->container['minPayoutAmount'] ?? null;
     }
 
     /**
@@ -603,7 +631,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
      */
     public function getRetainedAmount()
     {
-        return $this->container['retainedAmount'];
+        return $this->container['retainedAmount'] ?? null;
     }
 
     /**
@@ -658,6 +686,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -671,6 +700,7 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -689,14 +719,19 @@ class PlatformPayoutConfigWebhookData implements ModelInterface, ArrayAccess, \J
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

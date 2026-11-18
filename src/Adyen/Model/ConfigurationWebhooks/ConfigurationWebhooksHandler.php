@@ -42,6 +42,7 @@ class ConfigurationWebhooksHandler
         PayoutScheduleStateNotificationRequest::class,
         ScoreNotificationRequest::class,
         SweepConfigurationNotificationRequest::class,
+        SweepExecutionNotificationRequest::class,
         TopUpConfigurationEventRequest::class,
         TopUpConfigurationUpdatedEventRequest::class,
     ];
@@ -278,6 +279,23 @@ class ConfigurationWebhooksHandler
         $class = $this->resolveWebhookClass();
 
         if ($class !== SweepConfigurationNotificationRequest::class) {
+            return null;
+        }
+
+        return $this->deserializeField($class);
+    }
+
+    /**
+     * Gets the SweepExecutionNotificationRequest from the webhook payload
+     *
+     * @return SweepExecutionNotificationRequest|null the deserialized webhook model, or null if the payload
+     *                             is a different event type or cannot be parsed
+     */
+    public function getSweepExecutionNotificationRequest(): ?SweepExecutionNotificationRequest
+    {
+        $class = $this->resolveWebhookClass();
+
+        if ($class !== SweepExecutionNotificationRequest::class) {
             return null;
         }
 

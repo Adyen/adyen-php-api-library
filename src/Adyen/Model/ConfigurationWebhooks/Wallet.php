@@ -26,6 +26,16 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_SCORE = 'accountScore';
+    public const JSON_PROPERTY_DEVICE = 'device';
+    public const JSON_PROPERTY_DEVICE_SCORE = 'deviceScore';
+    public const JSON_PROPERTY_PROVISIONING_METHOD = 'provisioningMethod';
+    public const JSON_PROPERTY_RECOMMENDATION_REASONS = 'recommendationReasons';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -131,6 +141,21 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -367,13 +392,10 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -390,7 +412,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountScore()
     {
-        return $this->container['accountScore'];
+        return $this->container['accountScore'] ?? null;
     }
 
     /**
@@ -414,7 +436,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDevice()
     {
-        return $this->container['device'];
+        return $this->container['device'] ?? null;
     }
 
     /**
@@ -438,7 +460,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDeviceScore()
     {
-        return $this->container['deviceScore'];
+        return $this->container['deviceScore'] ?? null;
     }
 
     /**
@@ -462,7 +484,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getProvisioningMethod()
     {
-        return $this->container['provisioningMethod'];
+        return $this->container['provisioningMethod'] ?? null;
     }
 
     /**
@@ -486,7 +508,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRecommendationReasons()
     {
-        return $this->container['recommendationReasons'];
+        return $this->container['recommendationReasons'] ?? null;
     }
 
     /**
@@ -498,6 +520,19 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecommendationReasons($recommendationReasons): self
     {
+        if ($recommendationReasons !== null) {
+            $allowedValues = $this->getRecommendationReasonsAllowableValues();
+            foreach ((array) $recommendationReasons as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recommendationReasons: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recommendationReasons'] = $recommendationReasons;
 
         return $this;
@@ -511,7 +546,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -567,6 +602,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -580,6 +616,7 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -598,14 +635,19 @@ class Wallet implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

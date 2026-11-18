@@ -26,6 +26,24 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHENTICATION = 'authentication';
+    public const JSON_PROPERTY_AUTHENTICATION_APPLIED = 'authenticationApplied';
+    public const JSON_PROPERTY_BALANCE_PLATFORM = 'balancePlatform';
+    public const JSON_PROPERTY_DECISION = 'decision';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_PAYMENT_INSTRUMENT_ID = 'paymentInstrumentId';
+    public const JSON_PROPERTY_SCHEME_RISK_SCORE = 'schemeRiskScore';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_TOKEN_LAST_FOUR = 'tokenLastFour';
+    public const JSON_PROPERTY_TOKEN_REQUESTOR = 'tokenRequestor';
+    public const JSON_PROPERTY_TRANSACTION_RULES_RESULT = 'transactionRulesResult';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VALIDATION_FACTS = 'validationFacts';
+    public const JSON_PROPERTY_WALLET = 'wallet';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -155,6 +173,21 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -330,13 +363,10 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -353,7 +383,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getAuthentication()
     {
-        return $this->container['authentication'];
+        return $this->container['authentication'] ?? null;
     }
 
     /**
@@ -377,7 +407,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getAuthenticationApplied()
     {
-        return $this->container['authenticationApplied'];
+        return $this->container['authenticationApplied'] ?? null;
     }
 
     /**
@@ -401,7 +431,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getBalancePlatform()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balancePlatform'] ?? null;
     }
 
     /**
@@ -425,7 +455,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getDecision()
     {
-        return $this->container['decision'];
+        return $this->container['decision'] ?? null;
     }
 
     /**
@@ -449,7 +479,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -473,7 +503,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getPaymentInstrumentId()
     {
-        return $this->container['paymentInstrumentId'];
+        return $this->container['paymentInstrumentId'] ?? null;
     }
 
     /**
@@ -497,7 +527,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getSchemeRiskScore()
     {
-        return $this->container['schemeRiskScore'];
+        return $this->container['schemeRiskScore'] ?? null;
     }
 
     /**
@@ -521,7 +551,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -545,7 +575,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getTokenLastFour()
     {
-        return $this->container['tokenLastFour'];
+        return $this->container['tokenLastFour'] ?? null;
     }
 
     /**
@@ -569,7 +599,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getTokenRequestor()
     {
-        return $this->container['tokenRequestor'];
+        return $this->container['tokenRequestor'] ?? null;
     }
 
     /**
@@ -593,7 +623,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getTransactionRulesResult()
     {
-        return $this->container['transactionRulesResult'];
+        return $this->container['transactionRulesResult'] ?? null;
     }
 
     /**
@@ -617,7 +647,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -641,7 +671,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getValidationFacts()
     {
-        return $this->container['validationFacts'];
+        return $this->container['validationFacts'] ?? null;
     }
 
     /**
@@ -665,7 +695,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
      */
     public function getWallet()
     {
-        return $this->container['wallet'];
+        return $this->container['wallet'] ?? null;
     }
 
     /**
@@ -720,6 +750,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -733,6 +764,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -751,14 +783,19 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
