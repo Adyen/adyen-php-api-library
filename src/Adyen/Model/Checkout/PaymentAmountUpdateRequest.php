@@ -26,6 +26,20 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADJUST_AUTH_TYPE = 'adjustAuthType';
+    public const JSON_PROPERTY_ADJUST_AUTHORISATION_DATA = 'adjustAuthorisationData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_INDUSTRY_USAGE = 'industryUsage';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MPI_DATA = 'mpiData';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+
+    /**
       * The original name of the model.
       *
       * @var string

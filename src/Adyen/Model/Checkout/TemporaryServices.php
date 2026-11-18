@@ -26,6 +26,17 @@ class TemporaryServices implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_EMPLOYEE_NAME = 'employeeName';
+    public const JSON_PROPERTY_END_DATE = 'endDate';
+    public const JSON_PROPERTY_HOUR_RATE = 'hourRate';
+    public const JSON_PROPERTY_HOURS_WORKED = 'hoursWorked';
+    public const JSON_PROPERTY_JOB_DESCRIPTION = 'jobDescription';
+    public const JSON_PROPERTY_SERVICE_REQUESTOR = 'serviceRequestor';
+    public const JSON_PROPERTY_START_DATE = 'startDate';
+
+    /**
       * The original name of the model.
       *
       * @var string

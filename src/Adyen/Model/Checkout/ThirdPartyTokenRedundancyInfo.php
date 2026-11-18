@@ -26,6 +26,12 @@ class ThirdPartyTokenRedundancyInfo implements ModelInterface, ArrayAccess, \Jso
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_REQUEST_PARAMETERS = 'requestParameters';
+    public const JSON_PROPERTY_REQUEST_TEMPLATE_CODE = 'requestTemplateCode';
+
+    /**
       * The original name of the model.
       *
       * @var string

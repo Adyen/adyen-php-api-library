@@ -26,6 +26,19 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_CUSTOMER_REFERENCE = 'enhancedSchemeData.customerReference';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_EMPLOYEE_NAME = 'enhancedSchemeData.employeeName';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_JOB_DESCRIPTION = 'enhancedSchemeData.jobDescription';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_REGULAR_HOURS_RATE = 'enhancedSchemeData.regularHoursRate';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_REGULAR_HOURS_WORKED = 'enhancedSchemeData.regularHoursWorked';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_REQUEST_NAME = 'enhancedSchemeData.requestName';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_TEMP_START_DATE = 'enhancedSchemeData.tempStartDate';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_TEMP_WEEK_ENDING = 'enhancedSchemeData.tempWeekEnding';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA_TOTAL_TAX_AMOUNT = 'enhancedSchemeData.totalTaxAmount';
+
+    /**
       * The original name of the model.
       *
       * @var string

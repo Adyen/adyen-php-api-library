@@ -26,6 +26,13 @@ class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ISSUE_ADDRESS = 'issueAddress';
+    public const JSON_PROPERTY_ISSUE_DATE = 'issueDate';
+    public const JSON_PROPERTY_NUMBER = 'number';
+
+    /**
       * The original name of the model.
       *
       * @var string

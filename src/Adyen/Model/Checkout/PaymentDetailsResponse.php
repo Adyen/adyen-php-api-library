@@ -26,6 +26,28 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACTION = 'action';
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_DONATION_TOKEN = 'donationToken';
+    public const JSON_PROPERTY_FRAUD_RESULT = 'fraudResult';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_OPI = 'opi';
+    public const JSON_PROPERTY_ORDER = 'order';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_PAYMENT_VALIDATIONS = 'paymentValidations';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFUSAL_REASON = 'refusalReason';
+    public const JSON_PROPERTY_REFUSAL_REASON_CODE = 'refusalReasonCode';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_THREE_D_S2_RESPONSE_DATA = 'threeDS2ResponseData';
+    public const JSON_PROPERTY_THREE_D_S2_RESULT = 'threeDS2Result';
+    public const JSON_PROPERTY_THREE_D_S_PAYMENT_DATA = 'threeDSPaymentData';
+
+    /**
       * The original name of the model.
       *
       * @var string

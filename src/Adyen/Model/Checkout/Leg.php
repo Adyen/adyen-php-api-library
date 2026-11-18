@@ -26,6 +26,19 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CARRIER_CODE = 'carrierCode';
+    public const JSON_PROPERTY_CLASS_OF_TRAVEL = 'classOfTravel';
+    public const JSON_PROPERTY_DATE_OF_TRAVEL = 'dateOfTravel';
+    public const JSON_PROPERTY_DEPARTURE_AIRPORT_CODE = 'departureAirportCode';
+    public const JSON_PROPERTY_DEPARTURE_TAX = 'departureTax';
+    public const JSON_PROPERTY_DESTINATION_AIRPORT_CODE = 'destinationAirportCode';
+    public const JSON_PROPERTY_FARE_BASIS_CODE = 'fareBasisCode';
+    public const JSON_PROPERTY_FLIGHT_NUMBER = 'flightNumber';
+    public const JSON_PROPERTY_STOP_OVER_CODE = 'stopOverCode';
+
+    /**
       * The original name of the model.
       *
       * @var string

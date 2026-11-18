@@ -26,6 +26,14 @@ class CheckoutSessionThreeDS2RequestData implements ModelInterface, ArrayAccess,
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_HOME_PHONE = 'homePhone';
+    public const JSON_PROPERTY_MOBILE_PHONE = 'mobilePhone';
+    public const JSON_PROPERTY_THREE_D_S_REQUESTOR_CHALLENGE_IND = 'threeDSRequestorChallengeInd';
+    public const JSON_PROPERTY_WORK_PHONE = 'workPhone';
+
+    /**
       * The original name of the model.
       *
       * @var string

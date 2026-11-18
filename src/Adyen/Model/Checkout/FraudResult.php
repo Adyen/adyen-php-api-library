@@ -26,6 +26,12 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_SCORE = 'accountScore';
+    public const JSON_PROPERTY_RESULTS = 'results';
+
+    /**
       * The original name of the model.
       *
       * @var string

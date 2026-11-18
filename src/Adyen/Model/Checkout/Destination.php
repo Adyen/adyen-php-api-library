@@ -26,6 +26,13 @@ class Destination implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_POSTAL_CODE = 'postalCode';
+    public const JSON_PROPERTY_STATE_OR_PROVINCE = 'stateOrProvince';
+
+    /**
       * The original name of the model.
       *
       * @var string

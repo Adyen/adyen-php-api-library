@@ -26,6 +26,15 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_PAYMENTS = 'payments';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_STATUS = 'status';
+
+    /**
       * The original name of the model.
       *
       * @var string

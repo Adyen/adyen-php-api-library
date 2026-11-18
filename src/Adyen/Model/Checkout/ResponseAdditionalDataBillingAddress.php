@@ -26,6 +26,16 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BILLING_ADDRESS_CITY = 'billingAddress.city';
+    public const JSON_PROPERTY_BILLING_ADDRESS_COUNTRY = 'billingAddress.country';
+    public const JSON_PROPERTY_BILLING_ADDRESS_HOUSE_NUMBER_OR_NAME = 'billingAddress.houseNumberOrName';
+    public const JSON_PROPERTY_BILLING_ADDRESS_POSTAL_CODE = 'billingAddress.postalCode';
+    public const JSON_PROPERTY_BILLING_ADDRESS_STATE_OR_PROVINCE = 'billingAddress.stateOrProvince';
+    public const JSON_PROPERTY_BILLING_ADDRESS_STREET = 'billingAddress.street';
+
+    /**
       * The original name of the model.
       *
       * @var string

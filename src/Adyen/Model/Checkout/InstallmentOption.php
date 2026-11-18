@@ -26,6 +26,14 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_MAX_VALUE = 'maxValue';
+    public const JSON_PROPERTY_PLANS = 'plans';
+    public const JSON_PROPERTY_PRESELECTED_VALUE = 'preselectedValue';
+    public const JSON_PROPERTY_VALUES = 'values';
+
+    /**
       * The original name of the model.
       *
       * @var string
