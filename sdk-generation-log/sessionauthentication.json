@@ -1,0 +1,8 @@
+{
+  "service": "sessionauthentication",
+  "project": "php",
+  "generatedAt": "2026-11-18T10:25:49Z",
+  "openapiCommitSha": "63f87f80250b7c5c0f006fbb123fb49c9e84a93b",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "aae2b1eb2118743d4910f8623fba7fc12dd9e595"
+}
