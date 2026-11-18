@@ -26,6 +26,20 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CAPABILITIES = 'capabilities';
+    public const JSON_PROPERTY_ENTITY_ASSOCIATIONS = 'entityAssociations';
+    public const JSON_PROPERTY_INDIVIDUAL = 'individual';
+    public const JSON_PROPERTY_ORGANIZATION = 'organization';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SOLE_PROPRIETORSHIP = 'soleProprietorship';
+    public const JSON_PROPERTY_TRUST = 'trust';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_UNINCORPORATED_PARTNERSHIP = 'unincorporatedPartnership';
+    public const JSON_PROPERTY_VERIFICATION_PLAN = 'verificationPlan';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -143,6 +157,21 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -323,13 +352,10 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -346,7 +372,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getCapabilities()
     {
-        return $this->container['capabilities'];
+        return $this->container['capabilities'] ?? null;
     }
 
     /**
@@ -370,7 +396,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getEntityAssociations()
     {
-        return $this->container['entityAssociations'];
+        return $this->container['entityAssociations'] ?? null;
     }
 
     /**
@@ -394,7 +420,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getIndividual()
     {
-        return $this->container['individual'];
+        return $this->container['individual'] ?? null;
     }
 
     /**
@@ -418,7 +444,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getOrganization()
     {
-        return $this->container['organization'];
+        return $this->container['organization'] ?? null;
     }
 
     /**
@@ -442,7 +468,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -466,7 +492,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getSoleProprietorship()
     {
-        return $this->container['soleProprietorship'];
+        return $this->container['soleProprietorship'] ?? null;
     }
 
     /**
@@ -490,7 +516,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getTrust()
     {
-        return $this->container['trust'];
+        return $this->container['trust'] ?? null;
     }
 
     /**
@@ -514,7 +540,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -526,6 +552,19 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -538,7 +577,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getUnincorporatedPartnership()
     {
-        return $this->container['unincorporatedPartnership'];
+        return $this->container['unincorporatedPartnership'] ?? null;
     }
 
     /**
@@ -562,7 +601,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
      */
     public function getVerificationPlan()
     {
-        return $this->container['verificationPlan'];
+        return $this->container['verificationPlan'] ?? null;
     }
 
     /**
@@ -617,6 +656,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -630,6 +670,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -648,14 +689,19 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
