@@ -18,6 +18,10 @@ use Adyen\Client;
 use Adyen\Service;
 use Adyen\Model\Recurring\ObjectSerializer;
 
+/**
+ * @deprecated The service has been moved to a different package
+ * @see \Adyen\Service\Recurring\RecurringApi
+ */
 class RecurringApi extends Service
 {
     /**

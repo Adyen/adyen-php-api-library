@@ -1,0 +1,23 @@
+{
+  "creationDate": "2021-03-16T10:00:00+00:00",
+  "details": [
+    {
+      "RecurringDetail": {
+        "recurringDetailReference": "8415995487234100",
+        "variant": "visa",
+        "creationDate": "2021-03-16T10:00:00+00:00",
+        "contractTypes": [
+          "RECURRING"
+        ],
+        "card": {
+          "expiryMonth": "03",
+          "expiryYear": "2030",
+          "holderName": "Adyen Test",
+          "number": "1111"
+        }
+      }
+    }
+  ],
+  "lastKnownShopperEmail": "shopper@example.com",
+  "shopperReference": "YOUR_SHOPPER_REFERENCE"
+}
