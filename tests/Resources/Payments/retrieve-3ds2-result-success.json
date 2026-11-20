@@ -1,0 +1,12 @@
+{
+  "threeDS2Result": {
+    "authenticationValue": "test-authentication-value",
+    "cavvAlgorithm": "2",
+    "dsTransID": "11111111-1111-4111-8111-111111111111",
+    "eci": "05",
+    "messageVersion": "2.2.0",
+    "threeDSServerTransID": "22222222-2222-4222-8222-222222222222",
+    "timestamp": "2025-01-01T12:00:00Z",
+    "transStatus": "Y"
+  }
+}
