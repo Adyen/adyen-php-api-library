@@ -1,0 +1,38 @@
+{
+  "id": "CASHOUT_01",
+  "amount": {
+    "currency": "EUR",
+    "value": 1500
+  },
+  "counterparty": {
+    "transferInstrumentId": "TRANSFER_INSTRUMENT_01"
+  },
+  "description": "Cash out funds",
+  "fee": {
+    "amount": {
+      "currency": "EUR",
+      "value": 25
+    }
+  },
+  "instructingBalanceAccountId": "BAB8B2C3D4E5F6G7H8D9J6GD4",
+  "referenceForBeneficiary": "CASHOUT_REFERENCE",
+  "transferInstrumentId": "TRANSFER_INSTRUMENT_01",
+  "transfers": [
+    {
+      "id": "CASHOUT_REPAYMENT_01",
+      "amount": {
+        "currency": "EUR",
+        "value": 1500
+      },
+      "type": "cashoutRepayment"
+    },
+    {
+      "id": "CASHOUT_FEE_01",
+      "amount": {
+        "currency": "EUR",
+        "value": 25
+      },
+      "type": "cashoutFee"
+    }
+  ]
+}

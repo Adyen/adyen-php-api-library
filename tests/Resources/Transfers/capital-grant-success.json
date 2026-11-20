@@ -1,0 +1,39 @@
+{
+  "id": "GRANT_01",
+  "grantAccountId": "GRANT_ACCOUNT_01",
+  "grantOfferId": "GRANT_OFFER_01",
+  "amount": {
+    "currency": "EUR",
+    "value": 10000
+  },
+  "fee": {
+    "amount": {
+      "currency": "EUR",
+      "value": 500
+    }
+  },
+  "balances": {
+    "currency": "EUR",
+    "fee": 500,
+    "principal": 10000,
+    "total": 10500
+  },
+  "counterparty": {
+    "accountHolderId": "AHA1B2C3D4E5F6G7H8I9J0",
+    "balanceAccountId": "BAB8B2C3D4E5F6G7H8D9J6GD4"
+  },
+  "repayment": {
+    "basisPoints": 1000,
+    "term": {
+      "estimatedDays": 90,
+      "maximumDays": 180
+    },
+    "threshold": {
+      "amount": {
+        "currency": "EUR",
+        "value": 100
+      }
+    }
+  },
+  "status": "Active"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "1W1UG35U8A9J5ZLG",
+  "amount": {
+    "currency": "EUR",
+    "value": 110000
+  },
+  "accountHolder": {
+    "id": "AHA1B2C3D4E5F6G7H8I9J0"
+  },
+  "balanceAccount": {
+    "id": "BAB8B2C3D4E5F6G7H8D9J6GD4"
+  },
+  "balancePlatform": "YOUR_BALANCE_PLATFORM",
+  "category": "bank",
+  "direction": "outgoing",
+  "createdAt": "2022-03-11T11:21:24+01:00",
+  "updatedAt": "2022-03-11T11:22:24+01:00",
+  "reference": "Your internal reference for the transfer",
+  "status": "authorised"
+}
