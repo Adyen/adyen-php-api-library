@@ -1,0 +1,7 @@
+{
+  "status": 401,
+  "errorCode": "000",
+  "message": "Unauthorized client error",
+  "errorType": "security",
+  "pspReference": "8516167336214570"
+}

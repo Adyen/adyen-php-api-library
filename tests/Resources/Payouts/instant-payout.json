@@ -14,9 +14,11 @@
     "accountScore": 0,
     "results": [
       {
-        "accountScore": 0,
-        "checkId": 0,
-        "name": "string"
+        "FraudCheckResult": {
+          "accountScore": 0,
+          "checkId": 0,
+          "name": "string"
+        }
       }
     ]
   },
