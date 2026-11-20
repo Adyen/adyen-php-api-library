@@ -1,0 +1,18 @@
+{
+  "disputeServiceResult": {
+    "success": true
+  },
+  "defenseReasons": [
+    {
+      "defenseReasonCode": "SupplyDefenseMaterial",
+      "satisfied": false,
+      "defenseDocumentTypes": [
+        {
+          "available": true,
+          "defenseDocumentTypeCode": "DefenseMaterial",
+          "requirementLevel": "Required"
+        }
+      ]
+    }
+  ]
+}
