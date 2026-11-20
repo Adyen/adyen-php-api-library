@@ -1,0 +1,24 @@
+{
+  "id": "1VVF0D5U66PIUIVP",
+  "amount": {
+    "currency": "EUR",
+    "value": -9
+  },
+  "accountHolder": {
+    "id": "AHA1B2C3D4E5F6G7H8I9J0"
+  },
+  "balanceAccount": {
+    "id": "BAB8B2C3D4E5F6G7H8D9J6GD4"
+  },
+  "balancePlatform": "YOUR_BALANCE_PLATFORM",
+  "bookingDate": "2022-03-11T11:21:24+01:00",
+  "creationDate": "2022-03-11T11:20:24+01:00",
+  "valueDate": "2022-03-11T11:21:24+01:00",
+  "description": "Transaction fee",
+  "referenceForBeneficiary": "FEE_REFERENCE",
+  "status": "booked",
+  "transfer": {
+    "id": "1VVF0D5U66PIUIVP",
+    "reference": "REFERENCE_46e8c40e"
+  }
+}
