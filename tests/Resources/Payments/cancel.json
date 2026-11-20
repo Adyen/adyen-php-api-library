@@ -5,5 +5,5 @@
     "additionalProp3": "string"
   },
   "pspReference": "string",
-  "response": "[capture-received]"
+  "response": "[cancel-received]"
 }
