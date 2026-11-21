@@ -13,7 +13,7 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "guzzlehttp/guzzle": "^7.3",
+    "guzzlehttp/guzzle": "^8.0",
     "guzzlehttp/psr7": "^1.7 || ^2.0"
   },
   "require-dev": {
