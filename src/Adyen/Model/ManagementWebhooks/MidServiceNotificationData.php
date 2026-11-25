@@ -26,6 +26,19 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALLOWED = 'allowed';
+    public const JSON_PROPERTY_ENABLED = 'enabled';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_MERCHANT_ID = 'merchantId';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_STORE_ID = 'storeId';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VERIFICATION_STATUS = 'verificationStatus';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -140,6 +153,21 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -335,13 +363,10 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -358,13 +383,13 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getAllowed()
     {
-        return $this->container['allowed'];
+        return $this->container['allowed'] ?? null;
     }
 
     /**
      * Sets allowed
      *
-     * @param bool|null $allowed Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
+     * @param bool|null $allowed Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.  Only returned in webhooks that include the screening results for your merchant account.
      *
      * @return self
      */
@@ -382,13 +407,13 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getEnabled()
     {
-        return $this->container['enabled'];
+        return $this->container['enabled'] ?? null;
     }
 
     /**
      * Sets enabled
      *
-     * @param bool|null $enabled Indicates whether the payment method is enabled (**true**) or disabled (**false**).
+     * @param bool|null $enabled Indicates whether the payment method is enabled (**true**) or disabled (**false**).  Only reliable in webhooks that include the screening results for your merchant account.
      *
      * @return self
      */
@@ -406,7 +431,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -430,7 +455,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getMerchantId()
     {
-        return $this->container['merchantId'];
+        return $this->container['merchantId'] ?? null;
     }
 
     /**
@@ -454,7 +479,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -478,18 +503,31 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
      * Sets status
      *
-     * @param string $status The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.
+     * @param string $status The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with `status` **success** is the last webhook for that payment method.
      *
      * @return self
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -502,7 +540,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getStoreId()
     {
-        return $this->container['storeId'];
+        return $this->container['storeId'] ?? null;
     }
 
     /**
@@ -526,7 +564,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -550,18 +588,31 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getVerificationStatus()
     {
-        return $this->container['verificationStatus'];
+        return $this->container['verificationStatus'] ?? null;
     }
 
     /**
      * Sets verificationStatus
      *
-     * @param string|null $verificationStatus Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
+     * @param string|null $verificationStatus Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.
      *
      * @return self
      */
     public function setVerificationStatus($verificationStatus): self
     {
+        if ($verificationStatus !== null) {
+            $allowedValues = $this->getVerificationStatusAllowableValues();
+            foreach ([$verificationStatus] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "verificationStatus: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['verificationStatus'] = $verificationStatus;
 
         return $this;
@@ -605,6 +656,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -618,6 +670,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -636,14 +689,19 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
