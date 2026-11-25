@@ -26,6 +26,18 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_RATEPAY_INSTALLMENT_AMOUNT = 'ratepay.installmentAmount';
+    public const JSON_PROPERTY_RATEPAY_INTEREST_RATE = 'ratepay.interestRate';
+    public const JSON_PROPERTY_RATEPAY_LAST_INSTALLMENT_AMOUNT = 'ratepay.lastInstallmentAmount';
+    public const JSON_PROPERTY_RATEPAY_PAYMENT_FIRSTDAY = 'ratepay.paymentFirstday';
+    public const JSON_PROPERTY_RATEPAYDATA_DELIVERY_DATE = 'ratepaydata.deliveryDate';
+    public const JSON_PROPERTY_RATEPAYDATA_DUE_DATE = 'ratepaydata.dueDate';
+    public const JSON_PROPERTY_RATEPAYDATA_INVOICE_DATE = 'ratepaydata.invoiceDate';
+    public const JSON_PROPERTY_RATEPAYDATA_INVOICE_ID = 'ratepaydata.invoiceId';
+
+    /**
       * The original name of the model.
       *
       * @var string

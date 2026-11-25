@@ -26,6 +26,13 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_NAME = 'name';
+    public const JSON_PROPERTY_PAYMENT_METHOD_DATA = 'paymentMethodData';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

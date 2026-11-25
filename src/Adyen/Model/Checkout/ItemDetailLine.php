@@ -26,6 +26,18 @@ class ItemDetailLine implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_COMMODITY_CODE = 'commodityCode';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_DISCOUNT_AMOUNT = 'discountAmount';
+    public const JSON_PROPERTY_PRODUCT_CODE = 'productCode';
+    public const JSON_PROPERTY_QUANTITY = 'quantity';
+    public const JSON_PROPERTY_TOTAL_AMOUNT = 'totalAmount';
+    public const JSON_PROPERTY_UNIT_OF_MEASURE = 'unitOfMeasure';
+    public const JSON_PROPERTY_UNIT_PRICE = 'unitPrice';
+
+    /**
       * The original name of the model.
       *
       * @var string

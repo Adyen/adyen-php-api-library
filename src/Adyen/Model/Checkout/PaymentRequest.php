@@ -26,6 +26,87 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_INFO = 'accountInfo';
+    public const JSON_PROPERTY_ADDITIONAL_AMOUNT = 'additionalAmount';
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_AUTHENTICATION_DATA = 'authenticationData';
+    public const JSON_PROPERTY_BANK_ACCOUNT = 'bankAccount';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BROWSER_INFO = 'browserInfo';
+    public const JSON_PROPERTY_CAPTURE_DELAY_HOURS = 'captureDelayHours';
+    public const JSON_PROPERTY_CHANNEL = 'channel';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_COMPANY = 'company';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DCC_QUOTE = 'dccQuote';
+    public const JSON_PROPERTY_DELIVER_AT = 'deliverAt';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DELIVERY_DATE = 'deliveryDate';
+    public const JSON_PROPERTY_DEVICE_FINGERPRINT = 'deviceFingerprint';
+    public const JSON_PROPERTY_ENABLE_ONE_CLICK = 'enableOneClick';
+    public const JSON_PROPERTY_ENABLE_PAY_OUT = 'enablePayOut';
+    public const JSON_PROPERTY_ENABLE_RECURRING = 'enableRecurring';
+    public const JSON_PROPERTY_ENHANCED_SCHEME_DATA = 'enhancedSchemeData';
+    public const JSON_PROPERTY_ENTITY_TYPE = 'entityType';
+    public const JSON_PROPERTY_FRAUD_OFFSET = 'fraudOffset';
+    public const JSON_PROPERTY_FUND_ORIGIN = 'fundOrigin';
+    public const JSON_PROPERTY_FUND_RECIPIENT = 'fundRecipient';
+    public const JSON_PROPERTY_INDUSTRY_USAGE = 'industryUsage';
+    public const JSON_PROPERTY_INSTALLMENTS = 'installments';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_LOCALIZED_SHOPPER_STATEMENT = 'localizedShopperStatement';
+    public const JSON_PROPERTY_MANDATE = 'mandate';
+    public const JSON_PROPERTY_MCC = 'mcc';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_ORDER_REFERENCE = 'merchantOrderReference';
+    public const JSON_PROPERTY_MERCHANT_RISK_INDICATOR = 'merchantRiskIndicator';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_MPI_DATA = 'mpiData';
+    public const JSON_PROPERTY_OPI = 'opi';
+    public const JSON_PROPERTY_ORDER = 'order';
+    public const JSON_PROPERTY_ORDER_REFERENCE = 'orderReference';
+    public const JSON_PROPERTY_ORIGIN = 'origin';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_PAYMENT_VALIDATIONS = 'paymentValidations';
+    public const JSON_PROPERTY_PLATFORM_CHARGEBACK_LOGIC = 'platformChargebackLogic';
+    public const JSON_PROPERTY_RECURRING_EXPIRY = 'recurringExpiry';
+    public const JSON_PROPERTY_RECURRING_FREQUENCY = 'recurringFrequency';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REDIRECT_FROM_ISSUER_METHOD = 'redirectFromIssuerMethod';
+    public const JSON_PROPERTY_REDIRECT_TO_ISSUER_METHOD = 'redirectToIssuerMethod';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_RETURN_URL = 'returnUrl';
+    public const JSON_PROPERTY_RISK_DATA = 'riskData';
+    public const JSON_PROPERTY_SESSION_VALIDITY = 'sessionValidity';
+    public const JSON_PROPERTY_SHOPPER_CONVERSION_ID = 'shopperConversionId';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SHOPPER_STATEMENT = 'shopperStatement';
+    public const JSON_PROPERTY_SHOPPER_TAX_IDENTIFICATION = 'shopperTaxIdentification';
+    public const JSON_PROPERTY_SHOPPER_TAX_INFO = 'shopperTaxInfo';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_SPLITS = 'splits';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_STORE_PAYMENT_METHOD = 'storePaymentMethod';
+    public const JSON_PROPERTY_SUB_MERCHANTS = 'subMerchants';
+    public const JSON_PROPERTY_SURCHARGE = 'surcharge';
+    public const JSON_PROPERTY_TAX_CALCULATION = 'taxCalculation';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THIRD_PARTY_TOKEN_REDUNDANCY_INFO = 'thirdPartyTokenRedundancyInfo';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+    public const JSON_PROPERTY_THREE_D_S_AUTHENTICATION_ONLY = 'threeDSAuthenticationOnly';
+    public const JSON_PROPERTY_TRUSTED_SHOPPER = 'trustedShopper';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -101,6 +182,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'shopperStatement' => 'string',
+        'shopperTaxIdentification' => '\Adyen\Model\Checkout\TokenizedShopperTaxIdentification',
         'shopperTaxInfo' => '\Adyen\Model\Checkout\ShopperTaxInfo',
         'socialSecurityNumber' => 'string',
         'splits' => '\Adyen\Model\Checkout\Split[]',
@@ -108,6 +190,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => 'bool',
         'subMerchants' => '\Adyen\Model\Checkout\SubMerchantInfo[]',
         'surcharge' => '\Adyen\Model\Checkout\Surcharge',
+        'taxCalculation' => '\Adyen\Model\Checkout\TokenizedTaxCalculation',
         'telephoneNumber' => 'string',
         'thirdPartyTokenRedundancyInfo' => '\Adyen\Model\Checkout\ThirdPartyTokenRedundancyInfo',
         'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestFields',
@@ -186,6 +269,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => null,
         'shopperReference' => null,
         'shopperStatement' => null,
+        'shopperTaxIdentification' => null,
         'shopperTaxInfo' => null,
         'socialSecurityNumber' => null,
         'splits' => null,
@@ -193,6 +277,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => null,
         'subMerchants' => null,
         'surcharge' => null,
+        'taxCalculation' => null,
         'telephoneNumber' => null,
         'thirdPartyTokenRedundancyInfo' => null,
         'threeDS2RequestData' => null,
@@ -269,6 +354,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => false,
         'shopperReference' => false,
         'shopperStatement' => false,
+        'shopperTaxIdentification' => false,
         'shopperTaxInfo' => false,
         'socialSecurityNumber' => false,
         'splits' => false,
@@ -276,6 +362,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => false,
         'subMerchants' => false,
         'surcharge' => false,
+        'taxCalculation' => false,
         'telephoneNumber' => false,
         'thirdPartyTokenRedundancyInfo' => false,
         'threeDS2RequestData' => false,
@@ -447,6 +534,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'shopperName',
         'shopperReference' => 'shopperReference',
         'shopperStatement' => 'shopperStatement',
+        'shopperTaxIdentification' => 'shopperTaxIdentification',
         'shopperTaxInfo' => 'shopperTaxInfo',
         'socialSecurityNumber' => 'socialSecurityNumber',
         'splits' => 'splits',
@@ -454,6 +542,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => 'storePaymentMethod',
         'subMerchants' => 'subMerchants',
         'surcharge' => 'surcharge',
+        'taxCalculation' => 'taxCalculation',
         'telephoneNumber' => 'telephoneNumber',
         'thirdPartyTokenRedundancyInfo' => 'thirdPartyTokenRedundancyInfo',
         'threeDS2RequestData' => 'threeDS2RequestData',
@@ -530,6 +619,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'setShopperName',
         'shopperReference' => 'setShopperReference',
         'shopperStatement' => 'setShopperStatement',
+        'shopperTaxIdentification' => 'setShopperTaxIdentification',
         'shopperTaxInfo' => 'setShopperTaxInfo',
         'socialSecurityNumber' => 'setSocialSecurityNumber',
         'splits' => 'setSplits',
@@ -537,6 +627,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => 'setStorePaymentMethod',
         'subMerchants' => 'setSubMerchants',
         'surcharge' => 'setSurcharge',
+        'taxCalculation' => 'setTaxCalculation',
         'telephoneNumber' => 'setTelephoneNumber',
         'thirdPartyTokenRedundancyInfo' => 'setThirdPartyTokenRedundancyInfo',
         'threeDS2RequestData' => 'setThreeDS2RequestData',
@@ -613,6 +704,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'getShopperName',
         'shopperReference' => 'getShopperReference',
         'shopperStatement' => 'getShopperStatement',
+        'shopperTaxIdentification' => 'getShopperTaxIdentification',
         'shopperTaxInfo' => 'getShopperTaxInfo',
         'socialSecurityNumber' => 'getSocialSecurityNumber',
         'splits' => 'getSplits',
@@ -620,6 +712,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'storePaymentMethod' => 'getStorePaymentMethod',
         'subMerchants' => 'getSubMerchants',
         'surcharge' => 'getSurcharge',
+        'taxCalculation' => 'getTaxCalculation',
         'telephoneNumber' => 'getTelephoneNumber',
         'thirdPartyTokenRedundancyInfo' => 'getThirdPartyTokenRedundancyInfo',
         'threeDS2RequestData' => 'getThreeDS2RequestData',
@@ -832,6 +925,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
+        $this->setIfExists('shopperTaxIdentification', $data ?? [], null);
         $this->setIfExists('shopperTaxInfo', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
         $this->setIfExists('splits', $data ?? [], null);
@@ -839,6 +933,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('subMerchants', $data ?? [], null);
         $this->setIfExists('surcharge', $data ?? [], null);
+        $this->setIfExists('taxCalculation', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('thirdPartyTokenRedundancyInfo', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
@@ -1932,7 +2027,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets origin
      *
-     * @param string|null $origin > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
+     * @param string|null $origin > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  > If `origin` is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).
      *
      * @return self
      */
@@ -2450,6 +2545,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets shopperTaxIdentification
+     *
+     * @return \Adyen\Model\Checkout\TokenizedShopperTaxIdentification|null
+     */
+    public function getShopperTaxIdentification()
+    {
+        return $this->container['shopperTaxIdentification'] ?? null;
+    }
+
+    /**
+     * Sets shopperTaxIdentification
+     *
+     * @param \Adyen\Model\Checkout\TokenizedShopperTaxIdentification|null $shopperTaxIdentification shopperTaxIdentification
+     *
+     * @return self
+     */
+    public function setShopperTaxIdentification($shopperTaxIdentification): self
+    {
+        $this->container['shopperTaxIdentification'] = $shopperTaxIdentification;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperTaxInfo
      *
      * @return \Adyen\Model\Checkout\ShopperTaxInfo|null
@@ -2618,6 +2737,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets taxCalculation
+     *
+     * @return \Adyen\Model\Checkout\TokenizedTaxCalculation|null
+     */
+    public function getTaxCalculation()
+    {
+        return $this->container['taxCalculation'] ?? null;
+    }
+
+    /**
+     * Sets taxCalculation
+     *
+     * @param \Adyen\Model\Checkout\TokenizedTaxCalculation|null $taxCalculation taxCalculation
+     *
+     * @return self
+     */
+    public function setTaxCalculation($taxCalculation): self
+    {
+        $this->container['taxCalculation'] = $taxCalculation;
+
+        return $this;
+    }
+
+    /**
      * Gets telephoneNumber
      *
      * @return string|null
@@ -2703,7 +2846,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDSAuthenticationOnly
      *
-     * @param bool|null $threeDSAuthenticationOnly Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**.
+     * @param bool|null $threeDSAuthenticationOnly Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
      *
      * @return self
      * @deprecated

@@ -26,6 +26,24 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDRESS_MATCH = 'addressMatch';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS_INDICATOR = 'deliveryAddressIndicator';
+    public const JSON_PROPERTY_DELIVERY_EMAIL = 'deliveryEmail';
+    public const JSON_PROPERTY_DELIVERY_EMAIL_ADDRESS = 'deliveryEmailAddress';
+    public const JSON_PROPERTY_DELIVERY_TIMEFRAME = 'deliveryTimeframe';
+    public const JSON_PROPERTY_GIFT_CARD_AMOUNT = 'giftCardAmount';
+    public const JSON_PROPERTY_GIFT_CARD_COUNT = 'giftCardCount';
+    public const JSON_PROPERTY_GIFT_CARD_CURR = 'giftCardCurr';
+    public const JSON_PROPERTY_PRE_ORDER_DATE = 'preOrderDate';
+    public const JSON_PROPERTY_PRE_ORDER_PURCHASE = 'preOrderPurchase';
+    public const JSON_PROPERTY_PRE_ORDER_PURCHASE_IND = 'preOrderPurchaseInd';
+    public const JSON_PROPERTY_REORDER_ITEMS = 'reorderItems';
+    public const JSON_PROPERTY_REORDER_ITEMS_IND = 'reorderItemsInd';
+    public const JSON_PROPERTY_SHIP_INDICATOR = 'shipIndicator';
+
+    /**
       * The original name of the model.
       *
       * @var string

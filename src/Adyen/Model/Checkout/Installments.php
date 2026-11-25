@@ -26,6 +26,13 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_EXTRA = 'extra';
+    public const JSON_PROPERTY_PLAN = 'plan';
+    public const JSON_PROPERTY_VALUE = 'value';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,15 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CARD_HOLDER_INFO = 'cardHolderInfo';
+    public const JSON_PROPERTY_CAVV = 'cavv';
+    public const JSON_PROPERTY_CAVV_ALGORITHM = 'cavvAlgorithm';
+    public const JSON_PROPERTY_SCA_EXEMPTION_REQUESTED = 'scaExemptionRequested';
+    public const JSON_PROPERTY_THREEDS2_CARD_ENROLLED = 'threeds2.cardEnrolled';
+
+    /**
       * The original name of the model.
       *
       * @var string

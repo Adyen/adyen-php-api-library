@@ -26,6 +26,28 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_OPENINVOICEDATA_MERCHANT_DATA = 'openinvoicedata.merchantData';
+    public const JSON_PROPERTY_OPENINVOICEDATA_NUMBER_OF_LINES = 'openinvoicedata.numberOfLines';
+    public const JSON_PROPERTY_OPENINVOICEDATA_RECIPIENT_FIRST_NAME = 'openinvoicedata.recipientFirstName';
+    public const JSON_PROPERTY_OPENINVOICEDATA_RECIPIENT_LAST_NAME = 'openinvoicedata.recipientLastName';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_CURRENCY_CODE = 'openinvoicedataLine[itemNr].currencyCode';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_DESCRIPTION = 'openinvoicedataLine[itemNr].description';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_ITEM_AMOUNT = 'openinvoicedataLine[itemNr].itemAmount';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_ITEM_ID = 'openinvoicedataLine[itemNr].itemId';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_ITEM_VAT_AMOUNT = 'openinvoicedataLine[itemNr].itemVatAmount';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_ITEM_VAT_PERCENTAGE = 'openinvoicedataLine[itemNr].itemVatPercentage';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_NUMBER_OF_ITEMS = 'openinvoicedataLine[itemNr].numberOfItems';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_RETURN_SHIPPING_COMPANY = 'openinvoicedataLine[itemNr].returnShippingCompany';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_RETURN_TRACKING_NUMBER = 'openinvoicedataLine[itemNr].returnTrackingNumber';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_RETURN_TRACKING_URI = 'openinvoicedataLine[itemNr].returnTrackingUri';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_SHIPPING_COMPANY = 'openinvoicedataLine[itemNr].shippingCompany';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_SHIPPING_METHOD = 'openinvoicedataLine[itemNr].shippingMethod';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_TRACKING_NUMBER = 'openinvoicedataLine[itemNr].trackingNumber';
+    public const JSON_PROPERTY_OPENINVOICEDATA_LINE_ITEM_NR_TRACKING_URI = 'openinvoicedataLine[itemNr].trackingUri';
+
+    /**
       * The original name of the model.
       *
       * @var string

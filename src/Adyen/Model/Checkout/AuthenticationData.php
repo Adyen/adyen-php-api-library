@@ -26,6 +26,13 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ATTEMPT_AUTHENTICATION = 'attemptAuthentication';
+    public const JSON_PROPERTY_AUTHENTICATION_ONLY = 'authenticationOnly';
+    public const JSON_PROPERTY_THREE_D_S_REQUEST_DATA = 'threeDSRequestData';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -309,7 +316,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets attemptAuthentication
      *
-     * @param string|null $attemptAuthentication Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don't perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
+     * @param string|null $attemptAuthentication Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. For browser-based payments, make sure the payment request also contains complete `browserInfo` and `origin`. Without them, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. * **never**: Don't perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
      *
      * @return self
      */

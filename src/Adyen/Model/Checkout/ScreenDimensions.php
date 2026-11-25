@@ -26,6 +26,12 @@ class ScreenDimensions implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_HEIGHT = 'height';
+    public const JSON_PROPERTY_WIDTH = 'width';
+
+    /**
       * The original name of the model.
       *
       * @var string

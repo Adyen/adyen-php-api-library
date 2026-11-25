@@ -26,6 +26,13 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_THREE_D_S_REQ_AUTH_DATA = 'threeDSReqAuthData';
+    public const JSON_PROPERTY_THREE_D_S_REQ_AUTH_METHOD = 'threeDSReqAuthMethod';
+    public const JSON_PROPERTY_THREE_D_S_REQ_AUTH_TIMESTAMP = 'threeDSReqAuthTimestamp';
+
+    /**
       * The original name of the model.
       *
       * @var string

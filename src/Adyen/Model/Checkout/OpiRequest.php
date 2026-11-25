@@ -26,6 +26,12 @@ class OpiRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_INCLUDE_ISSUER_ID = 'includeIssuerId';
+    public const JSON_PROPERTY_INCLUDE_TRANS_TOKEN = 'includeTransToken';
+
+    /**
       * The original name of the model.
       *
       * @var string

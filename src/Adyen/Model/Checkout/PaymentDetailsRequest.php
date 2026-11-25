@@ -26,6 +26,14 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AUTHENTICATION_DATA = 'authenticationData';
+    public const JSON_PROPERTY_DETAILS = 'details';
+    public const JSON_PROPERTY_PAYMENT_DATA = 'paymentData';
+    public const JSON_PROPERTY_THREE_D_S_AUTHENTICATION_ONLY = 'threeDSAuthenticationOnly';
+
+    /**
       * The original name of the model.
       *
       * @var string

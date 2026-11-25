@@ -26,6 +26,19 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_AMOUNT_RULE = 'amountRule';
+    public const JSON_PROPERTY_BILLING_ATTEMPTS_RULE = 'billingAttemptsRule';
+    public const JSON_PROPERTY_BILLING_DAY = 'billingDay';
+    public const JSON_PROPERTY_COUNT = 'count';
+    public const JSON_PROPERTY_ENDS_AT = 'endsAt';
+    public const JSON_PROPERTY_FREQUENCY = 'frequency';
+    public const JSON_PROPERTY_REMARKS = 'remarks';
+    public const JSON_PROPERTY_STARTS_AT = 'startsAt';
+
+    /**
       * The original name of the model.
       *
       * @var string

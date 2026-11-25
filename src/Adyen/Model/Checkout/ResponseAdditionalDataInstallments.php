@@ -26,6 +26,22 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_INSTALLMENT_TYPE = 'installmentPaymentData.installmentType';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_ANNUAL_PERCENTAGE_RATE = 'installmentPaymentData.option[itemNr].annualPercentageRate';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_FIRST_INSTALLMENT_AMOUNT = 'installmentPaymentData.option[itemNr].firstInstallmentAmount';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_INSTALLMENT_FEE = 'installmentPaymentData.option[itemNr].installmentFee';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_INTEREST_RATE = 'installmentPaymentData.option[itemNr].interestRate';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_MAXIMUM_NUMBER_OF_INSTALLMENTS = 'installmentPaymentData.option[itemNr].maximumNumberOfInstallments';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_MINIMUM_NUMBER_OF_INSTALLMENTS = 'installmentPaymentData.option[itemNr].minimumNumberOfInstallments';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_NUMBER_OF_INSTALLMENTS = 'installmentPaymentData.option[itemNr].numberOfInstallments';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_SUBSEQUENT_INSTALLMENT_AMOUNT = 'installmentPaymentData.option[itemNr].subsequentInstallmentAmount';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_OPTION_ITEM_NR_TOTAL_AMOUNT_DUE = 'installmentPaymentData.option[itemNr].totalAmountDue';
+    public const JSON_PROPERTY_INSTALLMENT_PAYMENT_DATA_PAYMENT_OPTIONS = 'installmentPaymentData.paymentOptions';
+    public const JSON_PROPERTY_INSTALLMENTS_VALUE = 'installments.value';
+
+    /**
       * The original name of the model.
       *
       * @var string

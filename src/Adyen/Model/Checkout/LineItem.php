@@ -26,6 +26,36 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT_EXCLUDING_TAX = 'amountExcludingTax';
+    public const JSON_PROPERTY_AMOUNT_INCLUDING_TAX = 'amountIncludingTax';
+    public const JSON_PROPERTY_BRAND = 'brand';
+    public const JSON_PROPERTY_COLOR = 'color';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_IMAGE_URL = 'imageUrl';
+    public const JSON_PROPERTY_ITEM_CATEGORY = 'itemCategory';
+    public const JSON_PROPERTY_MANUFACTURER = 'manufacturer';
+    public const JSON_PROPERTY_MARKETPLACE_SELLER_ID = 'marketplaceSellerId';
+    public const JSON_PROPERTY_PRODUCT_URL = 'productUrl';
+    public const JSON_PROPERTY_QUANTITY = 'quantity';
+    public const JSON_PROPERTY_RECEIVER_EMAIL = 'receiverEmail';
+    public const JSON_PROPERTY_RETURN_SHIPPING_COMPANY = 'returnShippingCompany';
+    public const JSON_PROPERTY_RETURN_TRACKING_NUMBER = 'returnTrackingNumber';
+    public const JSON_PROPERTY_RETURN_TRACKING_URI = 'returnTrackingUri';
+    public const JSON_PROPERTY_RISK_CATEGORY = 'riskCategory';
+    public const JSON_PROPERTY_SHIPPING_COMPANY = 'shippingCompany';
+    public const JSON_PROPERTY_SHIPPING_METHOD = 'shippingMethod';
+    public const JSON_PROPERTY_SIZE = 'size';
+    public const JSON_PROPERTY_SKU = 'sku';
+    public const JSON_PROPERTY_TAX_AMOUNT = 'taxAmount';
+    public const JSON_PROPERTY_TAX_PERCENTAGE = 'taxPercentage';
+    public const JSON_PROPERTY_TRACKING_NUMBER = 'trackingNumber';
+    public const JSON_PROPERTY_TRACKING_URI = 'trackingUri';
+    public const JSON_PROPERTY_UPC = 'upc';
+
+    /**
       * The original name of the model.
       *
       * @var string

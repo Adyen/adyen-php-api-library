@@ -26,6 +26,19 @@ class InputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CONFIGURATION = 'configuration';
+    public const JSON_PROPERTY_DETAILS = 'details';
+    public const JSON_PROPERTY_INPUT_DETAILS = 'inputDetails';
+    public const JSON_PROPERTY_ITEM_SEARCH_URL = 'itemSearchUrl';
+    public const JSON_PROPERTY_ITEMS = 'items';
+    public const JSON_PROPERTY_KEY = 'key';
+    public const JSON_PROPERTY_OPTIONAL = 'optional';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VALUE = 'value';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -16,21 +16,31 @@ use \ArrayAccess;
 use \Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * AdditionalDataTemporaryServices Class Doc Comment
+ * VerifyShopperTaxIdentificationResponse Class Doc Comment
  *
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \JsonSerializable
+class VerifyShopperTaxIdentificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
+    /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_REASON = 'reason';
+    public const JSON_PROPERTY_REASON_CODE = 'reasonCode';
+    public const JSON_PROPERTY_RESULT = 'result';
+    public const JSON_PROPERTY_TAX_VERIFICATION_REFERENCE = 'taxVerificationReference';
+    public const JSON_PROPERTY_VERIFIED_SHOPPER_TAX_IDENTIFICATION = 'verifiedShopperTaxIdentification';
+    public const JSON_PROPERTY_VERIFIED_SHOPPER_TAX_IDENTIFICATION_TOKEN = 'verifiedShopperTaxIdentificationToken';
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'AdditionalDataTemporaryServices';
+    protected static string $openAPIModelName = 'VerifyShopperTaxIdentificationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -38,15 +48,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static array $openAPITypes = [
-        'enhancedSchemeDataCustomerReference' => 'string',
-        'enhancedSchemeDataEmployeeName' => 'string',
-        'enhancedSchemeDataJobDescription' => 'string',
-        'enhancedSchemeDataRegularHoursRate' => 'string',
-        'enhancedSchemeDataRegularHoursWorked' => 'string',
-        'enhancedSchemeDataRequestName' => 'string',
-        'enhancedSchemeDataTempStartDate' => 'string',
-        'enhancedSchemeDataTempWeekEnding' => 'string',
-        'enhancedSchemeDataTotalTaxAmount' => 'string'
+        'reason' => 'string',
+        'reasonCode' => 'string',
+        'result' => '\Adyen\Model\Checkout\Result',
+        'taxVerificationReference' => 'string',
+        'verifiedShopperTaxIdentification' => '\Adyen\Model\Checkout\VerifiedShopperTaxIdentification',
+        'verifiedShopperTaxIdentificationToken' => 'string'
     ];
 
     /**
@@ -57,15 +64,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'enhancedSchemeDataCustomerReference' => null,
-        'enhancedSchemeDataEmployeeName' => null,
-        'enhancedSchemeDataJobDescription' => null,
-        'enhancedSchemeDataRegularHoursRate' => null,
-        'enhancedSchemeDataRegularHoursWorked' => null,
-        'enhancedSchemeDataRequestName' => null,
-        'enhancedSchemeDataTempStartDate' => null,
-        'enhancedSchemeDataTempWeekEnding' => null,
-        'enhancedSchemeDataTotalTaxAmount' => null
+        'reason' => null,
+        'reasonCode' => null,
+        'result' => null,
+        'taxVerificationReference' => null,
+        'verifiedShopperTaxIdentification' => null,
+        'verifiedShopperTaxIdentificationToken' => null
     ];
 
     /**
@@ -74,15 +78,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enhancedSchemeDataCustomerReference' => false,
-        'enhancedSchemeDataEmployeeName' => false,
-        'enhancedSchemeDataJobDescription' => false,
-        'enhancedSchemeDataRegularHoursRate' => false,
-        'enhancedSchemeDataRegularHoursWorked' => false,
-        'enhancedSchemeDataRequestName' => false,
-        'enhancedSchemeDataTempStartDate' => false,
-        'enhancedSchemeDataTempWeekEnding' => false,
-        'enhancedSchemeDataTotalTaxAmount' => false
+        'reason' => false,
+        'reasonCode' => false,
+        'result' => false,
+        'taxVerificationReference' => false,
+        'verifiedShopperTaxIdentification' => false,
+        'verifiedShopperTaxIdentificationToken' => false
     ];
 
     /**
@@ -186,15 +187,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static array $attributeMap = [
-        'enhancedSchemeDataCustomerReference' => 'enhancedSchemeData.customerReference',
-        'enhancedSchemeDataEmployeeName' => 'enhancedSchemeData.employeeName',
-        'enhancedSchemeDataJobDescription' => 'enhancedSchemeData.jobDescription',
-        'enhancedSchemeDataRegularHoursRate' => 'enhancedSchemeData.regularHoursRate',
-        'enhancedSchemeDataRegularHoursWorked' => 'enhancedSchemeData.regularHoursWorked',
-        'enhancedSchemeDataRequestName' => 'enhancedSchemeData.requestName',
-        'enhancedSchemeDataTempStartDate' => 'enhancedSchemeData.tempStartDate',
-        'enhancedSchemeDataTempWeekEnding' => 'enhancedSchemeData.tempWeekEnding',
-        'enhancedSchemeDataTotalTaxAmount' => 'enhancedSchemeData.totalTaxAmount'
+        'reason' => 'reason',
+        'reasonCode' => 'reasonCode',
+        'result' => 'result',
+        'taxVerificationReference' => 'taxVerificationReference',
+        'verifiedShopperTaxIdentification' => 'verifiedShopperTaxIdentification',
+        'verifiedShopperTaxIdentificationToken' => 'verifiedShopperTaxIdentificationToken'
     ];
 
     /**
@@ -203,15 +201,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static array $setters = [
-        'enhancedSchemeDataCustomerReference' => 'setEnhancedSchemeDataCustomerReference',
-        'enhancedSchemeDataEmployeeName' => 'setEnhancedSchemeDataEmployeeName',
-        'enhancedSchemeDataJobDescription' => 'setEnhancedSchemeDataJobDescription',
-        'enhancedSchemeDataRegularHoursRate' => 'setEnhancedSchemeDataRegularHoursRate',
-        'enhancedSchemeDataRegularHoursWorked' => 'setEnhancedSchemeDataRegularHoursWorked',
-        'enhancedSchemeDataRequestName' => 'setEnhancedSchemeDataRequestName',
-        'enhancedSchemeDataTempStartDate' => 'setEnhancedSchemeDataTempStartDate',
-        'enhancedSchemeDataTempWeekEnding' => 'setEnhancedSchemeDataTempWeekEnding',
-        'enhancedSchemeDataTotalTaxAmount' => 'setEnhancedSchemeDataTotalTaxAmount'
+        'reason' => 'setReason',
+        'reasonCode' => 'setReasonCode',
+        'result' => 'setResult',
+        'taxVerificationReference' => 'setTaxVerificationReference',
+        'verifiedShopperTaxIdentification' => 'setVerifiedShopperTaxIdentification',
+        'verifiedShopperTaxIdentificationToken' => 'setVerifiedShopperTaxIdentificationToken'
     ];
 
     /**
@@ -220,15 +215,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static array $getters = [
-        'enhancedSchemeDataCustomerReference' => 'getEnhancedSchemeDataCustomerReference',
-        'enhancedSchemeDataEmployeeName' => 'getEnhancedSchemeDataEmployeeName',
-        'enhancedSchemeDataJobDescription' => 'getEnhancedSchemeDataJobDescription',
-        'enhancedSchemeDataRegularHoursRate' => 'getEnhancedSchemeDataRegularHoursRate',
-        'enhancedSchemeDataRegularHoursWorked' => 'getEnhancedSchemeDataRegularHoursWorked',
-        'enhancedSchemeDataRequestName' => 'getEnhancedSchemeDataRequestName',
-        'enhancedSchemeDataTempStartDate' => 'getEnhancedSchemeDataTempStartDate',
-        'enhancedSchemeDataTempWeekEnding' => 'getEnhancedSchemeDataTempWeekEnding',
-        'enhancedSchemeDataTotalTaxAmount' => 'getEnhancedSchemeDataTotalTaxAmount'
+        'reason' => 'getReason',
+        'reasonCode' => 'getReasonCode',
+        'result' => 'getResult',
+        'taxVerificationReference' => 'getTaxVerificationReference',
+        'verifiedShopperTaxIdentification' => 'getVerifiedShopperTaxIdentification',
+        'verifiedShopperTaxIdentificationToken' => 'getVerifiedShopperTaxIdentificationToken'
     ];
 
     /**
@@ -288,15 +280,12 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('enhancedSchemeDataCustomerReference', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataEmployeeName', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataJobDescription', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataRegularHoursRate', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataRegularHoursWorked', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataRequestName', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataTempStartDate', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataTempWeekEnding', $data ?? [], null);
-        $this->setIfExists('enhancedSchemeDataTotalTaxAmount', $data ?? [], null);
+        $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('reasonCode', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('taxVerificationReference', $data ?? [], null);
+        $this->setIfExists('verifiedShopperTaxIdentification', $data ?? [], null);
+        $this->setIfExists('verifiedShopperTaxIdentificationToken', $data ?? [], null);
     }
 
     /**
@@ -324,217 +313,145 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets enhancedSchemeDataCustomerReference
+     * Gets reason
      *
      * @return string|null
      */
-    public function getEnhancedSchemeDataCustomerReference()
+    public function getReason()
     {
-        return $this->container['enhancedSchemeDataCustomerReference'] ?? null;
+        return $this->container['reason'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataCustomerReference
+     * Sets reason
      *
-     * @param string|null $enhancedSchemeDataCustomerReference The customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
+     * @param string|null $reason The human-readable reason for an **INVALID** or **UNKNOWN** verification result.
      *
      * @return self
      */
-    public function setEnhancedSchemeDataCustomerReference($enhancedSchemeDataCustomerReference): self
+    public function setReason($reason): self
     {
-        $this->container['enhancedSchemeDataCustomerReference'] = $enhancedSchemeDataCustomerReference;
+        $this->container['reason'] = $reason;
 
         return $this;
     }
 
     /**
-     * Gets enhancedSchemeDataEmployeeName
+     * Gets reasonCode
      *
      * @return string|null
      */
-    public function getEnhancedSchemeDataEmployeeName()
+    public function getReasonCode()
     {
-        return $this->container['enhancedSchemeDataEmployeeName'] ?? null;
+        return $this->container['reasonCode'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataEmployeeName
+     * Sets reasonCode
      *
-     * @param string|null $enhancedSchemeDataEmployeeName The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.
+     * @param string|null $reasonCode The code for an unsuccessful verification, if available.
      *
      * @return self
      */
-    public function setEnhancedSchemeDataEmployeeName($enhancedSchemeDataEmployeeName): self
+    public function setReasonCode($reasonCode): self
     {
-        $this->container['enhancedSchemeDataEmployeeName'] = $enhancedSchemeDataEmployeeName;
+        $this->container['reasonCode'] = $reasonCode;
 
         return $this;
     }
 
     /**
-     * Gets enhancedSchemeDataJobDescription
+     * Gets result
      *
-     * @return string|null
+     * @return \Adyen\Model\Checkout\Result|null
      */
-    public function getEnhancedSchemeDataJobDescription()
+    public function getResult()
     {
-        return $this->container['enhancedSchemeDataJobDescription'] ?? null;
+        return $this->container['result'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataJobDescription
+     * Sets result
      *
-     * @param string|null $enhancedSchemeDataJobDescription The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.
+     * @param \Adyen\Model\Checkout\Result|null $result result
      *
      * @return self
      */
-    public function setEnhancedSchemeDataJobDescription($enhancedSchemeDataJobDescription): self
+    public function setResult($result): self
     {
-        $this->container['enhancedSchemeDataJobDescription'] = $enhancedSchemeDataJobDescription;
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets enhancedSchemeDataRegularHoursRate
+     * Gets taxVerificationReference
      *
      * @return string|null
      */
-    public function getEnhancedSchemeDataRegularHoursRate()
+    public function getTaxVerificationReference()
     {
-        return $this->container['enhancedSchemeDataRegularHoursRate'] ?? null;
+        return $this->container['taxVerificationReference'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataRegularHoursRate
+     * Sets taxVerificationReference
      *
-     * @param string|null $enhancedSchemeDataRegularHoursRate The amount paid for regular hours worked, [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 7 * Must not be empty * Can be all zeros
+     * @param string|null $taxVerificationReference The unique reference for the verification. Returned only when `result` is **VALID**.
      *
      * @return self
      */
-    public function setEnhancedSchemeDataRegularHoursRate($enhancedSchemeDataRegularHoursRate): self
+    public function setTaxVerificationReference($taxVerificationReference): self
     {
-        $this->container['enhancedSchemeDataRegularHoursRate'] = $enhancedSchemeDataRegularHoursRate;
+        $this->container['taxVerificationReference'] = $taxVerificationReference;
 
         return $this;
     }
 
     /**
-     * Gets enhancedSchemeDataRegularHoursWorked
+     * Gets verifiedShopperTaxIdentification
      *
-     * @return string|null
+     * @return \Adyen\Model\Checkout\VerifiedShopperTaxIdentification|null
      */
-    public function getEnhancedSchemeDataRegularHoursWorked()
+    public function getVerifiedShopperTaxIdentification()
     {
-        return $this->container['enhancedSchemeDataRegularHoursWorked'] ?? null;
+        return $this->container['verifiedShopperTaxIdentification'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataRegularHoursWorked
+     * Sets verifiedShopperTaxIdentification
      *
-     * @param string|null $enhancedSchemeDataRegularHoursWorked The hours worked. * maxLength: 7 * Must not be empty * Can be all zeros
+     * @param \Adyen\Model\Checkout\VerifiedShopperTaxIdentification|null $verifiedShopperTaxIdentification verifiedShopperTaxIdentification
      *
      * @return self
      */
-    public function setEnhancedSchemeDataRegularHoursWorked($enhancedSchemeDataRegularHoursWorked): self
+    public function setVerifiedShopperTaxIdentification($verifiedShopperTaxIdentification): self
     {
-        $this->container['enhancedSchemeDataRegularHoursWorked'] = $enhancedSchemeDataRegularHoursWorked;
+        $this->container['verifiedShopperTaxIdentification'] = $verifiedShopperTaxIdentification;
 
         return $this;
     }
 
     /**
-     * Gets enhancedSchemeDataRequestName
+     * Gets verifiedShopperTaxIdentificationToken
      *
      * @return string|null
      */
-    public function getEnhancedSchemeDataRequestName()
+    public function getVerifiedShopperTaxIdentificationToken()
     {
-        return $this->container['enhancedSchemeDataRequestName'] ?? null;
+        return $this->container['verifiedShopperTaxIdentificationToken'] ?? null;
     }
 
     /**
-     * Sets enhancedSchemeDataRequestName
+     * Sets verifiedShopperTaxIdentificationToken
      *
-     * @param string|null $enhancedSchemeDataRequestName The name of the person requesting temporary services. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+     * @param string|null $verifiedShopperTaxIdentificationToken The encrypted and signed token representing a successful verification. Returned only when `result` is **VALID**. Submit this value as `shopperTaxIdentification.verifiedShopperTaxIdentificationToken` in `/payments` with the same `shopperReference` used for verification.
      *
      * @return self
      */
-    public function setEnhancedSchemeDataRequestName($enhancedSchemeDataRequestName): self
+    public function setVerifiedShopperTaxIdentificationToken($verifiedShopperTaxIdentificationToken): self
     {
-        $this->container['enhancedSchemeDataRequestName'] = $enhancedSchemeDataRequestName;
-
-        return $this;
-    }
-
-    /**
-     * Gets enhancedSchemeDataTempStartDate
-     *
-     * @return string|null
-     */
-    public function getEnhancedSchemeDataTempStartDate()
-    {
-        return $this->container['enhancedSchemeDataTempStartDate'] ?? null;
-    }
-
-    /**
-     * Sets enhancedSchemeDataTempStartDate
-     *
-     * @param string|null $enhancedSchemeDataTempStartDate The billing period start date. * Format: ddMMyy * maxLength: 6
-     *
-     * @return self
-     */
-    public function setEnhancedSchemeDataTempStartDate($enhancedSchemeDataTempStartDate): self
-    {
-        $this->container['enhancedSchemeDataTempStartDate'] = $enhancedSchemeDataTempStartDate;
-
-        return $this;
-    }
-
-    /**
-     * Gets enhancedSchemeDataTempWeekEnding
-     *
-     * @return string|null
-     */
-    public function getEnhancedSchemeDataTempWeekEnding()
-    {
-        return $this->container['enhancedSchemeDataTempWeekEnding'] ?? null;
-    }
-
-    /**
-     * Sets enhancedSchemeDataTempWeekEnding
-     *
-     * @param string|null $enhancedSchemeDataTempWeekEnding The billing period end date. * Format: ddMMyy * maxLength: 6
-     *
-     * @return self
-     */
-    public function setEnhancedSchemeDataTempWeekEnding($enhancedSchemeDataTempWeekEnding): self
-    {
-        $this->container['enhancedSchemeDataTempWeekEnding'] = $enhancedSchemeDataTempWeekEnding;
-
-        return $this;
-    }
-
-    /**
-     * Gets enhancedSchemeDataTotalTaxAmount
-     *
-     * @return string|null
-     */
-    public function getEnhancedSchemeDataTotalTaxAmount()
-    {
-        return $this->container['enhancedSchemeDataTotalTaxAmount'] ?? null;
-    }
-
-    /**
-     * Sets enhancedSchemeDataTotalTaxAmount
-     *
-     * @param string|null $enhancedSchemeDataTotalTaxAmount The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). For example, 2000 means USD 20.00 * maxLength: 12
-     *
-     * @return self
-     */
-    public function setEnhancedSchemeDataTotalTaxAmount($enhancedSchemeDataTotalTaxAmount): self
-    {
-        $this->container['enhancedSchemeDataTotalTaxAmount'] = $enhancedSchemeDataTotalTaxAmount;
+        $this->container['verifiedShopperTaxIdentificationToken'] = $verifiedShopperTaxIdentificationToken;
 
         return $this;
     }

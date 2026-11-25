@@ -26,6 +26,19 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_BASE_URL = 'baseUrl';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_OPTIONS = 'options';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_REQUEST = 'request';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -494,7 +507,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets shopperReference
      *
-     * @return string
+     * @return string|null
      */
     public function getShopperReference()
     {
@@ -504,7 +517,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shopperReference
      *
-     * @param string $shopperReference Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
+     * @param string|null $shopperReference Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. This parameter is required unless the request is for PAN forwarding and `options.tokenize` is false (the default). > Your reference must not include personally identifiable information (PII) such as name or email address.
      *
      * @return self
      */

@@ -26,6 +26,15 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CURRENCY = 'currency';
+    public const JSON_PROPERTY_LABEL = 'label';
+    public const JSON_PROPERTY_LOCALE = 'locale';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_STORE = 'store';
+
+    /**
       * The original name of the model.
       *
       * @var string

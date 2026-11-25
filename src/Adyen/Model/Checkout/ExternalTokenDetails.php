@@ -26,6 +26,19 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_EXPIRY_MONTH = 'expiryMonth';
+    public const JSON_PROPERTY_EXPIRY_YEAR = 'expiryYear';
+    public const JSON_PROPERTY_HOLDER_NAME = 'holderName';
+    public const JSON_PROPERTY_NUMBER = 'number';
+    public const JSON_PROPERTY_STORE_CLICK_TO_PAY_PROFILE = 'storeClickToPayProfile';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -43,6 +56,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => 'string',
         'holderName' => 'string',
         'number' => 'string',
+        'storeClickToPayProfile' => 'bool',
         'storedPaymentMethodId' => 'string',
         'subtype' => 'string',
         'type' => 'string'
@@ -61,6 +75,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => null,
         'holderName' => null,
         'number' => null,
+        'storeClickToPayProfile' => null,
         'storedPaymentMethodId' => null,
         'subtype' => null,
         'type' => null
@@ -77,6 +92,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => false,
         'holderName' => false,
         'number' => false,
+        'storeClickToPayProfile' => false,
         'storedPaymentMethodId' => false,
         'subtype' => false,
         'type' => false
@@ -188,6 +204,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => 'expiryYear',
         'holderName' => 'holderName',
         'number' => 'number',
+        'storeClickToPayProfile' => 'storeClickToPayProfile',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'subtype' => 'subtype',
         'type' => 'type'
@@ -204,6 +221,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => 'setExpiryYear',
         'holderName' => 'setHolderName',
         'number' => 'setNumber',
+        'storeClickToPayProfile' => 'setStoreClickToPayProfile',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'subtype' => 'setSubtype',
         'type' => 'setType'
@@ -220,6 +238,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryYear' => 'getExpiryYear',
         'holderName' => 'getHolderName',
         'number' => 'getNumber',
+        'storeClickToPayProfile' => 'getStoreClickToPayProfile',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'subtype' => 'getSubtype',
         'type' => 'getType'
@@ -313,6 +332,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('expiryYear', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('storeClickToPayProfile', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'externalToken');
@@ -458,6 +478,30 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setNumber($number): self
     {
         $this->container['number'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Gets storeClickToPayProfile
+     *
+     * @return bool|null
+     */
+    public function getStoreClickToPayProfile()
+    {
+        return $this->container['storeClickToPayProfile'] ?? null;
+    }
+
+    /**
+     * Sets storeClickToPayProfile
+     *
+     * @param bool|null $storeClickToPayProfile When enrolling a new user, this field determines whether to store the shopper's card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.
+     *
+     * @return self
+     */
+    public function setStoreClickToPayProfile($storeClickToPayProfile): self
+    {
+        $this->container['storeClickToPayProfile'] = $storeClickToPayProfile;
 
         return $this;
     }
