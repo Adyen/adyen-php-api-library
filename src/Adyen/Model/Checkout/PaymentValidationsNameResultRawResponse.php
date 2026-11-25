@@ -26,6 +26,15 @@ class PaymentValidationsNameResultRawResponse implements ModelInterface, ArrayAc
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_FULL_NAME = 'fullName';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+    public const JSON_PROPERTY_MIDDLE_NAME = 'middleName';
+    public const JSON_PROPERTY_STATUS = 'status';
+
+    /**
       * The original name of the model.
       *
       * @var string

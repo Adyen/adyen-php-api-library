@@ -26,6 +26,15 @@ class Healthcare implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_DENTAL_VALUE = 'dentalValue';
+    public const JSON_PROPERTY_OTHER_MEDICAL_VALUE = 'otherMedicalValue';
+    public const JSON_PROPERTY_PRESCRIPTION_VALUE = 'prescriptionValue';
+    public const JSON_PROPERTY_TOTAL_HEALTHCARE_VALUE = 'totalHealthcareValue';
+    public const JSON_PROPERTY_VISION_PRESCRIPTION_VALUE = 'visionPrescriptionValue';
+
+    /**
       * The original name of the model.
       *
       * @var string

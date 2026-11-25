@@ -26,6 +26,13 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_NETWORK_TOKEN_AVAILABLE = 'networkToken.available';
+    public const JSON_PROPERTY_NETWORK_TOKEN_BIN = 'networkToken.bin';
+    public const JSON_PROPERTY_NETWORK_TOKEN_TOKEN_SUMMARY = 'networkToken.tokenSummary';
+
+    /**
       * The original name of the model.
       *
       * @var string

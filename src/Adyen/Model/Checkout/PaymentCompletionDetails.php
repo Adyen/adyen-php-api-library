@@ -26,6 +26,30 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_M_D = 'MD';
+    public const JSON_PROPERTY_PA_REQ = 'PaReq';
+    public const JSON_PROPERTY_PA_RES = 'PaRes';
+    public const JSON_PROPERTY_AUTHORIZATION_TOKEN = 'authorization_token';
+    public const JSON_PROPERTY_BILLING_TOKEN = 'billingToken';
+    public const JSON_PROPERTY_CUPSECUREPLUS_SMSCODE = 'cupsecureplus.smscode';
+    public const JSON_PROPERTY_FACILITATOR_ACCESS_TOKEN = 'facilitatorAccessToken';
+    public const JSON_PROPERTY_ONE_TIME_PASSCODE = 'oneTimePasscode';
+    public const JSON_PROPERTY_ORDER_I_D = 'orderID';
+    public const JSON_PROPERTY_PAYER_I_D = 'payerID';
+    public const JSON_PROPERTY_PAYLOAD = 'payload';
+    public const JSON_PROPERTY_PAYMENT_I_D = 'paymentID';
+    public const JSON_PROPERTY_PAYMENT_STATUS = 'paymentStatus';
+    public const JSON_PROPERTY_REDIRECT_RESULT = 'redirectResult';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+    public const JSON_PROPERTY_RETURN_URL_QUERY_STRING = 'returnUrlQueryString';
+    public const JSON_PROPERTY_THREE_D_S_RESULT = 'threeDSResult';
+    public const JSON_PROPERTY_THREEDS2_CHALLENGE_RESULT = 'threeds2.challengeResult';
+    public const JSON_PROPERTY_THREEDS2_FINGERPRINT = 'threeds2.fingerprint';
+    public const JSON_PROPERTY_VAULT_TOKEN = 'vaultToken';
+
+    /**
       * The original name of the model.
       *
       * @var string

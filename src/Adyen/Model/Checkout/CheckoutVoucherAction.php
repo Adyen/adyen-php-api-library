@@ -26,6 +26,31 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALTERNATIVE_REFERENCE = 'alternativeReference';
+    public const JSON_PROPERTY_COLLECTION_INSTITUTION_NUMBER = 'collectionInstitutionNumber';
+    public const JSON_PROPERTY_DOWNLOAD_URL = 'downloadUrl';
+    public const JSON_PROPERTY_ENTITY = 'entity';
+    public const JSON_PROPERTY_EXPIRES_AT = 'expiresAt';
+    public const JSON_PROPERTY_INITIAL_AMOUNT = 'initialAmount';
+    public const JSON_PROPERTY_INSTRUCTIONS_URL = 'instructionsUrl';
+    public const JSON_PROPERTY_ISSUER = 'issuer';
+    public const JSON_PROPERTY_MASKED_TELEPHONE_NUMBER = 'maskedTelephoneNumber';
+    public const JSON_PROPERTY_MERCHANT_NAME = 'merchantName';
+    public const JSON_PROPERTY_MERCHANT_REFERENCE = 'merchantReference';
+    public const JSON_PROPERTY_PASS_CREATION_TOKEN = 'passCreationToken';
+    public const JSON_PROPERTY_PAYMENT_DATA = 'paymentData';
+    public const JSON_PROPERTY_PAYMENT_METHOD_TYPE = 'paymentMethodType';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SURCHARGE = 'surcharge';
+    public const JSON_PROPERTY_TOTAL_AMOUNT = 'totalAmount';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

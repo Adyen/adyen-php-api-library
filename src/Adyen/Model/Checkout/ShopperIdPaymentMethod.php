@@ -36,6 +36,11 @@ class ShopperIdPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,18 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CITY = 'city';
+    public const JSON_PROPERTY_COUNTRY = 'country';
+    public const JSON_PROPERTY_FIRST_NAME = 'firstName';
+    public const JSON_PROPERTY_HOUSE_NUMBER_OR_NAME = 'houseNumberOrName';
+    public const JSON_PROPERTY_LAST_NAME = 'lastName';
+    public const JSON_PROPERTY_POSTAL_CODE = 'postalCode';
+    public const JSON_PROPERTY_STATE_OR_PROVINCE = 'stateOrProvince';
+    public const JSON_PROPERTY_STREET = 'street';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,13 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_HEALTHCARE = 'healthcare';
+    public const JSON_PROPERTY_SUPPORTED = 'supported';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,13 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_APP_IDENTIFIER_INFO = 'appIdentifierInfo';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_NAME = 'name';
+
+    /**
       * The original name of the model.
       *
       * @var string

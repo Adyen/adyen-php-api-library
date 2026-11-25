@@ -26,6 +26,49 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_INFO = 'accountInfo';
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_APPLICATION_INFO = 'applicationInfo';
+    public const JSON_PROPERTY_AUTHENTICATION_DATA = 'authenticationData';
+    public const JSON_PROPERTY_BILLING_ADDRESS = 'billingAddress';
+    public const JSON_PROPERTY_BROWSER_INFO = 'browserInfo';
+    public const JSON_PROPERTY_CHANNEL = 'channel';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_DATE_OF_BIRTH = 'dateOfBirth';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS = 'deliveryAddress';
+    public const JSON_PROPERTY_DEVICE_FINGERPRINT = 'deviceFingerprint';
+    public const JSON_PROPERTY_DONATION_ACCOUNT = 'donationAccount';
+    public const JSON_PROPERTY_DONATION_CAMPAIGN_ID = 'donationCampaignId';
+    public const JSON_PROPERTY_DONATION_ORIGINAL_PSP_REFERENCE = 'donationOriginalPspReference';
+    public const JSON_PROPERTY_DONATION_TOKEN = 'donationToken';
+    public const JSON_PROPERTY_LINE_ITEMS = 'lineItems';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_MERCHANT_RISK_INDICATOR = 'merchantRiskIndicator';
+    public const JSON_PROPERTY_METADATA = 'metadata';
+    public const JSON_PROPERTY_MPI_DATA = 'mpiData';
+    public const JSON_PROPERTY_ORIGIN = 'origin';
+    public const JSON_PROPERTY_PAYMENT_METHOD = 'paymentMethod';
+    public const JSON_PROPERTY_RECURRING_PROCESSING_MODEL = 'recurringProcessingModel';
+    public const JSON_PROPERTY_REDIRECT_FROM_ISSUER_METHOD = 'redirectFromIssuerMethod';
+    public const JSON_PROPERTY_REDIRECT_TO_ISSUER_METHOD = 'redirectToIssuerMethod';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_RETURN_URL = 'returnUrl';
+    public const JSON_PROPERTY_SESSION_VALIDITY = 'sessionValidity';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SHOPPER_I_P = 'shopperIP';
+    public const JSON_PROPERTY_SHOPPER_INTERACTION = 'shopperInteraction';
+    public const JSON_PROPERTY_SHOPPER_LOCALE = 'shopperLocale';
+    public const JSON_PROPERTY_SHOPPER_NAME = 'shopperName';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_SOCIAL_SECURITY_NUMBER = 'socialSecurityNumber';
+    public const JSON_PROPERTY_STORE = 'store';
+    public const JSON_PROPERTY_TELEPHONE_NUMBER = 'telephoneNumber';
+    public const JSON_PROPERTY_THREE_D_S2_REQUEST_DATA = 'threeDS2RequestData';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -1116,7 +1159,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets origin
      *
-     * @param string|null $origin > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
+     * @param string|null $origin > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  > If `origin` is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).
      *
      * @return self
      */

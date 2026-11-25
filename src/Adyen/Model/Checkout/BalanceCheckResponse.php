@@ -26,6 +26,17 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ADDITIONAL_DATA = 'additionalData';
+    public const JSON_PROPERTY_BALANCE = 'balance';
+    public const JSON_PROPERTY_FRAUD_RESULT = 'fraudResult';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFUSAL_REASON = 'refusalReason';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+    public const JSON_PROPERTY_TRANSACTION_LIMIT = 'transactionLimit';
+
+    /**
       * The original name of the model.
       *
       * @var string

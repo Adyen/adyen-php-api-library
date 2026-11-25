@@ -26,6 +26,16 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ALLOW3_D_S2 = 'allow3DS2';
+    public const JSON_PROPERTY_CHALLENGE_WINDOW_SIZE = 'challengeWindowSize';
+    public const JSON_PROPERTY_EXECUTE_THREE_D = 'executeThreeD';
+    public const JSON_PROPERTY_MPI_IMPLEMENTATION_TYPE = 'mpiImplementationType';
+    public const JSON_PROPERTY_SCA_EXEMPTION = 'scaExemption';
+    public const JSON_PROPERTY_THREE_D_S_VERSION = 'threeDSVersion';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -400,7 +410,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets executeThreeD
      *
-     * @param string|null $executeThreeD Indicates if you want to perform 3D Secure authentication on a transaction.   > Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don't perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.
+     * @param string|null $executeThreeD Indicates if you want to perform 3D Secure authentication on a transaction.   > Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. For browser-based payments, make sure the payment request also contains complete `browserInfo` and, for the Checkout API, `origin`. Without them, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. * **false** – Don't perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.
      *
      * @return self
      * @deprecated

@@ -26,6 +26,17 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CARD_NUMBER = 'cardNumber';
+    public const JSON_PROPERTY_COUNTRY_CODE = 'countryCode';
+    public const JSON_PROPERTY_ENCRYPTED_CARD_NUMBER = 'encryptedCardNumber';
+    public const JSON_PROPERTY_MERCHANT_ACCOUNT = 'merchantAccount';
+    public const JSON_PROPERTY_SHOPPER_REFERENCE = 'shopperReference';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUPPORTED_BRANDS = 'supportedBrands';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -42,6 +53,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => 'string',
         'encryptedCardNumber' => 'string',
         'merchantAccount' => 'string',
+        'shopperReference' => 'string',
+        'storedPaymentMethodId' => 'string',
         'supportedBrands' => 'string[]'
     ];
 
@@ -57,6 +70,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => null,
         'encryptedCardNumber' => null,
         'merchantAccount' => null,
+        'shopperReference' => null,
+        'storedPaymentMethodId' => null,
         'supportedBrands' => null
     ];
 
@@ -70,6 +85,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => false,
         'encryptedCardNumber' => false,
         'merchantAccount' => false,
+        'shopperReference' => false,
+        'storedPaymentMethodId' => false,
         'supportedBrands' => false
     ];
 
@@ -178,6 +195,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => 'countryCode',
         'encryptedCardNumber' => 'encryptedCardNumber',
         'merchantAccount' => 'merchantAccount',
+        'shopperReference' => 'shopperReference',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
         'supportedBrands' => 'supportedBrands'
     ];
 
@@ -191,6 +210,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => 'setCountryCode',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'merchantAccount' => 'setMerchantAccount',
+        'shopperReference' => 'setShopperReference',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'supportedBrands' => 'setSupportedBrands'
     ];
 
@@ -204,6 +225,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryCode' => 'getCountryCode',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'merchantAccount' => 'getMerchantAccount',
+        'shopperReference' => 'getShopperReference',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'supportedBrands' => 'getSupportedBrands'
     ];
 
@@ -268,6 +291,8 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
+        $this->setIfExists('shopperReference', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('supportedBrands', $data ?? [], null);
     }
 
@@ -387,6 +412,54 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setMerchantAccount($merchantAccount): self
     {
         $this->container['merchantAccount'] = $merchantAccount;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperReference
+     *
+     * @return string|null
+     */
+    public function getShopperReference()
+    {
+        return $this->container['shopperReference'] ?? null;
+    }
+
+    /**
+     * Sets shopperReference
+     *
+     * @param string|null $shopperReference Your reference to uniquely identify the shopper that owns the `storedPaymentMethodId`. Required when `storedPaymentMethodId` is provided.
+     *
+     * @return self
+     */
+    public function setShopperReference($shopperReference): self
+    {
+        $this->container['shopperReference'] = $shopperReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'] ?? null;
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId The unique identifier of the stored payment method to look up, as returned by [`/storedPaymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/get/storedPaymentMethods). Use this to get the details of a stored card that is not present at charge time.  When provided, `shopperReference` is required and you must not include `cardNumber` or `encryptedCardNumber`.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId): self
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }

@@ -26,6 +26,21 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CASHTAG = 'cashtag';
+    public const JSON_PROPERTY_CHECKOUT_ATTEMPT_ID = 'checkoutAttemptId';
+    public const JSON_PROPERTY_CUSTOMER_ID = 'customerId';
+    public const JSON_PROPERTY_GRANT_ID = 'grantId';
+    public const JSON_PROPERTY_ON_FILE_GRANT_ID = 'onFileGrantId';
+    public const JSON_PROPERTY_RECURRING_DETAIL_REFERENCE = 'recurringDetailReference';
+    public const JSON_PROPERTY_REQUEST_ID = 'requestId';
+    public const JSON_PROPERTY_SDK_DATA = 'sdkData';
+    public const JSON_PROPERTY_STORED_PAYMENT_METHOD_ID = 'storedPaymentMethodId';
+    public const JSON_PROPERTY_SUBTYPE = 'subtype';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,25 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_NUMBER = 'accountNumber';
+    public const JSON_PROPERTY_BANK_CODE = 'bankCode';
+    public const JSON_PROPERTY_BENEFICIARY = 'beneficiary';
+    public const JSON_PROPERTY_BIC = 'bic';
+    public const JSON_PROPERTY_BRANCH_CODE = 'branchCode';
+    public const JSON_PROPERTY_DOWNLOAD_URL = 'downloadUrl';
+    public const JSON_PROPERTY_IBAN = 'iban';
+    public const JSON_PROPERTY_PAYMENT_METHOD_TYPE = 'paymentMethodType';
+    public const JSON_PROPERTY_REFERENCE = 'reference';
+    public const JSON_PROPERTY_ROUTING_NUMBER = 'routingNumber';
+    public const JSON_PROPERTY_SHOPPER_EMAIL = 'shopperEmail';
+    public const JSON_PROPERTY_SORT_CODE = 'sortCode';
+    public const JSON_PROPERTY_TOTAL_AMOUNT = 'totalAmount';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_URL = 'url';
+
+    /**
       * The original name of the model.
       *
       * @var string

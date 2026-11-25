@@ -26,6 +26,20 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BILLING_DATE = 'billingDate';
+    public const JSON_PROPERTY_BUSINESS_DAY_ONLY = 'businessDayOnly';
+    public const JSON_PROPERTY_ENDS_AT = 'endsAt';
+    public const JSON_PROPERTY_FREQUENCY = 'frequency';
+    public const JSON_PROPERTY_MIN_AMOUNT = 'minAmount';
+    public const JSON_PROPERTY_ORIGINAL_PSP_REFERENCE = 'originalPspReference';
+    public const JSON_PROPERTY_RECURRING_AMOUNT = 'recurringAmount';
+    public const JSON_PROPERTY_RECURRING_STATEMENT = 'recurringStatement';
+    public const JSON_PROPERTY_RETRY_POLICY = 'retryPolicy';
+    public const JSON_PROPERTY_STARTS_AT = 'startsAt';
+
+    /**
       * The original name of the model.
       *
       * @var string

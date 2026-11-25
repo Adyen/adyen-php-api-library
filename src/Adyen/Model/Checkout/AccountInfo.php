@@ -26,6 +26,29 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCOUNT_AGE_INDICATOR = 'accountAgeIndicator';
+    public const JSON_PROPERTY_ACCOUNT_CHANGE_DATE = 'accountChangeDate';
+    public const JSON_PROPERTY_ACCOUNT_CHANGE_INDICATOR = 'accountChangeIndicator';
+    public const JSON_PROPERTY_ACCOUNT_CREATION_DATE = 'accountCreationDate';
+    public const JSON_PROPERTY_ACCOUNT_TYPE = 'accountType';
+    public const JSON_PROPERTY_ADD_CARD_ATTEMPTS_DAY = 'addCardAttemptsDay';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS_USAGE_DATE = 'deliveryAddressUsageDate';
+    public const JSON_PROPERTY_DELIVERY_ADDRESS_USAGE_INDICATOR = 'deliveryAddressUsageIndicator';
+    public const JSON_PROPERTY_HOME_PHONE = 'homePhone';
+    public const JSON_PROPERTY_MOBILE_PHONE = 'mobilePhone';
+    public const JSON_PROPERTY_PASSWORD_CHANGE_DATE = 'passwordChangeDate';
+    public const JSON_PROPERTY_PASSWORD_CHANGE_INDICATOR = 'passwordChangeIndicator';
+    public const JSON_PROPERTY_PAST_TRANSACTIONS_DAY = 'pastTransactionsDay';
+    public const JSON_PROPERTY_PAST_TRANSACTIONS_YEAR = 'pastTransactionsYear';
+    public const JSON_PROPERTY_PAYMENT_ACCOUNT_AGE = 'paymentAccountAge';
+    public const JSON_PROPERTY_PAYMENT_ACCOUNT_INDICATOR = 'paymentAccountIndicator';
+    public const JSON_PROPERTY_PURCHASES_LAST6_MONTHS = 'purchasesLast6Months';
+    public const JSON_PROPERTY_SUSPICIOUS_ACTIVITY = 'suspiciousActivity';
+    public const JSON_PROPERTY_WORK_PHONE = 'workPhone';
+
+    /**
       * The original name of the model.
       *
       * @var string
