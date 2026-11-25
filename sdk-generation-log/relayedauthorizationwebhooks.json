@@ -1,8 +1,8 @@
 {
   "service": "relayedauthorizationwebhooks",
   "project": "php",
-  "generatedAt": "2026-06-04T13:35:32Z",
-  "openapiCommitSha": "3f48042f04c36da58b87bb0f8bc10ffefba74ead",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "543a990aa9c3dc0c5899292b33c6762d153edca7"
+  "generatedAt": "2026-11-25T08:18:29Z",
+  "openapiCommitSha": "7280e1fdc07c5a2464fe0b268f893df8afaa410c",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "0eee0ca5a6af8b7142d527f1b4cc08dde606caed"
 }
