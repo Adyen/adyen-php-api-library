@@ -43,6 +43,11 @@ class PCIQuestionnairesApi extends BaseService
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -85,7 +90,7 @@ class PCIQuestionnairesApi extends BaseService
      * PCIQuestionnairesApi constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -99,7 +104,11 @@ class PCIQuestionnairesApi extends BaseService
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -146,9 +155,9 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
+     * @return \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse|null
      */
-    public function calculatePciStatusOfLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
+    public function calculatePciStatusOfLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
     {
         list($response) = $this->calculatePciStatusOfLegalEntityWithHttpInfo($id, $calculatePciStatusRequest, $requestOptions);
         return $response;
@@ -165,7 +174,7 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function calculatePciStatusOfLegalEntityWithHttpInfo(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -213,22 +222,13 @@ class PCIQuestionnairesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse'
         );
     }
 
@@ -285,10 +285,13 @@ class PCIQuestionnairesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse'
                     );
                 },
                 function ($exception) {
@@ -355,6 +358,7 @@ class PCIQuestionnairesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -362,7 +366,7 @@ class PCIQuestionnairesApi extends BaseService
         // for model (json/xml)
         if (isset($calculatePciStatusRequest)) {
             $calculatePciStatusRequest = $this->injectApplicationInfo($calculatePciStatusRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($calculatePciStatusRequest));
             } else {
@@ -382,12 +386,12 @@ class PCIQuestionnairesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -398,7 +402,16 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -406,13 +419,13 @@ class PCIQuestionnairesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -432,9 +445,9 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
+     * @return \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse|null
      */
-    public function generatePciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionRequest $generatePciDescriptionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
+    public function generatePciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionRequest $generatePciDescriptionRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
     {
         list($response) = $this->generatePciQuestionnaireWithHttpInfo($id, $generatePciDescriptionRequest, $requestOptions);
         return $response;
@@ -451,7 +464,7 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function generatePciQuestionnaireWithHttpInfo(string $id, \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionRequest $generatePciDescriptionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -499,22 +512,13 @@ class PCIQuestionnairesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse'
         );
     }
 
@@ -571,10 +575,13 @@ class PCIQuestionnairesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse'
                     );
                 },
                 function ($exception) {
@@ -641,6 +648,7 @@ class PCIQuestionnairesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -648,7 +656,7 @@ class PCIQuestionnairesApi extends BaseService
         // for model (json/xml)
         if (isset($generatePciDescriptionRequest)) {
             $generatePciDescriptionRequest = $this->injectApplicationInfo($generatePciDescriptionRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($generatePciDescriptionRequest));
             } else {
@@ -668,12 +676,12 @@ class PCIQuestionnairesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -684,7 +692,16 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -692,13 +709,13 @@ class PCIQuestionnairesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -718,9 +735,9 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
+     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse|null
      */
-    public function getPciQuestionnaire(string $id, string $pciid, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
+    public function getPciQuestionnaire(string $id, string $pciid, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
     {
         list($response) = $this->getPciQuestionnaireWithHttpInfo($id, $pciid, $requestOptions);
         return $response;
@@ -737,7 +754,7 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPciQuestionnaireWithHttpInfo(string $id, string $pciid, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -785,22 +802,13 @@ class PCIQuestionnairesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse'
         );
     }
 
@@ -857,10 +865,13 @@ class PCIQuestionnairesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse'
                     );
                 },
                 function ($exception) {
@@ -943,6 +954,7 @@ class PCIQuestionnairesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -962,12 +974,12 @@ class PCIQuestionnairesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -978,7 +990,16 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -986,13 +1007,13 @@ class PCIQuestionnairesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1011,9 +1032,9 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
+     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse|null
      */
-    public function getPciQuestionnaireDetails(string $id, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
+    public function getPciQuestionnaireDetails(string $id, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
     {
         list($response) = $this->getPciQuestionnaireDetailsWithHttpInfo($id, $requestOptions);
         return $response;
@@ -1029,7 +1050,7 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPciQuestionnaireDetailsWithHttpInfo(string $id, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1077,22 +1098,13 @@ class PCIQuestionnairesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse'
         );
     }
 
@@ -1147,10 +1159,13 @@ class PCIQuestionnairesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse'
                     );
                 },
                 function ($exception) {
@@ -1216,6 +1231,7 @@ class PCIQuestionnairesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1235,12 +1251,12 @@ class PCIQuestionnairesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1251,7 +1267,16 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1259,13 +1284,13 @@ class PCIQuestionnairesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1285,9 +1310,9 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Adyen\Model\LegalEntityManagement\PciSigningResponse
+     * @return \Adyen\Model\LegalEntityManagement\PciSigningResponse|null
      */
-    public function signPciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\PciSigningRequest $pciSigningRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\LegalEntityManagement\PciSigningResponse
+    public function signPciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\PciSigningRequest $pciSigningRequest, ?\Adyen\RequestOptions $requestOptions = null): ?\Adyen\Model\LegalEntityManagement\PciSigningResponse
     {
         list($response) = $this->signPciQuestionnaireWithHttpInfo($id, $pciSigningRequest, $requestOptions);
         return $response;
@@ -1304,7 +1329,7 @@ class PCIQuestionnairesApi extends BaseService
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Adyen\Model\LegalEntityManagement\PciSigningResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Adyen\Model\LegalEntityManagement\PciSigningResponse|null, HTTP status code, HTTP response headers (array of strings)
      */
     public function signPciQuestionnaireWithHttpInfo(string $id, \Adyen\Model\LegalEntityManagement\PciSigningRequest $pciSigningRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
@@ -1352,22 +1377,13 @@ class PCIQuestionnairesApi extends BaseService
             );
         }
 
-
-        switch ($statusCode) {
-            case 200:
-                return $this->handleResponseWithDataType(
-                    '\Adyen\Model\LegalEntityManagement\PciSigningResponse',
-                    $request,
-                    $response,
-                );
-        }
-
-
-
-        return $this->handleResponseWithDataType(
-            '\Adyen\Model\LegalEntityManagement\PciSigningResponse',
+        return $this->handleSuccessfulResponse(
             $request,
             $response,
+            [
+                '200' => '\Adyen\Model\LegalEntityManagement\PciSigningResponse',
+            ],
+            '\Adyen\Model\LegalEntityManagement\PciSigningResponse'
         );
     }
 
@@ -1424,10 +1440,13 @@ class PCIQuestionnairesApi extends BaseService
                         );
                     }
 
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\LegalEntityManagement\PciSigningResponse',
+                    return $this->handleSuccessfulResponse(
                         $request,
-                        $response
+                        $response,
+                        [
+                            '200' => '\Adyen\Model\LegalEntityManagement\PciSigningResponse',
+                        ],
+                        '\Adyen\Model\LegalEntityManagement\PciSigningResponse'
                     );
                 },
                 function ($exception) {
@@ -1494,6 +1513,7 @@ class PCIQuestionnairesApi extends BaseService
             $multipart,
             $requestOptions
         );
+        $contentType = implode(', ', (array) ($headers['Content-Type'] ?? []));
 
         $headers['adyen-library-name'] = $this->config->getLibraryName();
         $headers['adyen-library-version'] = $this->config->getLibraryVersion();
@@ -1501,7 +1521,7 @@ class PCIQuestionnairesApi extends BaseService
         // for model (json/xml)
         if (isset($pciSigningRequest)) {
             $pciSigningRequest = $this->injectApplicationInfo($pciSigningRequest);
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+            if (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($pciSigningRequest));
             } else {
@@ -1521,12 +1541,12 @@ class PCIQuestionnairesApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+            } elseif (stripos($contentType, 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams, PHP_QUERY_RFC3986, $this->config);
             }
         }
 
@@ -1537,7 +1557,16 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         }
 
         $defaultHeaders = [];
@@ -1545,13 +1574,13 @@ class PCIQuestionnairesApi extends BaseService
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
 
-        $headers = array_merge(
+        $headers = $this->headerSelector->mergeHeaders(
             $defaultHeaders,
             $headers
         );
 
         $operationHost = $this->baseURL;
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query = ObjectSerializer::buildQuery($queryParams, PHP_QUERY_RFC3986, $this->config);
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1571,6 +1600,11 @@ class PCIQuestionnairesApi extends BaseService
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -1589,6 +1623,36 @@ class PCIQuestionnairesApi extends BaseService
         return $options;
     }
 
+    /**
+     * @param array<int|string, string|null> $responseTypes Documented success status codes and response types.
+     */
+    private function handleSuccessfulResponse(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $responseTypes,
+        string $fallbackType
+    ): array {
+        $statusCode = $response->getStatusCode();
+        $dataType = $fallbackType;
+
+        if (array_key_exists($statusCode, $responseTypes)) {
+            $dataType = $responseTypes[$statusCode];
+        } else {
+            foreach ($responseTypes as $responseCode => $responseType) {
+                if (is_string($responseCode) && $this->responseWithinRangeCode($responseCode, $statusCode)) {
+                    $dataType = $responseType;
+                    break;
+                }
+            }
+        }
+
+        if ($dataType === null) {
+            return [null, $statusCode, $response->getHeaders()];
+        }
+
+        return $this->handleResponseWithDataType($dataType, $request, $response);
+    }
+
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
@@ -1600,7 +1664,7 @@ class PCIQuestionnairesApi extends BaseService
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
                 try {
-                    $content = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
                     // unexpected parsing error
                     throw new AdyenException(
@@ -1613,12 +1677,11 @@ class PCIQuestionnairesApi extends BaseService
                         $content
                     );
                 }
-                $content = json_decode(json_encode($content), false);
             }
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            ObjectSerializer::deserialize($content, $dataType, [], $this->config),
             $response->getStatusCode(),
             $response->getHeaders()
         ];

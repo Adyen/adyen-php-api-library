@@ -26,6 +26,14 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_BUSINESS_TYPE = 'businessType';
+    public const JSON_PROPERTY_FINANCIAL_INSTITUTION_NUMBER = 'financialInstitutionNumber';
+    public const JSON_PROPERTY_MAIN_SOURCE_OF_INCOME = 'mainSourceOfIncome';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -125,6 +133,21 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -323,13 +346,10 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -346,7 +366,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getBusinessType()
     {
-        return $this->container['businessType'];
+        return $this->container['businessType'] ?? null;
     }
 
     /**
@@ -358,6 +378,19 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBusinessType($businessType): self
     {
+        if ($businessType !== null) {
+            $allowedValues = $this->getBusinessTypeAllowableValues();
+            foreach ([$businessType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "businessType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['businessType'] = $businessType;
 
         return $this;
@@ -370,7 +403,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getFinancialInstitutionNumber()
     {
-        return $this->container['financialInstitutionNumber'];
+        return $this->container['financialInstitutionNumber'] ?? null;
     }
 
     /**
@@ -394,7 +427,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getMainSourceOfIncome()
     {
-        return $this->container['mainSourceOfIncome'];
+        return $this->container['mainSourceOfIncome'] ?? null;
     }
 
     /**
@@ -406,6 +439,19 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMainSourceOfIncome($mainSourceOfIncome): self
     {
+        if ($mainSourceOfIncome !== null) {
+            $allowedValues = $this->getMainSourceOfIncomeAllowableValues();
+            foreach ([$mainSourceOfIncome] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "mainSourceOfIncome: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['mainSourceOfIncome'] = $mainSourceOfIncome;
 
         return $this;
@@ -418,7 +464,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -430,6 +476,19 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -473,6 +532,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -486,6 +546,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -504,14 +565,19 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
