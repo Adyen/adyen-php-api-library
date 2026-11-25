@@ -1,0 +1,8 @@
+{
+  "service": "softposconfiguration",
+  "project": "php",
+  "generatedAt": "2026-11-25T08:18:30Z",
+  "openapiCommitSha": "7280e1fdc07c5a2464fe0b268f893df8afaa410c",
+  "automationCommitSha": "ae7e57613c3a29391a4adb4ff02e9ddda4611b16",
+  "libraryCommitSha": "0eee0ca5a6af8b7142d527f1b4cc08dde606caed"
+}
