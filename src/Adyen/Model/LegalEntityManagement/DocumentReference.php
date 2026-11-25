@@ -26,6 +26,17 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACTIVE = 'active';
+    public const JSON_PROPERTY_DESCRIPTION = 'description';
+    public const JSON_PROPERTY_FILE_NAME = 'fileName';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_MODIFICATION_DATE = 'modificationDate';
+    public const JSON_PROPERTY_PAGES = 'pages';
+    public const JSON_PROPERTY_TYPE = 'type';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -134,6 +145,21 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -281,13 +307,10 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -304,7 +327,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getActive()
     {
-        return $this->container['active'];
+        return $this->container['active'] ?? null;
     }
 
     /**
@@ -328,7 +351,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getDescription()
     {
-        return $this->container['description'];
+        return $this->container['description'] ?? null;
     }
 
     /**
@@ -352,7 +375,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getFileName()
     {
-        return $this->container['fileName'];
+        return $this->container['fileName'] ?? null;
     }
 
     /**
@@ -376,7 +399,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -400,7 +423,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getModificationDate()
     {
-        return $this->container['modificationDate'];
+        return $this->container['modificationDate'] ?? null;
     }
 
     /**
@@ -424,7 +447,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getPages()
     {
-        return $this->container['pages'];
+        return $this->container['pages'] ?? null;
     }
 
     /**
@@ -448,7 +471,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -503,6 +526,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -516,6 +540,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -534,14 +559,19 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

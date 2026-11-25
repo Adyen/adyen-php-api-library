@@ -26,6 +26,16 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_ACCEPTED_BY = 'acceptedBy';
+    public const JSON_PROPERTY_ACCEPTED_FOR = 'acceptedFor';
+    public const JSON_PROPERTY_CREATED_AT = 'createdAt';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_VALID_TO = 'validTo';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -131,6 +141,21 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -241,6 +266,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
 
     public const TYPE_ADYEN_ACCOUNT = 'adyenAccount';
     public const TYPE_ADYEN_CAPITAL = 'adyenCapital';
+    public const TYPE_ADYEN_CAPITAL_CASH_ADVANCE = 'adyenCapitalCashAdvance';
     public const TYPE_ADYEN_CARD = 'adyenCard';
     public const TYPE_ADYEN_CHARGE_CARD = 'adyenChargeCard';
     public const TYPE_ADYEN_FOR_PLATFORMS_ADVANCED = 'adyenForPlatformsAdvanced';
@@ -248,6 +274,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TYPE_ADYEN_ISSUING = 'adyenIssuing';
     public const TYPE_ADYEN_PCCR = 'adyenPccr';
+    public const TYPE_DIRECT_DEBIT = 'directDebit';
     public const TYPE_KYC_ON_INVITE = 'kycOnInvite';
 
     /**
@@ -260,6 +287,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         return [
             self::TYPE_ADYEN_ACCOUNT,
             self::TYPE_ADYEN_CAPITAL,
+            self::TYPE_ADYEN_CAPITAL_CASH_ADVANCE,
             self::TYPE_ADYEN_CARD,
             self::TYPE_ADYEN_CHARGE_CARD,
             self::TYPE_ADYEN_FOR_PLATFORMS_ADVANCED,
@@ -267,6 +295,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
             self::TYPE_ADYEN_FRANCHISEE,
             self::TYPE_ADYEN_ISSUING,
             self::TYPE_ADYEN_PCCR,
+            self::TYPE_DIRECT_DEBIT,
             self::TYPE_KYC_ON_INVITE,
         ];
     }
@@ -305,13 +334,10 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -328,7 +354,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getAcceptedBy()
     {
-        return $this->container['acceptedBy'];
+        return $this->container['acceptedBy'] ?? null;
     }
 
     /**
@@ -352,7 +378,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getAcceptedFor()
     {
-        return $this->container['acceptedFor'];
+        return $this->container['acceptedFor'] ?? null;
     }
 
     /**
@@ -376,7 +402,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getCreatedAt()
     {
-        return $this->container['createdAt'];
+        return $this->container['createdAt'] ?? null;
     }
 
     /**
@@ -400,7 +426,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -424,18 +450,31 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**
      *
      * @return self
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -448,7 +487,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function getValidTo()
     {
-        return $this->container['validTo'];
+        return $this->container['validTo'] ?? null;
     }
 
     /**
@@ -503,6 +542,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -516,6 +556,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -534,14 +575,19 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
