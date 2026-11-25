@@ -26,6 +26,29 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_AMOUNT = 'amount';
+    public const JSON_PROPERTY_AMOUNT_ADJUSTMENTS = 'amountAdjustments';
+    public const JSON_PROPERTY_ARN = 'arn';
+    public const JSON_PROPERTY_BOOKING_DATE = 'bookingDate';
+    public const JSON_PROPERTY_ESTIMATED_ARRIVAL_TIME = 'estimatedArrivalTime';
+    public const JSON_PROPERTY_EVENTS_DATA = 'eventsData';
+    public const JSON_PROPERTY_EXTERNAL_REASON = 'externalReason';
+    public const JSON_PROPERTY_ID = 'id';
+    public const JSON_PROPERTY_MODIFICATION = 'modification';
+    public const JSON_PROPERTY_MUTATIONS = 'mutations';
+    public const JSON_PROPERTY_ORIGINAL_AMOUNT = 'originalAmount';
+    public const JSON_PROPERTY_REASON = 'reason';
+    public const JSON_PROPERTY_STATUS = 'status';
+    public const JSON_PROPERTY_TRACING_DATA = 'tracingData';
+    public const JSON_PROPERTY_TRACKING_DATA = 'trackingData';
+    public const JSON_PROPERTY_TRANSACTION_ID = 'transactionId';
+    public const JSON_PROPERTY_TYPE = 'type';
+    public const JSON_PROPERTY_UPDATE_DATE = 'updateDate';
+    public const JSON_PROPERTY_VALUE_DATE = 'valueDate';
+
+    /**
       * The original name of the model.
       *
       * @var string
@@ -170,6 +193,21 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -716,13 +754,10 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -739,7 +774,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -763,7 +798,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAmountAdjustments()
     {
-        return $this->container['amountAdjustments'];
+        return $this->container['amountAdjustments'] ?? null;
     }
 
     /**
@@ -787,7 +822,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getArn()
     {
-        return $this->container['arn'];
+        return $this->container['arn'] ?? null;
     }
 
     /**
@@ -811,7 +846,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBookingDate()
     {
-        return $this->container['bookingDate'];
+        return $this->container['bookingDate'] ?? null;
     }
 
     /**
@@ -835,7 +870,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEstimatedArrivalTime()
     {
-        return $this->container['estimatedArrivalTime'];
+        return $this->container['estimatedArrivalTime'] ?? null;
     }
 
     /**
@@ -859,7 +894,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getEventsData()
     {
-        return $this->container['eventsData'];
+        return $this->container['eventsData'] ?? null;
     }
 
     /**
@@ -883,7 +918,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getExternalReason()
     {
-        return $this->container['externalReason'];
+        return $this->container['externalReason'] ?? null;
     }
 
     /**
@@ -907,7 +942,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getId()
     {
-        return $this->container['id'];
+        return $this->container['id'] ?? null;
     }
 
     /**
@@ -931,7 +966,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getModification()
     {
-        return $this->container['modification'];
+        return $this->container['modification'] ?? null;
     }
 
     /**
@@ -955,7 +990,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getMutations()
     {
-        return $this->container['mutations'];
+        return $this->container['mutations'] ?? null;
     }
 
     /**
@@ -979,7 +1014,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getOriginalAmount()
     {
-        return $this->container['originalAmount'];
+        return $this->container['originalAmount'] ?? null;
     }
 
     /**
@@ -1003,7 +1038,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReason()
     {
-        return $this->container['reason'];
+        return $this->container['reason'] ?? null;
     }
 
     /**
@@ -1015,6 +1050,19 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReason($reason): self
     {
+        if ($reason !== null) {
+            $allowedValues = $this->getReasonAllowableValues();
+            foreach ([$reason] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "reason: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['reason'] = $reason;
 
         return $this;
@@ -1027,7 +1075,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getStatus()
     {
-        return $this->container['status'];
+        return $this->container['status'] ?? null;
     }
 
     /**
@@ -1039,6 +1087,19 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status): self
     {
+        if ($status !== null) {
+            $allowedValues = $this->getStatusAllowableValues();
+            foreach ([$status] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "status: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -1051,7 +1112,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTracingData()
     {
-        return $this->container['tracingData'];
+        return $this->container['tracingData'] ?? null;
     }
 
     /**
@@ -1075,7 +1136,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTrackingData()
     {
-        return $this->container['trackingData'];
+        return $this->container['trackingData'] ?? null;
     }
 
     /**
@@ -1099,7 +1160,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTransactionId()
     {
-        return $this->container['transactionId'];
+        return $this->container['transactionId'] ?? null;
     }
 
     /**
@@ -1123,7 +1184,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -1135,6 +1196,19 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -1147,7 +1221,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getUpdateDate()
     {
-        return $this->container['updateDate'];
+        return $this->container['updateDate'] ?? null;
     }
 
     /**
@@ -1171,7 +1245,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getValueDate()
     {
-        return $this->container['valueDate'];
+        return $this->container['valueDate'] ?? null;
     }
 
     /**
@@ -1226,6 +1300,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1239,6 +1314,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1257,14 +1333,19 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
