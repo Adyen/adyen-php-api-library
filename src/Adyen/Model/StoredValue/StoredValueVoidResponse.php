@@ -26,6 +26,15 @@ class StoredValueVoidResponse implements ModelInterface, ArrayAccess, \JsonSeria
     public const DISCRIMINATOR = null;
 
     /**
+     * JSON field names of this model's properties.
+     */
+    public const JSON_PROPERTY_CURRENT_BALANCE = 'currentBalance';
+    public const JSON_PROPERTY_PSP_REFERENCE = 'pspReference';
+    public const JSON_PROPERTY_REFUSAL_REASON = 'refusalReason';
+    public const JSON_PROPERTY_RESULT_CODE = 'resultCode';
+    public const JSON_PROPERTY_THIRD_PARTY_REFUSAL_REASON = 'thirdPartyRefusalReason';
+
+    /**
       * The original name of the model.
       *
       * @var string
